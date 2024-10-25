@@ -84,7 +84,7 @@ body {
 }
 
 @media print {
-	nav {
+	nav, .toc {
 		display: none;
 	}
 
