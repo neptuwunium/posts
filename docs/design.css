@@ -4,6 +4,7 @@
 	--border: #444;
 	--border-fix: #4442;
 	--footer: #999;
+	--bg-gradient: linear-gradient(54deg, rgba(18,35,65,1) 0%, rgba(14,41,66,1) 50%, rgba(56,10,65,1) 100%);
 }
 
 body, html {
@@ -76,6 +77,12 @@ header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, 
 		-webkit-text-fill-color: transparent;
 		-moz-text-fill-color: transparent;
 		text-fill-color: transparent;
+	}
+
+	body {
+		background-image: var(--bg-gradient);
+		background-attachment: fixed;
+		background-size: 100vw 200vh;
 	}
 }
 
@@ -275,6 +282,7 @@ header figure br:last-child {
 		--border: #ccc;
 		--border-fix: #ddd;
 		--footer: #999;
+		--bg-gradient: unset);
 	}
 }
 
