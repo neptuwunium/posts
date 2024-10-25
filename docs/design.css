@@ -91,22 +91,6 @@ body {
 	footer .emoji, footer span {
 		display: none;
 	}
-	
-	header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
-		background: unset;
-		-webkit-background-clip: unset;
-		-moz-background-clip: unset;
-		background-clip: unset;
-		-webkit-text-fill-color: unset;
-		-moz-text-fill-color: unset;
-		text-fill-color: unset;
-	}
-
-	body {
-		background-image: unset;
-		background-attachment: unset;
-		background-size: unset;
-	}
 }
 
 header figure {
@@ -295,7 +279,23 @@ header figure br:last-child {
 		--border: #ccc;
 		--border-fix: #ddd;
 		--footer: #999;
-		--bg-gradient: unset);
+		--bg-gradient: unset;
+	}
+	
+	header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
+		background: unset;
+		-webkit-background-clip: unset;
+		-moz-background-clip: unset;
+		background-clip: unset;
+		-webkit-text-fill-color: unset;
+		-moz-text-fill-color: unset;
+		text-fill-color: unset;
+	}
+
+	body {
+		background-image: unset;
+		background-attachment: unset;
+		background-size: unset;
 	}
 }
 
