@@ -4,7 +4,8 @@
 	--border: #444;
 	--border-fix: #4442;
 	--footer: #999;
-	--bg-gradient: linear-gradient(54deg, rgba(18,35,65,1) 0%, rgba(14,41,66,1) 50%, rgba(56,10,65,1) 100%);
+	--bg-gradient: linear-gradient(60deg, rgba(18,35,65,1) 0%, rgba(14,41,66,1) 50%, rgba(56,10,65,1) 100%);
+	--text-gradient: linear-gradient(60deg, rgba(172, 113, 255, .33)0, rgba(0, 179, 245, .33) 100%);
 }
 
 body, html {
@@ -66,24 +67,20 @@ header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, 
 	clear: both;
 }
 
-@media not print {
-	header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
-		background: -moz-linear-gradient(60deg, rgba(172, 113, 255, .33)0, rgba(0, 179, 245, .33) 100%) var(--fg);
-		background: -webkit-linear-gradient(60deg, rgba(172, 113, 255, .33)0, rgba(0, 179, 245, .33) 100%) var(--fg);
-		background: linear-gradient(60deg, rgba(172, 113, 255, .33)0, rgba(0, 179, 245, .33) 100%) var(--fg);
-		-webkit-background-clip: text;
-		-moz-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-		-moz-text-fill-color: transparent;
-		text-fill-color: transparent;
-	}
+header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
+	background: var(--text-gradient) var(--fg);
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-text-fill-color: transparent;
+	text-fill-color: transparent;
+}
 
-	body {
-		background-image: var(--bg-gradient);
-		background-attachment: fixed;
-		background-size: 100vw 200vh;
-	}
+body {
+	background-image: var(--bg-gradient);
+	background-attachment: fixed;
+	background-size: 100vw 200vh;
 }
 
 @media print {
@@ -93,6 +90,22 @@ header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, 
 
 	footer .emoji, footer span {
 		display: none;
+	}
+	
+	header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
+		background: unset;
+		-webkit-background-clip: unset;
+		-moz-background-clip: unset;
+		background-clip: unset;
+		-webkit-text-fill-color: unset;
+		-moz-text-fill-color: unset;
+		text-fill-color: unset;
+	}
+
+	body {
+		background-image: unset;
+		background-attachment: unset;
+		background-size: unset;
 	}
 }
 
