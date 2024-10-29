@@ -115,7 +115,7 @@ a:hover {
 }
 
 article ol, article ul {
-	margin-left: 26pt;
+	margin-left: 0;
 }
 
 nav {
