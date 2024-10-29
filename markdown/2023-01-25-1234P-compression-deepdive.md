@@ -275,8 +275,6 @@ I'm adding them here for completeness.
 
 ## Changelog
 
-*Update: 2024-09-09 - Added DENSITY info.*
-
-*Update: 2024-08-19 - Added Tile Streaming info.*
-
-*Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.*
+- *Update: 2024-09-09 - Added DENSITY info.*
+- *Update: 2024-08-19 - Added Tile Streaming info.*
+- *Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.*

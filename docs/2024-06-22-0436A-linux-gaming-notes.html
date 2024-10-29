@@ -79,7 +79,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <p>or</p>
 <p><code>env SDL_VIDEODRIVER=windows SDL_VIDEO_DRIVER=windows %command%</code></p>
 <p>Alternatively, set the variable to an empty string in whatever launch manager you&rsquo;re using (Heroic, Lutris).</p>
-<p>The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. <code>vk_radv %command%</code>.)</p>
+<p>The EAC splash also sometimes fails to load if you are using the proprietary AMD drivers (i.e. <code>vk_radv %command%</code>.)</p>
 <h2 id="enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</h2>
 <p>If you have a ray tracing capable GPU (RTX 2000 or newer, RX 6800 or newer)
 you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by using the following launch arguments:</p>
@@ -150,9 +150,11 @@ This makes Monado on Linux the only way to still use</p>
 <p><code>env DXVK_CONFIG="dxvk.numCompilerThreads=1" WINE_CPU_TOPOLOGY="4:0,2,4,6" %command%</code></p>
 <p>If there is too much lag, you might want to redefine the CPU topology, i.e. <code>WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"</code></p>
 <h2 id="changelog">Changelog</h2>
-<p><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em>
-<em>Update: 2024-10-29 - Added Monado/SteamVR.</em>
-<em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></p>
+<ul>
+<li><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em></li>
+<li><em>Update: 2024-10-29 - Added Monado/SteamVR.</em></li>
+<li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></li>
+</ul>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>
                 <span><a href="https://github.com/yretenai/posts">source code</a> - <a href="feed.rss">rss</a>, <a href="feed.atom">atom</a>, <a href="feed.json">json</a> - <a href="emoji/NOTICE.txt">emoji credit notice</a> - <a href="LICENSE">licensed under 0BSD</a></span><br>

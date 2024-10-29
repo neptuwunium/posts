@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Tue, 29 Oct 2024 03:44:32 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2024 03:49:45 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -36,7 +36,7 @@ or
 
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
 
-The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
+The EAC splash also sometimes fails to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
 
 ## Enabling DX12 Ray Tracing
 
@@ -159,9 +159,9 @@ If there is too much lag, you might want to redefine the CPU topology, i.e. `WIN
 
 ## Changelog
 
-*Update: 2024-09-22 - Added gamescope-related workarounds.*
-*Update: 2024-10-29 - Added Monado/SteamVR.*
-*Update: 2024-10-29 - Added note about proprietary drivers and EAC.*]]></atom:content>
+- *Update: 2024-09-22 - Added gamescope-related workarounds.*
+- *Update: 2024-10-29 - Added Monado/SteamVR.*
+- *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*]]></atom:content>
     </item>
     <item>
       <title>of records and spans</title>
@@ -808,11 +808,9 @@ I'm adding them here for completeness.
 
 ## Changelog
 
-*Update: 2024-09-09 - Added DENSITY info.*
-
-*Update: 2024-08-19 - Added Tile Streaming info.*
-
-*Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.*]]></atom:content>
+- *Update: 2024-09-09 - Added DENSITY info.*
+- *Update: 2024-08-19 - Added Tile Streaming info.*
+- *Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.*]]></atom:content>
     </item>
   </channel>
 </rss>

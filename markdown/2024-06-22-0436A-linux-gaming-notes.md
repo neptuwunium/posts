@@ -26,7 +26,7 @@ or
 
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
 
-The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
+The EAC splash also sometimes fails to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
 
 ## Enabling DX12 Ray Tracing
 
@@ -149,6 +149,6 @@ If there is too much lag, you might want to redefine the CPU topology, i.e. `WIN
 
 ## Changelog
 
-*Update: 2024-09-22 - Added gamescope-related workarounds.*
-*Update: 2024-10-29 - Added Monado/SteamVR.*
-*Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
+- *Update: 2024-09-22 - Added gamescope-related workarounds.*
+- *Update: 2024-10-29 - Added Monado/SteamVR.*
+- *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
