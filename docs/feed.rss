@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Thu, 17 Oct 2024 13:07:53 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2024 03:01:57 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -85,6 +85,60 @@ Change `~/.steam/root/steamapps` to the SteamLibrary steamapps folder if install
 Change 489830 to match the steam id of the mod tool the game is for, 489830 is Skyrim SE/AE.
 It is the number after `/app/` in the Steam store link, alternatively look it up on SteamDB.
 
+## SteamVR / Monado
+
+SteamVR and VR in general on Linux is not good, however it is possible.
+Your experience will be extremely improved if you have a Valve Index.
+Any other headset is unsupported and SteamVR will assume it just to be an Index (or not detect it at all.)
+To remedy this, you can use Monado.
+
+If you run a system that does not have pkexec set up with a GUI (or at all,) you have to manually run setcap (as root)
+
+`setcap CAP_SYS_NICE=eip ~/.steam/steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher`
+
+If you plan on running monado as-is outside of SteamVR, you have to do the same for Monado.
+
+`setcap CAP_SYS_NICE=eip /usr/bin/monado-service`
+
+You may also have to use the vrmonitor directly in the command:
+
+`~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
+
+### Moando + AMDGPU
+
+AMD does not ship the required Vulkan extensions that Monado needs in the FOSS driver present in the Linux kernel. You need to use the proprietary AMDGPU Radeon drivers and launch SteamVR as follows:
+
+`vk_radv ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
+
+### Moando + WMR
+
+Windows Mixed Reality is [deprecated by Microsoft, and support will be removed in November 2026](https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features).
+This makes Monado on Linux the only way to still use
+
+**However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt.](https://gitlab.freedesktop.org/mateosss/basalt).
+
+My command looks something like:
+
+`env VIT_SYSTEM_LIBRARY_PATH=/usr/lib64/libbasalt-monado.so PRESSURE_VESSEL_FILESYSTEMS_RW=$XDG_RUNTIME_DIR/monado_comp_ipc SLAM_CONFIG=/usr/share/basalt/msdmo.toml SLAM_SUBMIT_FROM_START=1 SLAM_UI=0 XRT_COMPOSITOR_COMPUTE=1 XRT_DEBUG_GUI=0 AEG_USE_DYNAMIC_RANGE=0 WMR_AUTOEXPOSURE=0 STEAMVR_EMULATE_INDEX_CONTROLLER=0 ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
+
+Keep in mind you need to replace `%command%` with the AMDGPU section if applicable, and adjust the `VIT_SYSTEM_LIBRARY_PATH` and `SLAM_CONFIG` path.
+
+- `VIT_SYSTEM_LIBRARY_PATH` is the path the modified basalt exists.
+- `SLAM_CONFIG` tells monado where the Basalt SLAM config is. `msdmo` is the one I found to work the best for the HMD Odyssey+, however `msdmi` and `msdmg` also exist.
+- `PRESSURE_VESSEL_FILESYSTEMS_RW` instructs the steam pressure vessel to allow access to the monado IPC socket.
+- `SLAM_SUBMIT_FROM_START` submits tracking info from initialization.
+- `SLAM_UI` controls whether or not to show the debug SLAM ui.
+- `XRT_COMPOSITOR_COMPUTE` setting this to true resolves stuttering if framerate is below the native refresh rate.
+- `XRT_DEBUG_GUI` controls whether or not to show the debug OpenXR ui.
+- `AEG_USE_DYNAMIC_RANGE` and `WMR_AUTOEXPOSURE` control auto exposure, you should keep this disabled.
+- `STEAMVR_EMULATE_INDEX_CONTROLLER` tells monado if it should emulate a Valve Index controller.
+
+### SteamVR "Headset Off" when calibrating
+
+Instruct Monado to emulate the Index Controlller. This might magically fix it. It did for me.
+
+Failing that follow the instructions laid out by the [Linux VR Adventures Wiki](https://lvra.gitlab.io/docs/steamvr/).
+
 ## Game-Specific Fixes
 
 ### Dauntless
@@ -99,7 +153,8 @@ If there is too much lag, you might want to redefine the CPU topology, i.e. `WIN
 
 ## Changelog
 
-*Update: 2024-09-22 - Added gamescope-related workarounds.*]]></atom:content>
+*Update: 2024-09-22 - Added gamescope-related workarounds.*
+*Update: 2024-10-29 - Added Monado/SteamVR.*]]></atom:content>
     </item>
     <item>
       <title>of records and spans</title>
