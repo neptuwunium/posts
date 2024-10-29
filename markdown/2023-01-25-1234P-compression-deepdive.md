@@ -5,8 +5,6 @@ date: 2023-01-25 2:42 PM
 updated: 2024-09-09 4:01 PM
 ---
 
-# Compression Algorithms
-
 One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
 This is an interesting question, and I hope that this post will help you understand how I notice compression algorithms in hex.
 

@@ -4,8 +4,6 @@ short: it's not just fancy json.
 date: 2023-07-28 9:25 AM
 ---
 
-# as always, context is important
-
 ActivityStreams is a subset of JSON-LD, specifically the compacted form.
 
 > This specification describes a JSON-based RFC7159 serialization syntax for the Activity Vocabulary that conforms to a subset of JSON-LD syntax constraints but does not require JSON-LD processing. While other serialization forms are possible, such alternatives are not discussed by this document[^assyntax].

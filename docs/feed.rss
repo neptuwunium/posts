@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Tue, 29 Oct 2024 03:34:28 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2024 03:44:32 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -398,9 +398,7 @@ Thanks to [scarletquasar](https://github.com/scarletquasar) for some corrections
       <description>it's not just fancy json.</description>
       <author>Ada</author>
       <guid>tag:chronovore.dev,posts:2023-07-29-0925A-activity-jsonld-rot</guid>
-      <atom:content type="text/markdown"><![CDATA[# as always, context is important
-
-ActivityStreams is a subset of JSON-LD, specifically the compacted form.
+      <atom:content type="text/markdown"><![CDATA[ActivityStreams is a subset of JSON-LD, specifically the compacted form.
 
 > This specification describes a JSON-based RFC7159 serialization syntax for the Activity Vocabulary that conforms to a subset of JSON-LD syntax constraints but does not require JSON-LD processing. While other serialization forms are possible, such alternatives are not discussed by this document[^assyntax].
 
@@ -540,9 +538,7 @@ Support for them in other platforms might not ever exist, though.
       <description>a deep dive into compression algorithms and how to notice them in hex</description>
       <author>Ada</author>
       <guid>tag:chronovore.dev,posts:2023-01-25-1234P-compression-deepdive</guid>
-      <atom:content type="text/markdown"><![CDATA[# Compression Algorithms
-
-One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
+      <atom:content type="text/markdown"><![CDATA[One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
 This is an interesting question, and I hope that this post will help you understand how I notice compression algorithms in hex.
 
 I will not be going over the fundamentals of compression algorithms or go into detail about how they work.
