@@ -76,8 +76,10 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <p>This is likely due to a <code>SDL_VIDEODRIVER</code> and/or <code>SDL_VIDEO_DRIVER</code> environment variable being present.</p>
 <p>Try using the following launch arguments:</p>
 <p><code>env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%</code></p>
+<p>or</p>
+<p><code>env SDL_VIDEODRIVER=windows SDL_VIDEO_DRIVER=windows %command%</code></p>
 <p>Alternatively, set the variable to an empty string in whatever launch manager you&rsquo;re using (Heroic, Lutris).</p>
-<p>The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. <code>vk_radv %command%</code>)</p>
+<p>The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. <code>vk_radv %command%</code>.)</p>
 <h2 id="enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</h2>
 <p>If you have a ray tracing capable GPU (RTX 2000 or newer, RX 6800 or newer)
 you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by using the following launch arguments:</p>

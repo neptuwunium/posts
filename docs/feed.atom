@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-10-29T03:20:01.047094+00:00</updated>
+  <updated>2024-10-29T03:34:28.412312+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -31,9 +31,13 @@ Try using the following launch arguments:
 
 `env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%`
 
+or
+
+`env SDL_VIDEODRIVER=windows SDL_VIDEO_DRIVER=windows %command%`
+
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
 
-The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`)
+The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
 
 ## Enabling DX12 Ray Tracing
 

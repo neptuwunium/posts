@@ -20,9 +20,13 @@ Try using the following launch arguments:
 
 `env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%`
 
+or
+
+`env SDL_VIDEODRIVER=windows SDL_VIDEO_DRIVER=windows %command%`
+
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
 
-The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`)
+The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
 
 ## Enabling DX12 Ray Tracing
 
