@@ -94,13 +94,13 @@ You may also have to use the vrmonitor directly in the command:
 
 `~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
 
-### Moando + AMDGPU
+### AMDGPU
 
 AMD does not ship the required Vulkan extensions that Monado needs in the FOSS driver present in the Linux kernel. You need to use the proprietary AMDGPU Radeon drivers and launch SteamVR as follows:
 
 `vk_radv ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
 
-### Moando + WMR
+### WMR
 
 Windows Mixed Reality is [deprecated by Microsoft, and support will be removed in November 2026](https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features).
 This makes Monado on Linux the only way to still use
@@ -123,7 +123,7 @@ Keep in mind you need to replace `%command%` with the AMDGPU section if applicab
 - `AEG_USE_DYNAMIC_RANGE` and `WMR_AUTOEXPOSURE` control auto exposure, you should keep this disabled.
 - `STEAMVR_EMULATE_INDEX_CONTROLLER` tells monado if it should emulate a Valve Index controller.
 
-### SteamVR "Headset Off" when calibrating
+### "Headset Off" when calibrating
 
 Instruct Monado to emulate the Index Controlller. This might magically fix it. It did for me.
 

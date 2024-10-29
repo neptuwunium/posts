@@ -60,9 +60,9 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#gamescope-resolution-being-fixed-to-the-first-window-size-under-sdl">Gamescope resolution being fixed to the first window size under SDL</a></li>
 <li><a href="#windows-only-third-party-mod-tooling">Windows-only Third-Party Mod Tooling</a></li>
 <li><a href="#steamvr-monado">SteamVR / Monado</a><ul>
-<li><a href="#moando-amdgpu">Moando + AMDGPU</a></li>
-<li><a href="#moando-wmr">Moando + WMR</a></li>
-<li><a href="#steamvr-headset-off-when-calibrating">SteamVR &ldquo;Headset Off&rdquo; when calibrating</a></li>
+<li><a href="#amdgpu">AMDGPU</a></li>
+<li><a href="#wmr">WMR</a></li>
+<li><a href="#headset-off-when-calibrating">&ldquo;Headset Off&rdquo; when calibrating</a></li>
 </ul>
 </li>
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
@@ -116,10 +116,10 @@ To remedy this, you can use Monado.</p>
 <p><code>setcap CAP_SYS_NICE=eip /usr/bin/monado-service</code></p>
 <p>You may also have to use the vrmonitor directly in the command:</p>
 <p><code>~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%</code></p>
-<h3 id="moando-amdgpu">Moando + AMDGPU</h3>
+<h3 id="amdgpu">AMDGPU</h3>
 <p>AMD does not ship the required Vulkan extensions that Monado needs in the FOSS driver present in the Linux kernel. You need to use the proprietary AMDGPU Radeon drivers and launch SteamVR as follows:</p>
 <p><code>vk_radv ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%</code></p>
-<h3 id="moando-wmr">Moando + WMR</h3>
+<h3 id="wmr">WMR</h3>
 <p>Windows Mixed Reality is <a href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features">deprecated by Microsoft, and support will be removed in November 2026</a>.
 This makes Monado on Linux the only way to still use</p>
 <p><strong>However</strong> getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. <a href="https://gitlab.freedesktop.org/mateosss/basalt">Specifically a fork of Basalt.</a>.</p>
@@ -137,7 +137,7 @@ This makes Monado on Linux the only way to still use</p>
 <li><code>AEG_USE_DYNAMIC_RANGE</code> and <code>WMR_AUTOEXPOSURE</code> control auto exposure, you should keep this disabled.</li>
 <li><code>STEAMVR_EMULATE_INDEX_CONTROLLER</code> tells monado if it should emulate a Valve Index controller.</li>
 </ul>
-<h3 id="steamvr-headset-off-when-calibrating">SteamVR &ldquo;Headset Off&rdquo; when calibrating</h3>
+<h3 id="headset-off-when-calibrating">&ldquo;Headset Off&rdquo; when calibrating</h3>
 <p>Instruct Monado to emulate the Index Controlller. This might magically fix it. It did for me.</p>
 <p>Failing that follow the instructions laid out by the <a href="https://lvra.gitlab.io/docs/steamvr/">Linux VR Adventures Wiki</a>.</p>
 <h2 id="game-specific-fixes">Game-Specific Fixes</h2>
