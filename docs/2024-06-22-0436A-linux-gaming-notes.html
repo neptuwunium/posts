@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2024-10-29T02:25:00+00:00">
+    <meta property="article:published_time" content="2024-10-29T03:19:00+00:00">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2024-10-29T02:25:00+00:00">2024-10-29 2:25 AM</time>
+                    <time datetime="2024-10-29T03:19:00+00:00">2024-10-29 3:19 AM</time>
                 </span>
                 <span>
                     published at
@@ -77,6 +77,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <p>Try using the following launch arguments:</p>
 <p><code>env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%</code></p>
 <p>Alternatively, set the variable to an empty string in whatever launch manager you&rsquo;re using (Heroic, Lutris).</p>
+<p>The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. <code>vk_radv %command%</code>)</p>
 <h2 id="enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</h2>
 <p>If you have a ray tracing capable GPU (RTX 2000 or newer, RX 6800 or newer)
 you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by using the following launch arguments:</p>
@@ -122,7 +123,7 @@ To remedy this, you can use Monado.</p>
 <h3 id="wmr">WMR</h3>
 <p>Windows Mixed Reality is <a href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features">deprecated by Microsoft, and support will be removed in November 2026</a>.
 This makes Monado on Linux the only way to still use</p>
-<p><strong>However</strong> getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. <a href="https://gitlab.freedesktop.org/mateosss/basalt">Specifically a fork of Basalt.</a>.</p>
+<p><strong>However</strong> getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. <a href="https://gitlab.freedesktop.org/mateosss/basalt">Specifically a fork of Basalt</a>.</p>
 <p>My command looks something like:</p>
 <p><code>env VIT_SYSTEM_LIBRARY_PATH=/usr/lib64/libbasalt-monado.so PRESSURE_VESSEL_FILESYSTEMS_RW=$XDG_RUNTIME_DIR/monado_comp_ipc SLAM_CONFIG=/usr/share/basalt/msdmo.toml SLAM_SUBMIT_FROM_START=1 SLAM_UI=0 XRT_COMPOSITOR_COMPUTE=1 XRT_DEBUG_GUI=0 AEG_USE_DYNAMIC_RANGE=0 WMR_AUTOEXPOSURE=0 STEAMVR_EMULATE_INDEX_CONTROLLER=0 ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%</code></p>
 <p>Keep in mind you need to replace <code>%command%</code> with the AMDGPU section if applicable, and adjust the <code>VIT_SYSTEM_LIBRARY_PATH</code> and <code>SLAM_CONFIG</code> path.</p>
@@ -148,7 +149,8 @@ This makes Monado on Linux the only way to still use</p>
 <p>If there is too much lag, you might want to redefine the CPU topology, i.e. <code>WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"</code></p>
 <h2 id="changelog">Changelog</h2>
 <p><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em>
-<em>Update: 2024-10-29 - Added Monado/SteamVR.</em></p>
+<em>Update: 2024-10-29 - Added Monado/SteamVR.</em>
+<em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></p>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>
                 <span><a href="https://github.com/yretenai/posts">source code</a> - <a href="feed.rss">rss</a>, <a href="feed.atom">atom</a>, <a href="feed.json">json</a> - <a href="emoji/NOTICE.txt">emoji credit notice</a> - <a href="LICENSE">licensed under 0BSD</a></span><br>

@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-10-29 2:25 AM
+updated: 2024-10-29 3:19 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -21,6 +21,8 @@ Try using the following launch arguments:
 `env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%`
 
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
+
+The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`)
 
 ## Enabling DX12 Ray Tracing
 
@@ -105,7 +107,7 @@ AMD does not ship the required Vulkan extensions that Monado needs in the FOSS d
 Windows Mixed Reality is [deprecated by Microsoft, and support will be removed in November 2026](https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features).
 This makes Monado on Linux the only way to still use
 
-**However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt.](https://gitlab.freedesktop.org/mateosss/basalt).
+**However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt](https://gitlab.freedesktop.org/mateosss/basalt).
 
 My command looks something like:
 
@@ -145,3 +147,4 @@ If there is too much lag, you might want to redefine the CPU topology, i.e. `WIN
 
 *Update: 2024-09-22 - Added gamescope-related workarounds.*
 *Update: 2024-10-29 - Added Monado/SteamVR.*
+*Update: 2024-10-29 - Added note about proprietary drivers and EAC.*

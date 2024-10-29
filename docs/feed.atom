@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-10-29T03:03:16.543851+00:00</updated>
+  <updated>2024-10-29T03:20:01.047094+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -12,7 +12,7 @@
   <entry>
     <title>some notes about gaming on linux</title>
     <link href="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html"/>
-    <updated>2024-10-29T02:25:00+00:00</updated>
+    <updated>2024-10-29T03:19:00+00:00</updated>
     <published>2024-06-22T03:36:00+00:00</published>
     <summary>this is mostly so i don't forget</summary>
     <id>tag:chronovore.dev,posts:2024-06-22-0436A-linux-gaming-notes</id>
@@ -32,6 +32,8 @@ Try using the following launch arguments:
 `env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%`
 
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
+
+The EAC splash also sometimes fail to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`)
 
 ## Enabling DX12 Ray Tracing
 
@@ -116,7 +118,7 @@ AMD does not ship the required Vulkan extensions that Monado needs in the FOSS d
 Windows Mixed Reality is [deprecated by Microsoft, and support will be removed in November 2026](https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features).
 This makes Monado on Linux the only way to still use
 
-**However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt.](https://gitlab.freedesktop.org/mateosss/basalt).
+**However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt](https://gitlab.freedesktop.org/mateosss/basalt).
 
 My command looks something like:
 
@@ -155,7 +157,8 @@ If there is too much lag, you might want to redefine the CPU topology, i.e. `WIN
 ## Changelog
 
 *Update: 2024-09-22 - Added gamescope-related workarounds.*
-*Update: 2024-10-29 - Added Monado/SteamVR.*]]></content>
+*Update: 2024-10-29 - Added Monado/SteamVR.*
+*Update: 2024-10-29 - Added note about proprietary drivers and EAC.*]]></content>
   </entry>
   <entry>
     <title>of records and spans</title>
