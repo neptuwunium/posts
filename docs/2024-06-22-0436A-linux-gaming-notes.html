@@ -67,6 +67,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </li>
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
 <li><a href="#dauntless">Dauntless</a></li>
+<li><a href="#horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</a></li>
 </ul>
 </li>
 <li><a href="#changelog">Changelog</a></li>
@@ -149,11 +150,19 @@ This makes Monado on Linux the only way to still use</p>
 <p>I have managed to reduce the frequency of crashes by limiting how many resources the game can use.</p>
 <p><code>env DXVK_CONFIG="dxvk.numCompilerThreads=1" WINE_CPU_TOPOLOGY="4:0,2,4,6" %command%</code></p>
 <p>If there is too much lag, you might want to redefine the CPU topology, i.e. <code>WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"</code></p>
+<h3 id="horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</h3>
+<p>If you crash upon start, and have multiple displays it&rsquo;s likely due ot mismatched display resolutions.</p>
+<p>This can be solved by using gamescope:</p>
+<p><code>gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f %command%</code></p>
+<p>If the game complains about &ldquo;no internet connection&rdquo; upon start: add</p>
+<p><code>%command% -showlinkingqr</code></p>
+<p>to the command options.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em></li>
 <li><em>Update: 2024-10-29 - Added Monado/SteamVR.</em></li>
 <li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></li>
+<li><em>Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.</em></li>
 </ul>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>

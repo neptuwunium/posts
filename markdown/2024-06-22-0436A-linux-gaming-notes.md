@@ -147,8 +147,23 @@ I have managed to reduce the frequency of crashes by limiting how many resources
 
 If there is too much lag, you might want to redefine the CPU topology, i.e. `WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"`
 
+### Horizon Zero Dawn: Remastered
+
+If you crash upon start, and have multiple displays it's likely due ot mismatched display resolutions.
+
+This can be solved by using gamescope:
+
+`gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f %command%`
+
+If the game complains about "no internet connection" upon start: add
+
+`%command% -showlinkingqr`
+
+to the command options.
+
 ## Changelog
 
 - *Update: 2024-09-22 - Added gamescope-related workarounds.*
 - *Update: 2024-10-29 - Added Monado/SteamVR.*
 - *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
+- *Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.*
