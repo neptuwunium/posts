@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-10-29 3:19 AM
+updated: 2024-11-03 4:30 PM
 ---
 
 I recently migrated to using Linux full time.
@@ -26,7 +26,7 @@ or
 
 Alternatively, set the variable to an empty string in whatever launch manager you're using (Heroic, Lutris).
 
-The EAC splash also sometimes fails to load if you are using the proprietary AMD drivers (i.e. `vk_radv %command%`.)
+The EAC splash also sometimes fails to load if you are using the proprietary AMD drivers (i.e. `vk_pro %command%`.)
 
 ## Enabling DX12 Ray Tracing
 
@@ -104,7 +104,7 @@ You may also have to use the vrmonitor directly in the command:
 
 AMD does not ship the required Vulkan extensions that Monado needs in the FOSS driver present in the Linux kernel. You need to use the proprietary AMDGPU Radeon drivers and launch SteamVR as follows:
 
-`vk_radv ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
+`vk_pro ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%`
 
 ### WMR
 
@@ -161,9 +161,24 @@ If the game complains about "no internet connection" upon start: add
 
 to the command options.
 
+## AMDGPU-Pro
+
+### Gamescope
+
+AMD's proprietary drivers does not implement an extension that Gamescope relies on, which results in Gamescope crashing (See [this issue on GameScope's repository.](https://github.com/ValveSoftware/gamescope/issues/1465))
+
+You can avoid this by moving the `amd_pro_icd64.json` file (`/usr/share/vulkan/icd.d/amd_pro_icd64.json`) to a different path (i.e. `/usr/share/vulkan/icd.disabled/amd_pro_icd64.json`)
+
+And then modifying your `vk_pro` wrapper script to point to the new path. When needed, prefix `vk_pro` to whatever command needs proprietary AMD drivers.
+
+You can find [vk_pro](https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_pro) and [vk_radv](https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_radv) wrapper scripts provided by Gentoo, but they likely are also provided by other distros.
+
+Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_DRIVERS_DISABLE`, and `VK_LOADER_DRIVERS_SELECT` environment variables.
+
 ## Changelog
 
 - *Update: 2024-09-22 - Added gamescope-related workarounds.*
 - *Update: 2024-10-29 - Added Monado/SteamVR.*
 - *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
 - *Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.*
+- *Update: 2024-11-03 - Added AMDGPU-Pro notes*
