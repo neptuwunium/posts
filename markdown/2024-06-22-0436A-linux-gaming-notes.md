@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-11-03 4:30 PM
+updated: 2024-11-03 5:04 PM
 ---
 
 I recently migrated to using Linux full time.
@@ -161,6 +161,14 @@ If the game complains about "no internet connection" upon start: add
 
 to the command options.
 
+### Bloodborne (via shadPS4 with patches)
+
+If you load in to the game and the world geometry is missing/textures are horrid, it's likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD's proprietary drivers (i.e. `vk_pro shadps4`) resolves this.
+
+If you start the game to a black screen follow the steps [outlined in this github issue](https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148).
+
+If you *still* get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and **launch the Qt6 GUI and configure your settings and launch the game via the GUI**. (I have no idea why this works.)
+
 ## AMDGPU-Pro
 
 ### Gamescope
@@ -182,3 +190,4 @@ Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_
 - *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
 - *Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.*
 - *Update: 2024-11-03 - Added AMDGPU-Pro notes*
+- *Update: 2024-11-03 - Added Bloodborne emulation notes*

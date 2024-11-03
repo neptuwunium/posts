@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2024-11-03T16:30:00+00:00">
+    <meta property="article:published_time" content="2024-11-03T17:04:00+00:00">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2024-11-03T16:30:00+00:00">2024-11-03 4:30 PM</time>
+                    <time datetime="2024-11-03T17:04:00+00:00">2024-11-03 5:04 PM</time>
                 </span>
                 <span>
                     published at
@@ -68,6 +68,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
 <li><a href="#dauntless">Dauntless</a></li>
 <li><a href="#horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</a></li>
+<li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
 </ul>
 </li>
 <li><a href="#amdgpu-pro">AMDGPU-Pro</a><ul>
@@ -161,6 +162,10 @@ This makes Monado on Linux the only way to still use</p>
 <p>If the game complains about &ldquo;no internet connection&rdquo; upon start: add</p>
 <p><code>%command% -showlinkingqr</code></p>
 <p>to the command options.</p>
+<h3 id="bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</h3>
+<p>If you load in to the game and the world geometry is missing/textures are horrid, it&rsquo;s likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD&rsquo;s proprietary drivers (i.e. <code>vk_pro shadps4</code>) resolves this.</p>
+<p>If you start the game to a black screen follow the steps <a href="https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148">outlined in this github issue</a>.</p>
+<p>If you <em>still</em> get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and <strong>launch the Qt6 GUI and configure your settings and launch the game via the GUI</strong>. (I have no idea why this works.)</p>
 <h2 id="amdgpu-pro">AMDGPU-Pro</h2>
 <h3 id="gamescope">Gamescope</h3>
 <p>AMD&rsquo;s proprietary drivers does not implement an extension that Gamescope relies on, which results in Gamescope crashing (See <a href="https://github.com/ValveSoftware/gamescope/issues/1465">this issue on GameScope&rsquo;s repository.</a>)</p>
@@ -175,6 +180,7 @@ This makes Monado on Linux the only way to still use</p>
 <li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></li>
 <li><em>Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.</em></li>
 <li><em>Update: 2024-11-03 - Added AMDGPU-Pro notes</em></li>
+<li><em>Update: 2024-11-03 - Added Bloodborne emulation notes</em></li>
 </ul>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>
