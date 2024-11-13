@@ -51,6 +51,7 @@
 <p>I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.</p>
 <p>This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux.</p>
+<p><strong>Note:</strong> This document has a lot of terminal commands and may be unsuitable for screen readers.</p>
 <div class="toc">
 <ul>
 <li><a href="#eac-failed-to-intialize-dependencies-error">EAC &ldquo;Failed to Intialize Dependencies&rdquo; error</a></li>
@@ -58,6 +59,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#games-not-capturing-mouse-cursor">Games not capturing mouse cursor</a></li>
 <li><a href="#gamescope-exiting-early-due-to-short-lived-launcher-processes">Gamescope exiting early due to short-lived launcher processes</a></li>
 <li><a href="#gamescope-resolution-being-fixed-to-the-first-window-size-under-sdl">Gamescope resolution being fixed to the first window size under SDL</a></li>
+<li><a href="#gamescope-and-steam">Gamescope and Steam</a></li>
 <li><a href="#windows-only-third-party-mod-tooling">Windows-only Third-Party Mod Tooling</a></li>
 <li><a href="#steamvr-monado">SteamVR / Monado</a><ul>
 <li><a href="#amdgpu">AMDGPU</a></li>
@@ -96,16 +98,18 @@ you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by usin
 and the game has to support ray tracing in any capacity (i.e. World of Warcraft, Ratchet and Clank: Rift Apart)</p>
 <h2 id="games-not-capturing-mouse-cursor">Games not capturing mouse cursor</h2>
 <p>Some games don&rsquo;t play nice with mouse capture, an easy way to solve this is by changing the launch arguments to:</p>
-<p><code>gamescope --force-grab-cursor -f %command%</code></p>
+<p><code>gamescope --force-grab-cursor -f -- %command%</code></p>
 <p>You may swap -f with -b for borderless windowed instead of fullscreen.</p>
 <h2 id="gamescope-exiting-early-due-to-short-lived-launcher-processes">Gamescope exiting early due to short-lived launcher processes</h2>
 <p>Some games launch via third party launchers that cause gamescope to exit before the wine device.</p>
 <p>This may be solved by forcing the SDL backend.</p>
-<p><code>gamescope --backend sdl %command%</code></p>
+<p><code>gamescope --backend sdl -- %command%</code></p>
 <h2 id="gamescope-resolution-being-fixed-to-the-first-window-size-under-sdl">Gamescope resolution being fixed to the first window size under SDL</h2>
 <p>Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you&rsquo;re using it for launcher processes.), to solve this you must force the window to be fullscreen.</p>
-<p><code>gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f %command%</code></p>
+<p><code>gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f -- %command%</code></p>
 <p>(Special thanks to <a href="https://twitch.tv/hollyrious">Hollyrious</a> for helping me diagnose this!)</p>
+<h2 id="gamescope-and-steam">Gamescope and Steam</h2>
+<p>Gamescope might break steam ingration or just exit, in that case add <code>-e</code> to the end of your command. Also ensure that <code>--</code> (with spaces) exists <strong><em>before</em></strong> <code>%command%</code></p>
 <h2 id="windows-only-third-party-mod-tooling">Windows-only Third-Party Mod Tooling</h2>
 <p>You can add the mod tools as a non-steam game, given it has a GUI.</p>
 <p>When you do, force it to use <strong>the same compatability tools as the game</strong> and set the launch arguments to:</p>
@@ -175,12 +179,13 @@ This makes Monado on Linux the only way to still use</p>
 <p>Gamescope seems to ignore the <code>VK_DRIVER_FILES</code>, <code>VK_ICD_FILENAMES</code>, <code>VK_LOADER_DRIVERS_DISABLE</code>, and <code>VK_LOADER_DRIVERS_SELECT</code> environment variables.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
-<li><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em></li>
-<li><em>Update: 2024-10-29 - Added Monado/SteamVR.</em></li>
-<li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></li>
-<li><em>Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.</em></li>
-<li><em>Update: 2024-11-03 - Added AMDGPU-Pro notes</em></li>
+<li><em>Update: 2024-11-13 - Added double dashes to Gamescope commands</em></li>
 <li><em>Update: 2024-11-03 - Added Bloodborne emulation notes</em></li>
+<li><em>Update: 2024-11-03 - Added AMDGPU-Pro notes</em></li>
+<li><em>Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.</em></li>
+<li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></li>
+<li><em>Update: 2024-10-29 - Added Monado/SteamVR.</em></li>
+<li><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em></li>
 </ul>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>

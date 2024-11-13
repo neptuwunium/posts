@@ -72,7 +72,10 @@ with cope('docs/index.html', 'w', 'utf8') as index:
             if not 'title' in meta:
                 continue
 
-            date = meta['date']
+            if 'draft' in meta:
+                continue
+
+            date = meta['date'] if 'date' in meta else datetime.now(timezone.utc).strftime('%Y-%m-%d %I:%M %p')
             upd_date = meta['updated'] if 'updated' in meta else date
             pub_date_t = datetime.strptime(date[0], '%Y-%m-%d %I:%M %p').astimezone(timezone.utc)
             upd_date_t = datetime.strptime(upd_date[0], '%Y-%m-%d %I:%M %p').astimezone(timezone.utc)

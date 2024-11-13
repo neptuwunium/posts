@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-11-03T17:04:51.626370+00:00</updated>
+  <updated>2024-11-13T18:29:34.838176+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -20,6 +20,8 @@
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
 
 This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux.
+
+**Note:** This document has a lot of terminal commands and may be unsuitable for screen readers.
 
 [TOC]
 
@@ -57,7 +59,7 @@ and the game has to support ray tracing in any capacity (i.e. World of Warcraft,
 
 Some games don't play nice with mouse capture, an easy way to solve this is by changing the launch arguments to:
 
-`gamescope --force-grab-cursor -f %command%`
+`gamescope --force-grab-cursor -f -- %command%`
 
 You may swap -f with -b for borderless windowed instead of fullscreen.
 
@@ -67,15 +69,19 @@ Some games launch via third party launchers that cause gamescope to exit before 
 
 This may be solved by forcing the SDL backend.
 
-`gamescope --backend sdl %command%`
+`gamescope --backend sdl -- %command%`
 
 ## Gamescope resolution being fixed to the first window size under SDL
 
 Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you're using it for launcher processes.), to solve this you must force the window to be fullscreen.
 
-`gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f %command%`
+`gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f -- %command%`
 
 (Special thanks to [Hollyrious](https://twitch.tv/hollyrious) for helping me diagnose this!)
+
+## Gamescope and Steam
+
+Gamescope might break steam ingration or just exit, in that case add ` -e ` to the end of your command. Also ensure that ` -- ` (with spaces) exists ***before*** `%command%`
 
 ## Windows-only Third-Party Mod Tooling
 
@@ -196,12 +202,13 @@ Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_
 
 ## Changelog
 
-- *Update: 2024-09-22 - Added gamescope-related workarounds.*
-- *Update: 2024-10-29 - Added Monado/SteamVR.*
-- *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
-- *Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.*
+- *Update: 2024-11-13 - Added double dashes to Gamescope commands*
+- *Update: 2024-11-03 - Added Bloodborne emulation notes*
 - *Update: 2024-11-03 - Added AMDGPU-Pro notes*
-- *Update: 2024-11-03 - Added Bloodborne emulation notes*]]></content>
+- *Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.*
+- *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
+- *Update: 2024-10-29 - Added Monado/SteamVR.*
+- *Update: 2024-09-22 - Added gamescope-related workarounds.*]]></content>
   </entry>
   <entry>
     <title>of records and spans</title>
