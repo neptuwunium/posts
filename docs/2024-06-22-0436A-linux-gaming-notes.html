@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2024-11-03T17:04:00+00:00">
+    <meta property="article:published_time" content="2024-11-27T18:45:00+00:00">
     
 </head>
 
@@ -37,7 +37,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2024-11-03T17:04:00+00:00">2024-11-03 5:04 PM</time>
+                    <time datetime="2024-11-27T18:45:00+00:00">2024-11-27 6:45 PM</time>
                 </span>
                 <span>
                     published at
@@ -76,6 +76,10 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </li>
 <li><a href="#amdgpu-pro">AMDGPU-Pro</a><ul>
 <li><a href="#gamescope">Gamescope</a></li>
+</ul>
+</li>
+<li><a href="#generic-notes">Generic Notes</a><ul>
+<li><a href="#checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</a></li>
 </ul>
 </li>
 <li><a href="#changelog">Changelog</a></li>
@@ -178,8 +182,23 @@ This makes Monado on Linux the only way to still use</p>
 <p>And then modifying your <code>vk_pro</code> wrapper script to point to the new path. When needed, prefix <code>vk_pro</code> to whatever command needs proprietary AMD drivers.</p>
 <p>You can find <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_pro">vk_pro</a> and <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_radv">vk_radv</a> wrapper scripts provided by Gentoo, but they likely are also provided by other distros.</p>
 <p>Gamescope seems to ignore the <code>VK_DRIVER_FILES</code>, <code>VK_ICD_FILENAMES</code>, <code>VK_LOADER_DRIVERS_DISABLE</code>, and <code>VK_LOADER_DRIVERS_SELECT</code> environment variables.</p>
+<h2 id="generic-notes">Generic Notes</h2>
+<h3 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h3>
+<p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use. This information is all logged in AppData, but the settings file exists in the game installation, usually next to the installer (<code>/installdir/EasyAntiCheat/Settings.json</code>, or next to the game executable.)</p>
+<p>We can use this to find out if EAC is enabled for a particular game.</p>
+<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;&quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/&quot; + (.productid) + &quot;/&quot; + (.deploymentid) + &quot;/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>&lt;<span class="w"> </span>EasyAntiCheat/Settings.json
+</code></pre></div>
+
+<p>This will print out a URL, if the URL does not 403 or 404 <strong>it is enabled</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span><span class="s2">&quot;URL HERE&quot;</span>
+</code></pre></div>
+
+<p>If this returns HTTP 403, EAC Linux is disabled. If it returns HTTP 200 it is enabled.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2024-11-27 - Added method to verify if EAC is enabled</em></li>
 <li><em>Update: 2024-11-13 - Added double dashes to Gamescope commands</em></li>
 <li><em>Update: 2024-11-03 - Added Bloodborne emulation notes</em></li>
 <li><em>Update: 2024-11-03 - Added AMDGPU-Pro notes</em></li>

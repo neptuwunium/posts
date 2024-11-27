@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-11-03 5:04 PM
+updated: 2024-11-27 6:45 PM
 ---
 
 I recently migrated to using Linux full time.
@@ -189,8 +189,31 @@ You can find [vk_pro](https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/
 
 Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_DRIVERS_DISABLE`, and `VK_LOADER_DRIVERS_SELECT` environment variables.
 
+## Generic Notes
+
+### Checking if EAC is linux-enabled
+
+Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use. This information is all logged in AppData, but the settings file exists in the game installation, usually next to the installer (`/installdir/EasyAntiCheat/Settings.json`, or next to the game executable.)
+
+We can use this to find out if EAC is enabled for a particular game.
+
+```sh
+jq -r \
+	'"https://modules-cdn.eac-prod.on.epicgames.com/modules/" + (.productid) + "/" + (.deploymentid) + "/linux64"' \
+	< EasyAntiCheat/Settings.json
+```
+
+This will print out a URL, if the URL does not 403 or 404 **it is enabled**
+
+```sh
+curl -I "URL HERE"
+```
+
+If this returns HTTP 403, EAC Linux is disabled. If it returns HTTP 200 it is enabled.
+
 ## Changelog
 
+- *Update: 2024-11-27 - Added method to verify if EAC is enabled*
 - *Update: 2024-11-13 - Added double dashes to Gamescope commands*
 - *Update: 2024-11-03 - Added Bloodborne emulation notes*
 - *Update: 2024-11-03 - Added AMDGPU-Pro notes*
