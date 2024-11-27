@@ -184,18 +184,14 @@ This makes Monado on Linux the only way to still use</p>
 <p>Gamescope seems to ignore the <code>VK_DRIVER_FILES</code>, <code>VK_ICD_FILENAMES</code>, <code>VK_LOADER_DRIVERS_DISABLE</code>, and <code>VK_LOADER_DRIVERS_SELECT</code> environment variables.</p>
 <h2 id="generic-notes">Generic Notes</h2>
 <h3 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h3>
-<p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use. This information is all logged in AppData, but the settings file exists in the game installation, usually next to the installer (<code>/installdir/EasyAntiCheat/Settings.json</code>, or next to the game executable.)</p>
+<p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
+This information is all logged in AppData, but the settings file exists in the game installation. 
+This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> folder inside of the game folder)</p>
 <p>We can use this to find out if EAC is enabled for a particular game.</p>
-<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="s1">&#39;&quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/&quot; + (.productid) + &quot;/&quot; + (.deploymentid) + &quot;/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>&lt;<span class="w"> </span>EasyAntiCheat/Settings.json
+<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>Settings.json
 </code></pre></div>
 
-<p>This will print out a URL, if the URL does not 403 or 404 <strong>it is enabled</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span><span class="s2">&quot;URL HERE&quot;</span>
-</code></pre></div>
-
-<p>If this returns HTTP 403, EAC Linux is disabled. If it returns HTTP 200 it is enabled.</p>
+<p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li><em>Update: 2024-11-27 - Added method to verify if EAC is enabled</em></li>

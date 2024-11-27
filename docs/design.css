@@ -193,6 +193,7 @@ code {
 	border-radius: 0;
 	font-style: normal;
 	font-weight: 400;
+	overflow: scroll;
 }
 
 .footnote-ref {

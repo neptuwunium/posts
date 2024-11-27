@@ -193,23 +193,17 @@ Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_
 
 ### Checking if EAC is linux-enabled
 
-Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use. This information is all logged in AppData, but the settings file exists in the game installation, usually next to the installer (`/installdir/EasyAntiCheat/Settings.json`, or next to the game executable.)
+Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
+This information is all logged in AppData, but the settings file exists in the game installation. 
+This is usually next to the installer (`EasyAntiCheat/Settings.json`, or next to the game executable but usually in the `EasyAntiCheat` folder inside of the game folder)
 
 We can use this to find out if EAC is enabled for a particular game.
 
 ```sh
-jq -r \
-	'"https://modules-cdn.eac-prod.on.epicgames.com/modules/" + (.productid) + "/" + (.deploymentid) + "/linux64"' \
-	< EasyAntiCheat/Settings.json
+jq -r '@uri "https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64"' < Settings.json
 ```
 
-This will print out a URL, if the URL does not 403 or 404 **it is enabled**
-
-```sh
-curl -I "URL HERE"
-```
-
-If this returns HTTP 403, EAC Linux is disabled. If it returns HTTP 200 it is enabled.
+This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.
 
 ## Changelog
 
