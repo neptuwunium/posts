@@ -104,8 +104,8 @@ egg_seq = 0
 def handle_egg_button_press(state):
   global egg_seq
 
-  # append the state bits to our sequence tracker for this easter egg
-  egg_seq = (egg_seq << 3) | state
+  # append the state bits to our sequence tracker for this easter egg (and restrict it to 64-bits)
+  egg_seq = ((egg_seq << 3) | state) & 0xffffffffffffffff
 
   # if the last 30 bits do not match to our pre-calculated value, return early.
   if (egg_seq & 0x3fffffff) != 0x96e28ae:
