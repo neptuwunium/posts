@@ -157,7 +157,13 @@ We do this by shifting the bits to the right by <em>3</em> (since that&rsquo;s t
 </code></pre></div>
 
 <p>And that&rsquo;s all there&rsquo;s to it. Just a little bit (heh) of bit manipulation and bit packing.</p>
-<p>This has the big advantage of only really using 4 (or 8) bytes of memory, as opposed to an integer for each button state and the accompanying loop every button to check if the sequence matches. We&rsquo;re also not pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This has an added benefit of being a little harder to notice if somene is hunting through game source code for debug or cheat input sequences.</p>
+<p>This has a lot of advantages, such as: </p>
+<ul>
+<li>Only really using 4 (or 8) bytes of memory</li>
+<li>Doesn&rsquo;t use recursion or any loops.</li>
+<li>We aren&rsquo;t pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function. </li>
+<li>A little harder to notice if somene is hunting through game source code for debug or cheat input sequences</li>
+</ul>
 <p>In practice, a conventional controller will have about 16 states and a keyboard will have on average 105 states. This means a code can reasonably be 4 keyboard inputs long in a 32-bit number, or 8 controller inputs. However, in the year 2024 we can safely use 64-bit, which expectedly double the storage space compared to 32-bit. We&rsquo;re also only using basic bit manipulation, so we could use SIMD and expand this to 128-bits and 256-bits of storage (18/36 states for keyboard, 32/64 for controller). 256-bit numbers will work on x86-64 computers released in the last decade, assuming they have the AVX2 instruction set available.</p>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>
