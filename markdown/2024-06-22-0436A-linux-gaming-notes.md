@@ -200,7 +200,9 @@ This is usually next to the installer (`EasyAntiCheat/Settings.json`, or next to
 We can use this to find out if EAC is enabled for a particular game.
 
 ```sh
-jq -r '@uri "https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64"' < Settings.json
+jq -r \
+	'@uri "https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64"' \
+	Settings.json
 ```
 
 This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.

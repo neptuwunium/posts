@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Wed, 27 Nov 2024 19:01:13 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2024 19:05:31 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -343,7 +343,9 @@ This is usually next to the installer (`EasyAntiCheat/Settings.json`, or next to
 We can use this to find out if EAC is enabled for a particular game.
 
 ```sh
-jq -r '@uri "https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64"' < Settings.json
+jq -r \
+	'@uri "https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64"' \
+	Settings.json
 ```
 
 This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.

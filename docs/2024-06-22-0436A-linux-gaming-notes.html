@@ -188,7 +188,9 @@ This makes Monado on Linux the only way to still use</p>
 This information is all logged in AppData, but the settings file exists in the game installation. 
 This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> folder inside of the game folder)</p>
 <p>We can use this to find out if EAC is enabled for a particular game.</p>
-<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>Settings.json
+<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>Settings.json
 </code></pre></div>
 
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
