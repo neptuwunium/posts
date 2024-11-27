@@ -3,7 +3,7 @@ from markdown.extensions.codehilite import CodeHiliteExtension
 from glob import glob
 from codecs import open as cope
 from datetime import datetime, timezone
-from os.path import basename, splitext
+from os.path import basename, splitext, exists
 from json import dumps as json_serialize
 from lxml.etree import CDATA, tostring as xml_serialize
 from lxml import etree
@@ -63,7 +63,7 @@ with cope('docs/index.html', 'w', 'utf8') as index:
     index_lines = ''
     for md_file in reversed(sorted(glob('markdown/*.md'))):
         with cope(md_file, 'r', 'utf8') as md:
-            markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition'])
+            markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition', 'mdx_math'])
             md_data = md.read().strip()
             text = markdown.convert(md_data)
             meta = markdown.Meta
@@ -124,10 +124,17 @@ with cope('docs/index.html', 'w', 'utf8') as index:
                     "date_modified": upd_date_iso,
                     "content_text": md_data_nohead,
                 })
+            
+            headers = ''
+            if 'headers' in meta:
+                for header_name in meta['headers']:
+                    if not exists(f'headers/{header_name}.html'): continue
+                    with cope(f'headers/{header_name}.html', 'r', 'utf8') as header:
+                        headers = f'{headers}{header.read()}'
 
             print(name)
             with cope(f'docs/{folder}{name}.html', 'w', 'utf8') as html:
-                html.write(POST_TEMPLATE.format(title=meta['title'][0], short=meta['short'][0], url=name, time=upd_date[0], isotime=upd_date_iso, pub_time=date[0], pub_isotime=pub_date_iso, body=text, rel=rel))
+                html.write(POST_TEMPLATE.format(title=meta['title'][0], short=meta['short'][0], url=name, time=upd_date[0], isotime=upd_date_iso, pub_time=date[0], pub_isotime=pub_date_iso, body=text, rel=rel, headers=headers))
     index.write(INDEX_TEMPLATE.format(body=index_lines))
 
 atom = elem.feed(*atom_feed, xmlns="http://www.w3.org/2005/Atom")
