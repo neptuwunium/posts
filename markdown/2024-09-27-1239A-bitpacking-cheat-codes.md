@@ -31,9 +31,9 @@ class BUTTON_STATE(Enum):
 
 That's the easy part. Now we need to figure out how many bits one state would take. Fortunately it's a simple equation.
 
-## $$\lfloor \frac{n}{\lceil \log_2(S) \rceil} \rfloor$$
+## $$\frac{n}{\log_2(S)}$$
 
-Where `n` is the number of total bits available for storage, and `S` is the number of states.
+Where `n` is the number of total bits available for storage, and `S` is the number of states. **Note:** the log2 product has to be **rounded up** and the fraction product has to be **rounded down.**
 
 ```py
 from math import ceil, log2

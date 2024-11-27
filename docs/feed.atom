@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-11-27T01:38:20.903627+00:00</updated>
+  <updated>2024-11-27T01:46:02.162008+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -42,9 +42,9 @@ class BUTTON_STATE(Enum):
 
 That's the easy part. Now we need to figure out how many bits one state would take. Fortunately it's a simple equation.
 
-## $$\lfloor \frac{n}{\lceil \log_2(S) \rceil} \rfloor$$
+## $$\frac{n}{\log_2(S)}$$
 
-Where `n` is the number of total bits available for storage, and `S` is the number of states.
+Where `n` is the number of total bits available for storage, and `S` is the number of states. **Note:** the log2 product has to be **rounded up** and the fraction product has to be **rounded down.**
 
 ```py
 from math import ceil, log2
@@ -115,8 +115,8 @@ egg_seq = 0
 def handle_egg_button_press(state):
   global egg_seq
 
-  # append the state bits to our sequence tracker for this easter egg
-  egg_seq = (egg_seq << 3) | state
+  # append the state bits to our sequence tracker for this easter egg (and restrict it to 64-bits)
+  egg_seq = ((egg_seq << 3) | state) & 0xffffffffffffffff
 
   # if the last 30 bits do not match to our pre-calculated value, return early.
   if (egg_seq & 0x3fffffff) != 0x96e28ae:

@@ -73,10 +73,10 @@ That&rsquo;s 6 states, let&rsquo;s add in a seventh for a reset state.</p>
 </code></pre></div>
 
 <p>That&rsquo;s the easy part. Now we need to figure out how many bits one state would take. Fortunately it&rsquo;s a simple equation.</p>
-<h2 id="lfloor-fracnlceil-log_2s-rceil-rfloor">
-<script type="math/tex; mode=display">\lfloor \frac{n}{\lceil \log_2(S) \rceil} \rfloor</script>
+<h2 id="fracnlog_2s">
+<script type="math/tex; mode=display">\frac{n}{\log_2(S)}</script>
 </h2>
-<p>Where <code>n</code> is the number of total bits available for storage, and <code>S</code> is the number of states.</p>
+<p>Where <code>n</code> is the number of total bits available for storage, and <code>S</code> is the number of states. <strong>Note:</strong> the log2 product has to be <strong>rounded up</strong> and the fraction product has to be <strong>rounded down.</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">log2</span>
 
 
@@ -140,8 +140,8 @@ We do this by shifting the bits to the right by <em>3</em> (since that&rsquo;s t
 <span class="k">def</span> <span class="nf">handle_egg_button_press</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
   <span class="k">global</span> <span class="n">egg_seq</span>
 
-  <span class="c1"># append the state bits to our sequence tracker for this easter egg</span>
-  <span class="n">egg_seq</span> <span class="o">=</span> <span class="p">(</span><span class="n">egg_seq</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="n">state</span>
+  <span class="c1"># append the state bits to our sequence tracker for this easter egg (and restrict it to 64-bits)</span>
+  <span class="n">egg_seq</span> <span class="o">=</span> <span class="p">((</span><span class="n">egg_seq</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="n">state</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffffffffffffffff</span>
 
   <span class="c1"># if the last 30 bits do not match to our pre-calculated value, return early.</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">egg_seq</span> <span class="o">&amp;</span> <span class="mh">0x3fffffff</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x96e28ae</span><span class="p">:</span>
