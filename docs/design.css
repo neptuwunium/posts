@@ -161,8 +161,13 @@ blockquote, figcaption, figure, footer, ol, p, table, td, th, tr, ul {
 	margin-bottom: 1em;
 }
 
-article h1, article h2, article h3, article h4, article h5, article h6 {
+article h1, article h2, article h3 {
 	margin-left: -26pt;
+	margin-bottom: .5em;
+}
+
+article h4, article h5, article h6 {
+	margin-left: -13pt;
 	margin-bottom: .5em;
 }
 

@@ -69,7 +69,14 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </ul>
 </li>
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
-<li><a href="#dauntless">Dauntless</a></li>
+<li><a href="#dauntless">Dauntless</a><ul>
+<li><a href="#if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</a></li>
+<li><a href="#if-there-is-too-much-lag-from-the-above-fix">If there is too much lag from the above fix.</a></li>
+<li><a href="#if-you-get-a-game-security-integrity-violation-error-from-eac">If you get a &ldquo;Game Security Integrity Violation&rdquo; error from EAC.</a></li>
+<li><a href="#if-you-get-a-hash-catalog-not-found-error-from-eac">If you get a &ldquo;Hash Catalog Not found&rdquo; error from EAC.</a></li>
+<li><a href="#if-you-get-what-seems-to-be-a-test-card-instead-of-the-opening-video">If you get what seems to be a test card instead of the opening video</a></li>
+</ul>
+</li>
 <li><a href="#horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</a></li>
 <li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
 </ul>
@@ -160,10 +167,19 @@ This makes Monado on Linux the only way to still use</p>
 <p>Failing that follow the instructions laid out by the <a href="https://lvra.gitlab.io/docs/steamvr/">Linux VR Adventures Wiki</a>.</p>
 <h2 id="game-specific-fixes">Game-Specific Fixes</h2>
 <h3 id="dauntless">Dauntless</h3>
-<p>If you randomly crash, it might be because of stack smashing due to a race condition.</p>
+<p>This game has quite a lot of issues with Proton.</p>
+<h4 id="if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</h4>
 <p>I have managed to reduce the frequency of crashes by limiting how many resources the game can use.</p>
 <p><code>env DXVK_CONFIG="dxvk.numCompilerThreads=1" WINE_CPU_TOPOLOGY="4:0,2,4,6" %command%</code></p>
-<p>If there is too much lag, you might want to redefine the CPU topology, i.e. <code>WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"</code></p>
+<h4 id="if-there-is-too-much-lag-from-the-above-fix">If there is too much lag from the above fix.</h4>
+<p>You might want to redefine the CPU topology, i.e. <code>WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"</code></p>
+<h4 id="if-you-get-a-game-security-integrity-violation-error-from-eac">If you get a &ldquo;Game Security Integrity Violation&rdquo; error from EAC.</h4>
+<p>Set the SteamDeck environment variable:</p>
+<p><code>env SteamDeck=1 %command%</code></p>
+<h4 id="if-you-get-a-hash-catalog-not-found-error-from-eac">If you get a &ldquo;Hash Catalog Not found&rdquo; error from EAC.</h4>
+<p>Copy <code>EasyAntiCheat</code> from the game&rsquo;s install directory to the <code>Archon/Binaries/Win64</code> sub-directory.</p>
+<h4 id="if-you-get-what-seems-to-be-a-test-card-instead-of-the-opening-video">If you get what seems to be a <a href="https://en.wikipedia.org/wiki/Test_card">test card</a> instead of the opening video</h4>
+<p>Try using Proton Experimental or a different version of Proton.</p>
 <h3 id="horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</h3>
 <p>If you crash upon start, and have multiple displays it&rsquo;s likely due ot mismatched display resolutions.</p>
 <p>This can be solved by using gamescope:</p>
@@ -196,14 +212,15 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2024-12-06 - Added even more Dauntless workarounds</em></li>
 <li><em>Update: 2024-11-27 - Added method to verify if EAC is enabled</em></li>
 <li><em>Update: 2024-11-13 - Added double dashes to Gamescope commands</em></li>
 <li><em>Update: 2024-11-03 - Added Bloodborne emulation notes</em></li>
 <li><em>Update: 2024-11-03 - Added AMDGPU-Pro notes</em></li>
 <li><em>Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.</em></li>
-<li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC.</em></li>
-<li><em>Update: 2024-10-29 - Added Monado/SteamVR.</em></li>
-<li><em>Update: 2024-09-22 - Added gamescope-related workarounds.</em></li>
+<li><em>Update: 2024-10-29 - Added note about proprietary drivers and EAC</em></li>
+<li><em>Update: 2024-10-29 - Added Monado/SteamVR</em></li>
+<li><em>Update: 2024-09-22 - Added gamescope-related workarounds</em></li>
 </ul>
             <footer>
                 created with <img src="emoji/heart.png" alt="love"> by <a href="https://github.com/yretenai">Ada</a> <img src="emoji/trans_lily.png" class="emoji" alt="transgender lilly emoji, "> <img src="emoji/lesbian_lily.png" class="emoji" alt="lesbian lily emoji"><br>

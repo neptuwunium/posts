@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-11-27T19:05:31.688579+00:00</updated>
+  <updated>2024-12-06T03:01:41.594603+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -289,13 +289,31 @@ Failing that follow the instructions laid out by the [Linux VR Adventures Wiki](
 
 ### Dauntless
 
-If you randomly crash, it might be because of stack smashing due to a race condition.
+This game has quite a lot of issues with Proton.
+
+#### If you randomly crash, it might be because of stack smashing due to a race condition.
 
 I have managed to reduce the frequency of crashes by limiting how many resources the game can use.
 
 `env DXVK_CONFIG="dxvk.numCompilerThreads=1" WINE_CPU_TOPOLOGY="4:0,2,4,6" %command%`
 
-If there is too much lag, you might want to redefine the CPU topology, i.e. `WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"`
+#### If there is too much lag from the above fix.
+
+You might want to redefine the CPU topology, i.e. `WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"`
+
+#### If you get a "Game Security Integrity Violation" error from EAC.
+
+Set the SteamDeck environment variable:
+
+`env SteamDeck=1 %command%`
+
+#### If you get a "Hash Catalog Not found" error from EAC.
+
+Copy `EasyAntiCheat` from the game's install directory to the `Archon/Binaries/Win64` sub-directory.
+
+#### If you get what seems to be a [test card](https://en.wikipedia.org/wiki/Test_card) instead of the opening video
+
+Try using Proton Experimental or a different version of Proton.
 
 ### Horizon Zero Dawn: Remastered
 
@@ -353,14 +371,15 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2024-12-06 - Added even more Dauntless workarounds*
 - *Update: 2024-11-27 - Added method to verify if EAC is enabled*
 - *Update: 2024-11-13 - Added double dashes to Gamescope commands*
 - *Update: 2024-11-03 - Added Bloodborne emulation notes*
 - *Update: 2024-11-03 - Added AMDGPU-Pro notes*
 - *Update: 2024-10-31 - Added Horizon Zero Dawn: Remastered notes.*
-- *Update: 2024-10-29 - Added note about proprietary drivers and EAC.*
-- *Update: 2024-10-29 - Added Monado/SteamVR.*
-- *Update: 2024-09-22 - Added gamescope-related workarounds.*]]></content>
+- *Update: 2024-10-29 - Added note about proprietary drivers and EAC*
+- *Update: 2024-10-29 - Added Monado/SteamVR*
+- *Update: 2024-09-22 - Added gamescope-related workarounds*]]></content>
   </entry>
   <entry>
     <title>of records and spans</title>
