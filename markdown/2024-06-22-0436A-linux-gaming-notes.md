@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-11-27 6:45 PM
+updated: 2024-12-12 5:18 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -99,7 +99,7 @@ Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you
 
 Gamescope might break steam ingration or just exit, in that case add ` -e ` to the end of your command. Also ensure that ` -- ` (with spaces) exists ***before*** `%command%`
 
-## Windows-only Third-Party Mod Tooling
+## Windows-only Third-Party Mod Tooling on Steam
 
 You can add the mod tools as a non-steam game, given it has a GUI.
 
@@ -172,7 +172,7 @@ Failing that follow the instructions laid out by the [Linux VR Adventures Wiki](
 
 ### Dauntless
 
-This game has quite a lot of issues with Proton.
+This game has quite a lot of issues with Wine and Proton.
 
 #### If you randomly crash, it might be because of stack smashing due to a race condition.
 

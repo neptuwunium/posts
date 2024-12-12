@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Thu, 12 Dec 2024 05:14:14 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2024 05:21:02 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -242,7 +242,7 @@ Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you
 
 Gamescope might break steam ingration or just exit, in that case add ` -e ` to the end of your command. Also ensure that ` -- ` (with spaces) exists ***before*** `%command%`
 
-## Windows-only Third-Party Mod Tooling
+## Windows-only Third-Party Mod Tooling on Steam
 
 You can add the mod tools as a non-steam game, given it has a GUI.
 
@@ -315,7 +315,7 @@ Failing that follow the instructions laid out by the [Linux VR Adventures Wiki](
 
 ### Dauntless
 
-This game has quite a lot of issues with Proton.
+This game has quite a lot of issues with Wine and Proton.
 
 #### If you randomly crash, it might be because of stack smashing due to a race condition.
 

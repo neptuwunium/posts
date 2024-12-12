@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-12-12T05:14:14.630111+00:00</updated>
+  <updated>2024-12-12T05:21:02.109103+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -145,7 +145,7 @@ In practice, a conventional controller will have about 16 states and a keyboard 
   <entry>
     <title>some notes about gaming on linux</title>
     <link href="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html"/>
-    <updated>2024-11-27T18:45:00+00:00</updated>
+    <updated>2024-12-12T05:18:00+00:00</updated>
     <published>2024-06-22T03:36:00+00:00</published>
     <summary>this is mostly so i don't forget</summary>
     <id>tag:chronovore.dev,posts:2024-06-22-0436A-linux-gaming-notes</id>
@@ -243,7 +243,7 @@ Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you
 
 Gamescope might break steam ingration or just exit, in that case add ` -e ` to the end of your command. Also ensure that ` -- ` (with spaces) exists ***before*** `%command%`
 
-## Windows-only Third-Party Mod Tooling
+## Windows-only Third-Party Mod Tooling on Steam
 
 You can add the mod tools as a non-steam game, given it has a GUI.
 
@@ -316,7 +316,7 @@ Failing that follow the instructions laid out by the [Linux VR Adventures Wiki](
 
 ### Dauntless
 
-This game has quite a lot of issues with Proton.
+This game has quite a lot of issues with Wine and Proton.
 
 #### If you randomly crash, it might be because of stack smashing due to a race condition.
 
