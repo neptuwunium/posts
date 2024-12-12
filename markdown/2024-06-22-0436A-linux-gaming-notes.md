@@ -39,6 +39,8 @@ Known Vulkan layer names:
 - OBS VkCapture: `VK_LAYER_OBS_vkcapture_64`
 - RenderDoc: `VK_LAYER_RENDERDOC_Capture`
 
+You can view layers present on your system by running `vulkaninfo --summary` (present in the `vulkan-tools` package available in every distro worth using.)
+
 ## EAC "Failed to Intialize Dependencies" error
 
 This is likely due to a `SDL_VIDEODRIVER` and/or `SDL_VIDEO_DRIVER` environment variable being present.

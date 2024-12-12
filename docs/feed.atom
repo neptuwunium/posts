@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-12-12T05:10:27.349152+00:00</updated>
+  <updated>2024-12-12T05:14:14.630111+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -182,6 +182,8 @@ Known Vulkan layer names:
 - MangoHud: `VK_LAYER_MANGOHUD_overlay_x86_64`
 - OBS VkCapture: `VK_LAYER_OBS_vkcapture_64`
 - RenderDoc: `VK_LAYER_RENDERDOC_Capture`
+
+You can view layers present on your system by running `vulkaninfo --summary` (present in the `vulkan-tools` package available in every distro worth using.)
 
 ## EAC "Failed to Intialize Dependencies" error
 
