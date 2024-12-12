@@ -14,6 +14,17 @@ This post mainly serves as a logbook for fixes and workarounds for making games 
 
 [TOC]
 
+## Extreme stuttering after 30-60 minutes on Steam
+
+This is apparently due to the recent Steam Game Overlay update which added Game Recording.
+
+You can disable it by prefixing `LD_PRELOAD=""` to your launch arguments:
+
+`LD_PRELOAD="" %command%`
+
+More info [here](https://github.com/doitsujin/dxvk/issues/4436#issuecomment-2466646597)
+
+
 ## EAC "Failed to Intialize Dependencies" error
 
 This is likely due to a `SDL_VIDEODRIVER` and/or `SDL_VIDEO_DRIVER` environment variable being present.
@@ -193,6 +204,16 @@ If you start the game to a black screen follow the steps [outlined in this githu
 
 If you *still* get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and **launch the Qt6 GUI and configure your settings and launch the game via the GUI**. (I have no idea why this works.)
 
+### Marvel Rivals / AFK Journey
+
+Some games display a terms of service or login web view modal on the first launch, however the input window may be detatched from the renderer frame.
+
+If you use a tiled window manager and see a black square, this is the input frame.
+
+If you do not see a black square but the web view is not accepting inputs, the black square is likely beneath this window.
+
+Locate both frames and approximate the button locations using the render frame on the black frame.
+
 ## AMDGPU-Pro
 
 ### Gamescope
@@ -227,6 +248,8 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2024-12-12 - Added Steam Game Recording workaround*
+- *Update: 2024-12-12 - Added Marvel Rivals / AFK Journey CEF frame note*
 - *Update: 2024-12-06 - Added even more Dauntless workarounds*
 - *Update: 2024-11-27 - Added method to verify if EAC is enabled*
 - *Update: 2024-11-13 - Added double dashes to Gamescope commands*

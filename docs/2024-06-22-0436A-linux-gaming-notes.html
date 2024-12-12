@@ -55,6 +55,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <p><strong>Note:</strong> This document has a lot of terminal commands and may be unsuitable for screen readers.</p>
 <div class="toc">
 <ul>
+<li><a href="#extreme-stuttering-after-30-60-minutes-on-steam">Extreme stuttering after 30-60 minutes on Steam</a></li>
 <li><a href="#eac-failed-to-intialize-dependencies-error">EAC &ldquo;Failed to Intialize Dependencies&rdquo; error</a></li>
 <li><a href="#enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</a></li>
 <li><a href="#games-not-capturing-mouse-cursor">Games not capturing mouse cursor</a></li>
@@ -79,6 +80,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </li>
 <li><a href="#horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</a></li>
 <li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
+<li><a href="#marvel-rivals-afk-journey">Marvel Rivals / AFK Journey</a></li>
 </ul>
 </li>
 <li><a href="#amdgpu-pro">AMDGPU-Pro</a><ul>
@@ -92,6 +94,11 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#changelog">Changelog</a></li>
 </ul>
 </div>
+<h2 id="extreme-stuttering-after-30-60-minutes-on-steam">Extreme stuttering after 30-60 minutes on Steam</h2>
+<p>This is apparently due to the recent Steam Game Overlay update which added Game Recording.</p>
+<p>You can disable it by prefixing <code>LD_PRELOAD=""</code> to your launch arguments:</p>
+<p><code>LD_PRELOAD="" %command%</code></p>
+<p>More info <a href="https://github.com/doitsujin/dxvk/issues/4436#issuecomment-2466646597">here</a></p>
 <h2 id="eac-failed-to-intialize-dependencies-error">EAC &ldquo;Failed to Intialize Dependencies&rdquo; error</h2>
 <p>This is likely due to a <code>SDL_VIDEODRIVER</code> and/or <code>SDL_VIDEO_DRIVER</code> environment variable being present.</p>
 <p>Try using the following launch arguments:</p>
@@ -191,6 +198,11 @@ This makes Monado on Linux the only way to still use</p>
 <p>If you load in to the game and the world geometry is missing/textures are horrid, it&rsquo;s likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD&rsquo;s proprietary drivers (i.e. <code>vk_pro shadps4</code>) resolves this.</p>
 <p>If you start the game to a black screen follow the steps <a href="https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148">outlined in this github issue</a>.</p>
 <p>If you <em>still</em> get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and <strong>launch the Qt6 GUI and configure your settings and launch the game via the GUI</strong>. (I have no idea why this works.)</p>
+<h3 id="marvel-rivals-afk-journey">Marvel Rivals / AFK Journey</h3>
+<p>Some games display a terms of service or login web view modal on the first launch, however the input window may be detatched from the renderer frame.</p>
+<p>If you use a tiled window manager and see a black square, this is the input frame.</p>
+<p>If you do not see a black square but the web view is not accepting inputs, the black square is likely beneath this window.</p>
+<p>Locate both frames and approximate the button locations using the render frame on the black frame.</p>
 <h2 id="amdgpu-pro">AMDGPU-Pro</h2>
 <h3 id="gamescope">Gamescope</h3>
 <p>AMD&rsquo;s proprietary drivers does not implement an extension that Gamescope relies on, which results in Gamescope crashing (See <a href="https://github.com/ValveSoftware/gamescope/issues/1465">this issue on GameScope&rsquo;s repository.</a>)</p>
@@ -212,6 +224,8 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2024-12-12 - Added Steam Game Recording workaround</em></li>
+<li><em>Update: 2024-12-12 - Added Marvel Rivals / AFK Journey CEF frame note</em></li>
 <li><em>Update: 2024-12-06 - Added even more Dauntless workarounds</em></li>
 <li><em>Update: 2024-11-27 - Added method to verify if EAC is enabled</em></li>
 <li><em>Update: 2024-11-13 - Added double dashes to Gamescope commands</em></li>
