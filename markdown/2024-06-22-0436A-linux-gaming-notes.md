@@ -22,8 +22,22 @@ You can disable it by prefixing `LD_PRELOAD=""` to your launch arguments:
 
 `LD_PRELOAD="" %command%`
 
-More info [here](https://github.com/doitsujin/dxvk/issues/4436#issuecomment-2466646597)
+More info on the following issue reports:
 
+- [doitsujin/dxvk#4436](https://github.com/doitsujin/dxvk/issues/4436#issuecomment-2466646597)
+- [ValveSoftware/steam-for-linux#11446](https://github.com/ValveSoftware/steam-for-linux/issues/11446)
+
+If you want to load vulkan layers you must add `VK_LOADER_LAYERS_ENABLE` to your launch arguments:
+
+`VK_LOADER_LAYERS_ENABLE="LAYER NAMES" %command%`
+
+Replace `LAYER NAMES` with the layers you wish to load, separated with a comma.
+
+Known Vulkan layer names:
+
+- MangoHud: `VK_LAYER_MANGOHUD_overlay_x86_64`
+- OBS VkCapture: `VK_LAYER_OBS_vkcapture_64`
+- RenderDoc: `VK_LAYER_RENDERDOC_Capture`
 
 ## EAC "Failed to Intialize Dependencies" error
 
