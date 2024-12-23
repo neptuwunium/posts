@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-12-12 5:18 AM
+updated: 2024-12-23 1:48 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -40,6 +40,16 @@ Known Vulkan layer names:
 - RenderDoc: `VK_LAYER_RENDERDOC_Capture`
 
 You can view layers present on your system by running `vulkaninfo --summary` (present in the `vulkan-tools` package available in every distro worth using.)
+
+### Alternate Resolution
+
+According to [this comment](https://github.com/ValveSoftware/steam-for-linux/issues/11446#issuecomment-2558605371) on [ValveSoftware/steam-for-linux#11446](https://github.com/ValveSoftware/steam-for-linux/issues/11446), disabling GPU acceleration for web views may also help performance related issues.
+
+You disable GPU Web View Acceleration in the Steam settings.
+
+- Navigate to to "Interface" tab
+- Uncheck "Enable GPU accelerated rendering in Web Views"
+- Restart Steam
 
 ## EAC "Failed to Intialize Dependencies" error
 

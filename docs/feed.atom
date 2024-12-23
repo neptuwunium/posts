@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2024-12-12T05:21:02.109103+00:00</updated>
+  <updated>2024-12-23T01:46:38.327471+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -145,7 +145,7 @@ In practice, a conventional controller will have about 16 states and a keyboard 
   <entry>
     <title>some notes about gaming on linux</title>
     <link href="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html"/>
-    <updated>2024-12-12T05:18:00+00:00</updated>
+    <updated>2024-12-23T01:48:00+00:00</updated>
     <published>2024-06-22T03:36:00+00:00</published>
     <summary>this is mostly so i don't forget</summary>
     <id>tag:chronovore.dev,posts:2024-06-22-0436A-linux-gaming-notes</id>
@@ -184,6 +184,16 @@ Known Vulkan layer names:
 - RenderDoc: `VK_LAYER_RENDERDOC_Capture`
 
 You can view layers present on your system by running `vulkaninfo --summary` (present in the `vulkan-tools` package available in every distro worth using.)
+
+### Alternate Resolution
+
+According to [this comment](https://github.com/ValveSoftware/steam-for-linux/issues/11446#issuecomment-2558605371) on [ValveSoftware/steam-for-linux#11446](https://github.com/ValveSoftware/steam-for-linux/issues/11446), disabling GPU acceleration for web views may also help performance related issues.
+
+You disable GPU Web View Acceleration in the Steam settings.
+
+- Navigate to to "Interface" tab
+- Uncheck "Enable GPU accelerated rendering in Web Views"
+- Restart Steam
 
 ## EAC "Failed to Intialize Dependencies" error
 

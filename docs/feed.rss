@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Thu, 12 Dec 2024 05:21:02 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2024 01:46:38 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -183,6 +183,16 @@ Known Vulkan layer names:
 - RenderDoc: `VK_LAYER_RENDERDOC_Capture`
 
 You can view layers present on your system by running `vulkaninfo --summary` (present in the `vulkan-tools` package available in every distro worth using.)
+
+### Alternate Resolution
+
+According to [this comment](https://github.com/ValveSoftware/steam-for-linux/issues/11446#issuecomment-2558605371) on [ValveSoftware/steam-for-linux#11446](https://github.com/ValveSoftware/steam-for-linux/issues/11446), disabling GPU acceleration for web views may also help performance related issues.
+
+You disable GPU Web View Acceleration in the Steam settings.
+
+- Navigate to to "Interface" tab
+- Uncheck "Enable GPU accelerated rendering in Web Views"
+- Restart Steam
 
 ## EAC "Failed to Intialize Dependencies" error
 
