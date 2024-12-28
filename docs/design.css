@@ -11,7 +11,7 @@
 body, html {
 	margin: 0;
 	padding: 0;
-	font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+	font-family: sans-serif;
   	font-optical-sizing: auto;
   	font-style: normal;
 	font-weight: 400;
@@ -182,7 +182,7 @@ img {
 .codehilite, code, pre {
 	padding: .5em;
 	border-radius: .2em;
-    font-family: monospace;
+	font-family: monospace;
 }
 
 code {
