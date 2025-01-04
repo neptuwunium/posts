@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2023-01-25-1234P-compression-deepdive.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2024-09-09T15:01:00+00:00">
+    <meta property="article:published_time" content="2025-01-04T22:54:00+00:00">
     
 </head>
 
@@ -37,7 +37,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2024-09-09T15:01:00+00:00">2024-09-09 4:01 PM</time>
+                    <time datetime="2025-01-04T22:54:00+00:00">2025-01-04 10:54 PM</time>
                 </span>
                 <span>
                     published at
@@ -75,6 +75,7 @@ it will help you understand <em>why</em> they are there and how to notice them w
 </ul>
 </li>
 <li><a href="#oodle">Oodle</a></li>
+<li><a href="#bitknit">BitKnit</a></li>
 <li><a href="#tile-streaming-dstorage">Tile Streaming (dstorage)</a></li>
 <li><a href="#density">DENSITY</a></li>
 <li><a href="#zip-signature-speedrun">Zip Signature Speedrun</a></li>
@@ -197,6 +198,9 @@ Documentation on ZDict is sparse, however we know that the magic value is <code>
 <p>Compression type will be between 0 and 13 as of Oodle Version 9 (oo2core_9), and the checksum used is a modified Jenkins algorithm.
 From this we can deduce that the second byte will be between <code>00</code> and <code>0D</code>, or <code>80</code> and <code>8D</code></p>
 <p>Note that Oodle will still load version 3 and older files, which will start with <code>#0</code>, <code>#1</code>, <code>#2</code>, or <code>#3</code> and will  usually look like LZW or LZB.</p>
+<h2 id="bitknit">BitKnit</h2>
+<p>Granny is a resource container format by RAD Games, in the most recent versions it introduced a 8-byte block compression algorithm called BitKnit.</p>
+<p>A bitknit chunk (fortunately) has the magic signature of <code>0xB1 0x75</code>, following is a bitknit chunk.</p>
 <h2 id="tile-streaming-dstorage">Tile Streaming (dstorage)</h2>
 <p>Tile Streaming uses a system to decompress multiple blocks simultaneously<sup id="fnref:dstorage"><a class="footnote-ref" href="#fn:dstorage">15</a></sup>.
 The format supports various compression formats, but at the moment only GDeflate<sup id="fnref:gdeflate"><a class="footnote-ref" href="#fn:gdeflate">16</a></sup> (a variation of DEFLATE) is recognized.
@@ -241,6 +245,7 @@ I&rsquo;m adding them here for completeness.</p>
 </ul>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-01-04 - Added BitKnit info.</em></li>
 <li><em>Update: 2024-09-09 - Added DENSITY info.</em></li>
 <li><em>Update: 2024-08-19 - Added Tile Streaming info.</em></li>
 <li><em>Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.</em></li>

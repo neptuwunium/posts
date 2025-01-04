@@ -2,7 +2,7 @@
 title: compression algorithms
 short: a deep dive into compression algorithms and how to notice them in hex
 date: 2023-01-25 2:42 PM
-updated: 2024-09-09 4:01 PM
+updated: 2025-01-04 10:54 PM
 ---
 
 One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
@@ -213,6 +213,12 @@ Note that Oodle will still load version 3 and older files, which will start with
 
 [^oodle]: [http://www.radgametools.com/oodle.htm](http://www.radgametools.com/oodle.htm)
 
+## BitKnit
+
+Granny is a resource container format by RAD Games, in the most recent versions it introduced a 8-byte block compression algorithm called BitKnit.
+
+A bitknit chunk (fortunately) has the magic signature of `0xB1 0x75`, following is a bitknit chunk.
+
 ## Tile Streaming (dstorage)
 
 Tile Streaming uses a system to decompress multiple blocks simultaneously[^dstorage].
@@ -275,6 +281,7 @@ I'm adding them here for completeness.
 
 ## Changelog
 
+- *Update: 2025-01-04 - Added BitKnit info.*
 - *Update: 2024-09-09 - Added DENSITY info.*
 - *Update: 2024-08-19 - Added Tile Streaming info.*
 - *Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.*

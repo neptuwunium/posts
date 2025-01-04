@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Mon, 23 Dec 2024 01:46:38 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jan 2025 22:54:04 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -1012,6 +1012,12 @@ Note that Oodle will still load version 3 and older files, which will start with
 
 [^oodle]: [http://www.radgametools.com/oodle.htm](http://www.radgametools.com/oodle.htm)
 
+## BitKnit
+
+Granny is a resource container format by RAD Games, in the most recent versions it introduced a 8-byte block compression algorithm called BitKnit.
+
+A bitknit chunk (fortunately) has the magic signature of `0xB1 0x75`, following is a bitknit chunk.
+
 ## Tile Streaming (dstorage)
 
 Tile Streaming uses a system to decompress multiple blocks simultaneously[^dstorage].
@@ -1074,6 +1080,7 @@ I'm adding them here for completeness.
 
 ## Changelog
 
+- *Update: 2025-01-04 - Added BitKnit info.*
 - *Update: 2024-09-09 - Added DENSITY info.*
 - *Update: 2024-08-19 - Added Tile Streaming info.*
 - *Update: 2023-07-11 - zenhax is offline, replaced links with archive.org links.*]]></atom:content>
