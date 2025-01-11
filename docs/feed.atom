@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2025-01-04T22:54:04.034958+00:00</updated>
+  <updated>2025-01-11T21:35:30.863235+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -374,7 +374,11 @@ If you start the game to a black screen follow the steps [outlined in this githu
 
 If you *still* get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and **launch the Qt6 GUI and configure your settings and launch the game via the GUI**. (I have no idea why this works.)
 
-### Marvel Rivals / AFK Journey
+### Marvel Rivals
+
+As of Season 1 of Marvel Rivals (January 2024) the game skips the launcher and most modals if `SteamDeck=1` is passed as an launch argument. This may also resolve any startup crashes or weirdness.
+
+### AFK Journey
 
 Some games display a terms of service or login web view modal on the first launch, however the input window may be detatched from the renderer frame.
 

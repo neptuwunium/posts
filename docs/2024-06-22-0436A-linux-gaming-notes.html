@@ -83,7 +83,8 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </li>
 <li><a href="#horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</a></li>
 <li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
-<li><a href="#marvel-rivals-afk-journey">Marvel Rivals / AFK Journey</a></li>
+<li><a href="#marvel-rivals">Marvel Rivals</a></li>
+<li><a href="#afk-journey">AFK Journey</a></li>
 </ul>
 </li>
 <li><a href="#amdgpu-pro">AMDGPU-Pro</a><ul>
@@ -223,7 +224,9 @@ This makes Monado on Linux the only way to still use</p>
 <p>If you load in to the game and the world geometry is missing/textures are horrid, it&rsquo;s likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD&rsquo;s proprietary drivers (i.e. <code>vk_pro shadps4</code>) resolves this.</p>
 <p>If you start the game to a black screen follow the steps <a href="https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148">outlined in this github issue</a>.</p>
 <p>If you <em>still</em> get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and <strong>launch the Qt6 GUI and configure your settings and launch the game via the GUI</strong>. (I have no idea why this works.)</p>
-<h3 id="marvel-rivals-afk-journey">Marvel Rivals / AFK Journey</h3>
+<h3 id="marvel-rivals">Marvel Rivals</h3>
+<p>As of Season 1 of Marvel Rivals (January 2024) the game skips the launcher and most modals if <code>SteamDeck=1</code> is passed as an launch argument. This may also resolve any startup crashes or weirdness.</p>
+<h3 id="afk-journey">AFK Journey</h3>
 <p>Some games display a terms of service or login web view modal on the first launch, however the input window may be detatched from the renderer frame.</p>
 <p>If you use a tiled window manager and see a black square, this is the input frame.</p>
 <p>If you do not see a black square but the web view is not accepting inputs, the black square is likely beneath this window.</p>
