@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2024-12-23T01:48:00+00:00">
+    <meta property="article:published_time" content="2025-03-03T04:31:00+00:00">
     
 </head>
 
@@ -37,7 +37,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2024-12-23T01:48:00+00:00">2024-12-23 1:48 AM</time>
+                    <time datetime="2025-03-03T04:31:00+00:00">2025-03-03 4:31 AM</time>
                 </span>
                 <span>
                     published at
@@ -73,6 +73,10 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </ul>
 </li>
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
+<li><a href="#monster-hunter-wilds">Monster Hunter Wilds</a><ul>
+<li><a href="#monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</a></li>
+</ul>
+</li>
 <li><a href="#dauntless">Dauntless</a><ul>
 <li><a href="#if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</a></li>
 <li><a href="#if-there-is-too-much-lag-from-the-above-fix">If there is too much lag from the above fix.</a></li>
@@ -199,6 +203,18 @@ This makes Monado on Linux the only way to still use</p>
 <p>Instruct Monado to emulate the Index Controlller. This might magically fix it. It did for me.</p>
 <p>Failing that follow the instructions laid out by the <a href="https://lvra.gitlab.io/docs/steamvr/">Linux VR Adventures Wiki</a>.</p>
 <h2 id="game-specific-fixes">Game-Specific Fixes</h2>
+<h3 id="monster-hunter-wilds">Monster Hunter Wilds</h3>
+<h4 id="monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</h4>
+<p>If the game can&rsquo;t seem to locate the save bonuses for having a valid Monster Hunter World save, you need to copy the saves to the correct prefix.</p>
+<p>The save files are stored on the steam cloud, if you have played the game on the machine before they will be in <code>~/.steam/steam/userdata/[YOUR STEAM ID]/582010/</code>.
+If this directory does not exist ensure that steam cloud saves are enabled on Monster Hunter World, download it and lauch it completely once. Steam should have downloaded the save files.
+You must copy <strong>that entire directory</strong> to the prefix-appropriate userdata folder. This is located in the same storage medium as the game.</p>
+<p>The related path is: <code>/path/to/installed/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/[YOUR STEAM ID]</code></p>
+<p>So for example, if your Steam ID is 1024, and you have installed it to a partition that is mounted on /mnt/games/ you would do the following in a command prompt:</p>
+<div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>-rfvn<span class="w"> </span><span class="s2">&quot;~/.steam/steam/userdata/1024/582010&quot;</span><span class="w"> </span><span class="s2">&quot;/mnt/games/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/1024/&quot;</span>
+</code></pre></div>
+
+<p>The next time Monster Hunter Wilds launches, you should get a prompt for the Monster Hunter World incentives.</p>
 <h3 id="dauntless">Dauntless</h3>
 <p>This game has quite a lot of issues with Wine and Proton.</p>
 <h4 id="if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</h4>
@@ -252,6 +268,7 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-03-03 - Added Monster Hunter Wilds/World incentives guide</em></li>
 <li><em>Update: 2024-12-12 - Added Steam Game Recording workaround</em></li>
 <li><em>Update: 2024-12-12 - Added Marvel Rivals / AFK Journey CEF frame note</em></li>
 <li><em>Update: 2024-12-06 - Added even more Dauntless workarounds</em></li>

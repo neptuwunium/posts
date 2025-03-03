@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2024-12-23 1:48 AM
+updated: 2025-03-03 4:31 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -180,6 +180,26 @@ Failing that follow the instructions laid out by the [Linux VR Adventures Wiki](
 
 ## Game-Specific Fixes
 
+### Monster Hunter Wilds
+
+#### Monster Hunter World Save Bonuses
+
+If the game can't seem to locate the save bonuses for having a valid Monster Hunter World save, you need to copy the saves to the correct prefix.
+
+The save files are stored on the steam cloud, if you have played the game on the machine before they will be in `~/.steam/steam/userdata/[YOUR STEAM ID]/582010/`.
+If this directory does not exist ensure that steam cloud saves are enabled on Monster Hunter World, download it and lauch it completely once. Steam should have downloaded the save files.
+You must copy **that entire directory** to the prefix-appropriate userdata folder. This is located in the same storage medium as the game.
+
+The related path is: `/path/to/installed/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/[YOUR STEAM ID]`
+
+So for example, if your Steam ID is 1024, and you have installed it to a partition that is mounted on /mnt/games/ you would do the following in a command prompt:
+
+```sh
+cp -rfvn "~/.steam/steam/userdata/1024/582010" "/mnt/games/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/1024/"
+```
+
+The next time Monster Hunter Wilds launches, you should get a prompt for the Monster Hunter World incentives.
+
 ### Dauntless
 
 This game has quite a lot of issues with Wine and Proton.
@@ -278,6 +298,7 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2025-03-03 - Added Monster Hunter Wilds/World incentives guide*
 - *Update: 2024-12-12 - Added Steam Game Recording workaround*
 - *Update: 2024-12-12 - Added Marvel Rivals / AFK Journey CEF frame note*
 - *Update: 2024-12-06 - Added even more Dauntless workarounds*

@@ -59,10 +59,10 @@ and how they&rsquo;re very often stored as numbers, but how would you implement 
 <p>In theory you need to figure out how many key states you need to track, because the &ldquo;up-up-down-down&rdquo; code is extremely iconic I&rsquo;ll be using that for this post but really anything can work.</p>
 <p>So the code goes something like <code>up up down down left right left right b a</code>. 
 That&rsquo;s 6 states, let&rsquo;s add in a seventh for a reset state.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
 
 
-<span class="k">class</span> <span class="nc">BUTTON_STATE</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BUTTON_STATE</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
   <span class="n">BUTTON_RESET</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="n">BUTTON_UP</span> <span class="o">=</span> <span class="mi">1</span>
   <span class="n">BUTTON_RIGHT</span> <span class="o">=</span> <span class="mi">2</span>
@@ -77,7 +77,7 @@ That&rsquo;s 6 states, let&rsquo;s add in a seventh for a reset state.</p>
 <script type="math/tex; mode=display">\frac{n}{\log_2(S)}</script>
 </h2>
 <p>Where <code>n</code> is the number of total bits available for storage, and <code>S</code> is the number of states. <strong>Note:</strong> the log2 product has to be <strong>rounded up</strong> and the fraction product has to be <strong>rounded down.</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">log2</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">log2</span>
 
 
 <span class="c1"># we have 6 states + a reset value</span>
@@ -105,7 +105,7 @@ We do this by shifting the bits to the right by <em>3</em> (since that&rsquo;s t
 <span class="n">mask</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="k">def</span> <span class="nf">handle_seq</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_seq</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">seq</span><span class="p">,</span> <span class="n">mask</span>
 
     <span class="c1"># shift sequence to the right by 3 bits, since that&#39;s all our states use.</span>
@@ -137,7 +137,7 @@ We do this by shifting the bits to the right by <em>3</em> (since that&rsquo;s t
 <p>So now we have our input code sequence and our bit test mask. Now all we have to do is replicate the code in some input event loop.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">egg_seq</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="k">def</span> <span class="nf">handle_egg_button_press</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_egg_button_press</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
   <span class="k">global</span> <span class="n">egg_seq</span>
 
   <span class="c1"># append the state bits to our sequence tracker for this easter egg (and restrict it to 64-bits)</span>
