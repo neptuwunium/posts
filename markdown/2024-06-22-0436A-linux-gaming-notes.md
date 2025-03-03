@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2025-03-03 4:31 AM
+updated: 2025-03-03 9:04 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -200,6 +200,14 @@ cp -rfvn "~/.steam/steam/userdata/1024/582010" "/mnt/games/SteamLibrary/steamapp
 
 The next time Monster Hunter Wilds launches, you should get a prompt for the Monster Hunter World incentives.
 
+#### Shader compilation on every startup
+
+It would appear that in some situations, the game will compile shaders every time it has been started.
+
+The following environment variables are shown to remove or at least reduce the instances of this happening significantly:
+
+`MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1`
+
 ### Dauntless
 
 This game has quite a lot of issues with Wine and Proton.
@@ -298,6 +306,7 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2025-03-03 - Added Monster Hunter Wilds Shader compilation workaround*
 - *Update: 2025-03-03 - Added Monster Hunter Wilds/World incentives guide*
 - *Update: 2024-12-12 - Added Steam Game Recording workaround*
 - *Update: 2024-12-12 - Added Marvel Rivals / AFK Journey CEF frame note*
