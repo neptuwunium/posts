@@ -356,3 +356,7 @@ article.index > ol > li:nth-child(6n+5) a::selection {
 article.index > ol > li:nth-child(6n+6) a::selection {
     background: rgba(250, 244, 123, 0.25) !important;
 }
+
+.footnote-backref {
+	-webkit-text-fill-color: black;
+}
