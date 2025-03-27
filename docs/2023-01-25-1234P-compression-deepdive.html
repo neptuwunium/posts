@@ -238,7 +238,7 @@ The header is easily tested, the first byte will be the compression type (<code>
 <p>We can reduce this to a set byte sequences <code>00 0E 02 01 00 00 00 00</code> with 02 being the revision version, and 01 being the compression type.</p>
 <h2 id="mesh-related-compression">Mesh-related Compression</h2>
 <h3 id="meshoptimizer">MeshOptimizer<sup id="fnref:mesh-optimizer"><a class="footnote-ref" href="#fn:mesh-optimizer">19</a></sup></h3>
-<p>Will always start with <code>0xA0</code>, will often emit a lot of <code>0xFF</code>, <code>0xF0</code> and <code>0x0F</code> values for vertex buffers, and a lot of 0x02 for index buffers.</p>
+<p>Will always start with <code>0xA0</code>, will often emit a lot of <code>0xFF</code>, <code>0xF0</code> and <code>0x0F</code> values for vertex buffers, and a lot of <code>0x02</code> for index buffers.</p>
 <h3 id="draco">Draco<sup id="fnref:draco"><a class="footnote-ref" href="#fn:draco">20</a></sup></h3>
 <p>Will usually start with the string <code>DRACO</code>, followed by 2 version bytes, 2 encoder bytes and 2 flag bytes<sup id="fnref:draco-spec"><a class="footnote-ref" href="#fn:draco-spec">21</a></sup>.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">draco_header</span><span class="w"> </span><span class="p">{</span>

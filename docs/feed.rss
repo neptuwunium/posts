@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Thu, 27 Mar 2025 00:48:55 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Mar 2025 00:53:21 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -1103,7 +1103,7 @@ We can reduce this to a set byte sequences `00 0E 02 01 00 00 00 00` with 02 bei
 
 ### MeshOptimizer[^mesh-optimizer]
 
-Will always start with `0xA0`, will often emit a lot of `0xFF`, `0xF0` and `0x0F` values for vertex buffers, and a lot of 0x02 for index buffers.
+Will always start with `0xA0`, will often emit a lot of `0xFF`, `0xF0` and `0x0F` values for vertex buffers, and a lot of `0x02` for index buffers.
 
 [^mesh-optimizer]: [https://github.com/zeux/meshoptimizer](https://github.com/zeux/meshoptimizer)
 
