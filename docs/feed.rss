@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Mon, 03 Mar 2025 09:04:27 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Mar 2025 00:48:55 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -1099,6 +1099,32 @@ We can reduce this to a set byte sequences `00 0E 02 01 00 00 00 00` with 02 bei
 [^density]: [https://github.com/g1mv/density](https://github.com/g1mv/density)
 [^density-benchmarks]: [https://github.com/g1mv/density?tab=readme-ov-file#benchmarks](https://github.com/g1mv/density?tab=readme-ov-file#benchmarks)
 
+## Mesh-related Compression
+
+### MeshOptimizer[^mesh-optimizer]
+
+Will always start with `0xA0`, will often emit a lot of `0xFF`, `0xF0` and `0x0F` values for vertex buffers, and a lot of 0x02 for index buffers.
+
+[^mesh-optimizer]: [https://github.com/zeux/meshoptimizer](https://github.com/zeux/meshoptimizer)
+
+### Draco[^draco]
+
+Will usually start with the string `DRACO`, followed by 2 version bytes, 2 encoder bytes and 2 flag bytes[^draco-spec].
+
+```c
+struct draco_header {
+    char magic[5];
+    uint8_t version_major;
+    uint8_t version_minor;
+    uint8_t encoder_type;
+    uint8_t encoder_method;
+    uint16_t flags;
+}
+```
+
+[^draco]: [https://github.com/google/draco](https://github.com/google/draco)
+[^draco-spec]: [https://github.com/google/draco/blob/8a979f79a5f139880f17f296ace90bcfff025c4b/docs/spec/variable.descriptions.md#header](https://github.com/google/draco/blob/8a979f79a5f139880f17f296ace90bcfff025c4b/docs/spec/variable.descriptions.md#header)
+
 ## Zip Signature Speedrun
 
 Compression archives almost always have a signature at the start of the file.
@@ -1114,6 +1140,7 @@ I'm adding them here for completeness.
 
 ## Changelog
 
+- *Update: 2025-03-27 - Added Mesh Optimizer and Draco info.*
 - *Update: 2025-01-04 - Added BitKnit info.*
 - *Update: 2024-09-09 - Added DENSITY info.*
 - *Update: 2024-08-19 - Added Tile Streaming info.*

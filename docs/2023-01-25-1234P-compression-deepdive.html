@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2023-01-25-1234P-compression-deepdive.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2025-01-04T22:54:00+00:00">
+    <meta property="article:published_time" content="2025-03-27T00:35:00+00:00">
     
 </head>
 
@@ -37,7 +37,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2025-01-04T22:54:00+00:00">2025-01-04 10:54 PM</time>
+                    <time datetime="2025-03-27T00:35:00+00:00">2025-03-27 12:35 AM</time>
                 </span>
                 <span>
                     published at
@@ -78,6 +78,11 @@ it will help you understand <em>why</em> they are there and how to notice them w
 <li><a href="#bitknit">BitKnit</a></li>
 <li><a href="#tile-streaming-dstorage">Tile Streaming (dstorage)</a></li>
 <li><a href="#density">DENSITY</a></li>
+<li><a href="#mesh-related-compression">Mesh-related Compression</a><ul>
+<li><a href="#meshoptimizer">MeshOptimizer</a></li>
+<li><a href="#draco">Draco</a></li>
+</ul>
+</li>
 <li><a href="#zip-signature-speedrun">Zip Signature Speedrun</a></li>
 <li><a href="#changelog">Changelog</a></li>
 </ul>
@@ -231,6 +236,21 @@ The header is easily tested, the first byte will be the compression type (<code>
 
 <p>Density has 18 releases, of which only 3 are not marked as pre released (0.14.0, 0.14.1, 0.14.2). It has 3 compression types (1, 2, 3.)</p>
 <p>We can reduce this to a set byte sequences <code>00 0E 02 01 00 00 00 00</code> with 02 being the revision version, and 01 being the compression type.</p>
+<h2 id="mesh-related-compression">Mesh-related Compression</h2>
+<h3 id="meshoptimizer">MeshOptimizer<sup id="fnref:mesh-optimizer"><a class="footnote-ref" href="#fn:mesh-optimizer">19</a></sup></h3>
+<p>Will always start with <code>0xA0</code>, will often emit a lot of <code>0xFF</code>, <code>0xF0</code> and <code>0x0F</code> values for vertex buffers, and a lot of 0x02 for index buffers.</p>
+<h3 id="draco">Draco<sup id="fnref:draco"><a class="footnote-ref" href="#fn:draco">20</a></sup></h3>
+<p>Will usually start with the string <code>DRACO</code>, followed by 2 version bytes, 2 encoder bytes and 2 flag bytes<sup id="fnref:draco-spec"><a class="footnote-ref" href="#fn:draco-spec">21</a></sup>.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">draco_header</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">magic</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">version_major</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">version_minor</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">encoder_type</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">encoder_method</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <h2 id="zip-signature-speedrun">Zip Signature Speedrun</h2>
 <p>Compression archives almost always have a signature at the start of the file.
 I&rsquo;m adding them here for completeness.</p>
@@ -245,6 +265,7 @@ I&rsquo;m adding them here for completeness.</p>
 </ul>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-03-27 - Added Mesh Optimizer and Draco info.</em></li>
 <li><em>Update: 2025-01-04 - Added BitKnit info.</em></li>
 <li><em>Update: 2024-09-09 - Added DENSITY info.</em></li>
 <li><em>Update: 2024-08-19 - Added Tile Streaming info.</em></li>
@@ -306,6 +327,15 @@ I&rsquo;m adding them here for completeness.</p>
 </li>
 <li id="fn:density-benchmarks">
 <p><a href="https://github.com/g1mv/density?tab=readme-ov-file#benchmarks">https://github.com/g1mv/density?tab=readme-ov-file#benchmarks</a>&#160;<a class="footnote-backref" href="#fnref:density-benchmarks" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+</li>
+<li id="fn:mesh-optimizer">
+<p><a href="https://github.com/zeux/meshoptimizer">https://github.com/zeux/meshoptimizer</a>&#160;<a class="footnote-backref" href="#fnref:mesh-optimizer" title="Jump back to footnote 19 in the text">&#8617;</a></p>
+</li>
+<li id="fn:draco">
+<p><a href="https://github.com/google/draco">https://github.com/google/draco</a>&#160;<a class="footnote-backref" href="#fnref:draco" title="Jump back to footnote 20 in the text">&#8617;</a></p>
+</li>
+<li id="fn:draco-spec">
+<p><a href="https://github.com/google/draco/blob/8a979f79a5f139880f17f296ace90bcfff025c4b/docs/spec/variable.descriptions.md#header">https://github.com/google/draco/blob/8a979f79a5f139880f17f296ace90bcfff025c4b/docs/spec/variable.descriptions.md#header</a>&#160;<a class="footnote-backref" href="#fnref:draco-spec" title="Jump back to footnote 21 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
