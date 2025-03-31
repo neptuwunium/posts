@@ -236,6 +236,9 @@ Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls 
 I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
 So rolling back should have no actual change in performance. Newer versions aren't always better.
 
+Since the game prefers to load the DLLs from System32 and the community workaround for these crashes are to place 1.2.2 in System32,
+that is simply more proof that this is a placebo fix for performance.
+
 ### Dauntless
 
 This game has quite a lot of issues with Wine and Proton.

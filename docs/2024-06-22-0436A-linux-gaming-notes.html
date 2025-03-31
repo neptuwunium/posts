@@ -185,7 +185,7 @@ To remedy this, you can use Monado.</p>
 <p><code>vk_pro ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%</code></p>
 <h3 id="wmr">WMR</h3>
 <p>Windows Mixed Reality is <a href="https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features">deprecated by Microsoft, and support will be removed in November 2026</a>.
-This makes Monado on Linux the only way to still use</p>
+This makes Monado on Linux the only way to still use the device.</p>
 <p><strong>However</strong> getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. <a href="https://gitlab.freedesktop.org/mateosss/basalt">Specifically a fork of Basalt</a>.</p>
 <p>My command looks something like:</p>
 <p><code>env VIT_SYSTEM_LIBRARY_PATH=/usr/lib64/libbasalt-monado.so PRESSURE_VESSEL_FILESYSTEMS_RW=$XDG_RUNTIME_DIR/monado_comp_ipc SLAM_CONFIG=/usr/share/basalt/msdmo.toml SLAM_SUBMIT_FROM_START=1 SLAM_UI=0 XRT_COMPOSITOR_COMPUTE=1 XRT_DEBUG_GUI=0 AEG_USE_DYNAMIC_RANGE=0 WMR_AUTOEXPOSURE=0 STEAMVR_EMULATE_INDEX_CONTROLLER=0 ~/.steam/steam/steamapps/common/SteamVR/bin/vrmonitor.sh %command%</code></p>
@@ -240,6 +240,8 @@ This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/S
 Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.</p>
 <p>I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
 So rolling back should have no actual change in performance. Newer versions aren&rsquo;t always better.</p>
+<p>Since the game prefers to load the DLLs from System32 and the community workaround for these crashes are to place 1.2.2 in System32,
+that is simply more proof that this is a placebo fix for performance.</p>
 <h3 id="dauntless">Dauntless</h3>
 <p>This game has quite a lot of issues with Wine and Proton.</p>
 <h4 id="if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</h4>

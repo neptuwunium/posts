@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Mon, 31 Mar 2025 15:49:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Mar 2025 16:04:22 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -295,7 +295,7 @@ AMD does not ship the required Vulkan extensions that Monado needs in the FOSS d
 ### WMR
 
 Windows Mixed Reality is [deprecated by Microsoft, and support will be removed in November 2026](https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features).
-This makes Monado on Linux the only way to still use
+This makes Monado on Linux the only way to still use the device.
 
 **However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt](https://gitlab.freedesktop.org/mateosss/basalt).
 
@@ -378,6 +378,9 @@ Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls 
 
 I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
 So rolling back should have no actual change in performance. Newer versions aren't always better.
+
+Since the game prefers to load the DLLs from System32 and the community workaround for these crashes are to place 1.2.2 in System32,
+that is simply more proof that this is a placebo fix for performance.
 
 ### Dauntless
 
