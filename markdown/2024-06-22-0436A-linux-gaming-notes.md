@@ -229,7 +229,7 @@ cp dstorage/native/bin/x64/dstorage.dll dstorage/native/bin/x64/dstoragecore.dll
 
 Notes:
 
-The community "workaround" is to place the DLL into the wine prefix's System32.
+The community "workaround" is to place the 1.2.2 DLLs into the wine prefix's System32, and the 1.2.3 DLLS into the game installation directory.
 This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/SysWOW64) rather than the application path which is a common security practice with Windows.
 Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.
 
