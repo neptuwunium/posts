@@ -223,7 +223,8 @@ Using `~/.steam/root/steamapps` as an example install library, using 7zip on the
 ```sh
 cd ~/Downloads
 7z x -odstorage microsoft.direct3d.directstorage.1.2.2.nupkg
-cp dstorage/native/bin/x64/dstorage.dll dstorage/native/bin/x64/dstoragecore.dll ~/.steam/root/steamapps/common/MonsterHunterWilds
+cp dstorage/native/bin/x64/dstorage.dll dstorage/native/bin/x64/dstoragecore.dll \
+	~/.steam/root/steamapps/common/MonsterHunterWilds
 ```
 
 Notes:
@@ -232,7 +233,7 @@ The community "workaround" is to place the DLL into the wine prefix's System32.
 This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/SysWOW64) rather than the application path which is a common security practice with Windows.
 Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.
 
-The author of this blog believes this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
+I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
 So rolling back should have no actual change in performance. Never versions aren't always better.
 
 ### Dauntless

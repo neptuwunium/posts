@@ -230,14 +230,15 @@ The direct link to the nupkg is <a href="https://www.nuget.org/api/v2/package/Mi
 <p>Using <code>~/.steam/root/steamapps</code> as an example install library, using 7zip on the command line:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/Downloads
 7z<span class="w"> </span>x<span class="w"> </span>-odstorage<span class="w"> </span>microsoft.direct3d.directstorage.1.2.2.nupkg
-cp<span class="w"> </span>dstorage/native/bin/x64/dstorage.dll<span class="w"> </span>dstorage/native/bin/x64/dstoragecore.dll<span class="w"> </span>~/.steam/root/steamapps/common/MonsterHunterWilds
+cp<span class="w"> </span>dstorage/native/bin/x64/dstorage.dll<span class="w"> </span>dstorage/native/bin/x64/dstoragecore.dll<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>~/.steam/root/steamapps/common/MonsterHunterWilds
 </code></pre></div>
 
 <p>Notes:</p>
 <p>The community &ldquo;workaround&rdquo; is to place the DLL into the wine prefix&rsquo;s System32.
 This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/SysWOW64) rather than the application path which is a common security practice with Windows.
 Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.</p>
-<p>The author of this blog believes this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
+<p>I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
 So rolling back should have no actual change in performance. Never versions aren&rsquo;t always better.</p>
 <h3 id="dauntless">Dauntless</h3>
 <p>This game has quite a lot of issues with Wine and Proton.</p>
