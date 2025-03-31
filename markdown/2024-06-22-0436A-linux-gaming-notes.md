@@ -152,7 +152,7 @@ AMD does not ship the required Vulkan extensions that Monado needs in the FOSS d
 ### WMR
 
 Windows Mixed Reality is [deprecated by Microsoft, and support will be removed in November 2026](https://learn.microsoft.com/en-us/windows/whats-new/deprecated-features#deprecated-features).
-This makes Monado on Linux the only way to still use
+This makes Monado on Linux the only way to still use the device.
 
 **However** getting it to work is non-trivial. WMR supports needs a hidden dependency, Basalt. [Specifically a fork of Basalt](https://gitlab.freedesktop.org/mateosss/basalt).
 
