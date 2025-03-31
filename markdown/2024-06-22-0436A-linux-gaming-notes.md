@@ -210,15 +210,15 @@ The following environment variables are shown to remove or at least reduce the i
 
 #### (Pre-Emptive Workaround) Black Screen/GPU crash on launch since Title Update 1
 
-Monster Hunter Wilds announced that it's updating DirectStorage.
-It's currently on version 1.2.2, the only other version is 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.
+Monster Hunter Wilds announced that it's updating DirectStorage in it's "Free Title Update 1".
+It's currently on version 1.2.2, the only newer version is 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.
 
 If this behavior still happens on release, the only solution is to roll back to [DirectStorage 1.2.2](https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2).
 The direct link to the nupkg is [here](https://www.nuget.org/api/v2/package/Microsoft.Direct3D.DirectStorage/1.2.2).
 
 Extract the nupkg as a zip file, and copy `native/bin/x64/dstorage.dll` and `native/bin/x64/dstoragecore.dll` to the game installation directory.
 
-Using `~/.steam/root/steamapps` as an example install library, using 7zip on the command line:
+Using `~/.steam/root/steamapps` as an example install library, using p7zip on the command line:
 
 ```sh
 cd ~/Downloads
@@ -234,7 +234,7 @@ This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/S
 Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.
 
 I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
-So rolling back should have no actual change in performance. Never versions aren't always better.
+So rolling back should have no actual change in performance. Newer versions aren't always better.
 
 ### Dauntless
 

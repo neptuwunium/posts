@@ -222,12 +222,12 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>The following environment variables are shown to remove or at least reduce the instances of this happening significantly:</p>
 <p><code>MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1</code></p>
 <h4 id="pre-emptive-workaround-black-screengpu-crash-on-launch-since-title-update-1">(Pre-Emptive Workaround) Black Screen/GPU crash on launch since Title Update 1</h4>
-<p>Monster Hunter Wilds announced that it&rsquo;s updating DirectStorage.
-It&rsquo;s currently on version 1.2.2, the only other version is 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.</p>
+<p>Monster Hunter Wilds announced that it&rsquo;s updating DirectStorage in it&rsquo;s &ldquo;Free Title Update 1&rdquo;.
+It&rsquo;s currently on version 1.2.2, the only newer version is 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.</p>
 <p>If this behavior still happens on release, the only solution is to roll back to <a href="https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2">DirectStorage 1.2.2</a>.
 The direct link to the nupkg is <a href="https://www.nuget.org/api/v2/package/Microsoft.Direct3D.DirectStorage/1.2.2">here</a>.</p>
 <p>Extract the nupkg as a zip file, and copy <code>native/bin/x64/dstorage.dll</code> and <code>native/bin/x64/dstoragecore.dll</code> to the game installation directory.</p>
-<p>Using <code>~/.steam/root/steamapps</code> as an example install library, using 7zip on the command line:</p>
+<p>Using <code>~/.steam/root/steamapps</code> as an example install library, using p7zip on the command line:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/Downloads
 7z<span class="w"> </span>x<span class="w"> </span>-odstorage<span class="w"> </span>microsoft.direct3d.directstorage.1.2.2.nupkg
 cp<span class="w"> </span>dstorage/native/bin/x64/dstorage.dll<span class="w"> </span>dstorage/native/bin/x64/dstoragecore.dll<span class="w"> </span><span class="se">\</span>
@@ -239,7 +239,7 @@ cp<span class="w"> </span>dstorage/native/bin/x64/dstorage.dll<span class="w"> <
 This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/SysWOW64) rather than the application path which is a common security practice with Windows.
 Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.</p>
 <p>I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
-So rolling back should have no actual change in performance. Never versions aren&rsquo;t always better.</p>
+So rolling back should have no actual change in performance. Newer versions aren&rsquo;t always better.</p>
 <h3 id="dauntless">Dauntless</h3>
 <p>This game has quite a lot of issues with Wine and Proton.</p>
 <h4 id="if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</h4>
