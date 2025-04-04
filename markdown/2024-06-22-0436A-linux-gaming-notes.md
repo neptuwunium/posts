@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2025-03-31 4:39 PM
+updated: 2025-04-04 5:20 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -208,12 +208,12 @@ The following environment variables are shown to remove or at least reduce the i
 
 `MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1`
 
-#### (Pre-Emptive Workaround) Black Screen/GPU crash on launch since Title Update 1
+#### Black Screen/GPU crash on launch since Title Update 1
 
-Monster Hunter Wilds announced that it's updating DirectStorage in it's "Free Title Update 1".
-It's currently on version 1.2.2, the only newer version is 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.
+Monster Hunter Wilds updated DirectStorage in it's "Free Title Update 1" to version 1.2.3.
+DirectStorage 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.
 
-If this behavior still happens on release, the only solution is to roll back to [DirectStorage 1.2.2](https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2).
+The only solution is to roll back to [DirectStorage 1.2.2](https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2).
 The direct link to the nupkg is [here](https://www.nuget.org/api/v2/package/Microsoft.Direct3D.DirectStorage/1.2.2).
 
 Extract the nupkg as a zip file, and copy `native/bin/x64/dstorage.dll` and `native/bin/x64/dstoragecore.dll` to the game installation directory.
@@ -337,6 +337,7 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately*
 - *Update: 2025-03-31 - Added Monster Hunter Wilds GPU Crash pre-emptive workaround*
 - *Update: 2025-03-03 - Added Monster Hunter Wilds Shader compilation workaround*
 - *Update: 2025-03-03 - Added Monster Hunter Wilds/World incentives guide*

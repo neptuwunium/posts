@@ -22,7 +22,7 @@
     <meta property="og:url" content="https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2025-03-31T15:39:00+00:00">
+    <meta property="article:published_time" content="2025-04-04T04:20:00+00:00">
     
 </head>
 
@@ -37,7 +37,7 @@
                 </div>
                 <span>
                     last updated at
-                    <time datetime="2025-03-31T15:39:00+00:00">2025-03-31 4:39 PM</time>
+                    <time datetime="2025-04-04T04:20:00+00:00">2025-04-04 5:20 AM</time>
                 </span>
                 <span>
                     published at
@@ -76,7 +76,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#monster-hunter-wilds">Monster Hunter Wilds</a><ul>
 <li><a href="#monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</a></li>
 <li><a href="#shader-compilation-on-every-startup">Shader compilation on every startup</a></li>
-<li><a href="#pre-emptive-workaround-black-screengpu-crash-on-launch-since-title-update-1">(Pre-Emptive Workaround) Black Screen/GPU crash on launch since Title Update 1</a></li>
+<li><a href="#black-screengpu-crash-on-launch-since-title-update-1">Black Screen/GPU crash on launch since Title Update 1</a></li>
 </ul>
 </li>
 <li><a href="#dauntless">Dauntless</a><ul>
@@ -221,10 +221,10 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>It would appear that in some situations, the game will compile shaders every time it has been started.</p>
 <p>The following environment variables are shown to remove or at least reduce the instances of this happening significantly:</p>
 <p><code>MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1</code></p>
-<h4 id="pre-emptive-workaround-black-screengpu-crash-on-launch-since-title-update-1">(Pre-Emptive Workaround) Black Screen/GPU crash on launch since Title Update 1</h4>
-<p>Monster Hunter Wilds announced that it&rsquo;s updating DirectStorage in it&rsquo;s &ldquo;Free Title Update 1&rdquo;.
-It&rsquo;s currently on version 1.2.2, the only newer version is 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.</p>
-<p>If this behavior still happens on release, the only solution is to roll back to <a href="https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2">DirectStorage 1.2.2</a>.
+<h4 id="black-screengpu-crash-on-launch-since-title-update-1">Black Screen/GPU crash on launch since Title Update 1</h4>
+<p>Monster Hunter Wilds updated DirectStorage in it&rsquo;s &ldquo;Free Title Update 1&rdquo; to version 1.2.3.
+DirectStorage 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.</p>
+<p>The only solution is to roll back to <a href="https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2">DirectStorage 1.2.2</a>.
 The direct link to the nupkg is <a href="https://www.nuget.org/api/v2/package/Microsoft.Direct3D.DirectStorage/1.2.2">here</a>.</p>
 <p>Extract the nupkg as a zip file, and copy <code>native/bin/x64/dstorage.dll</code> and <code>native/bin/x64/dstoragecore.dll</code> to the game installation directory.</p>
 <p>Using <code>~/.steam/root/steamapps</code> as an example install library, using p7zip on the command line:</p>
@@ -295,6 +295,7 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately</em></li>
 <li><em>Update: 2025-03-31 - Added Monster Hunter Wilds GPU Crash pre-emptive workaround</em></li>
 <li><em>Update: 2025-03-03 - Added Monster Hunter Wilds Shader compilation workaround</em></li>
 <li><em>Update: 2025-03-03 - Added Monster Hunter Wilds/World incentives guide</em></li>
