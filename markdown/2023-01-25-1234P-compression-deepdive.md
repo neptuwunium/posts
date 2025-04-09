@@ -2,7 +2,7 @@
 title: compression algorithms
 short: a deep dive into compression algorithms and how to notice them in hex
 date: 2023-01-25 2:42 PM
-updated: 2025-03-27 12:35 AM
+updated: 2025-04-09 6:39 PM
 ---
 
 One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
@@ -213,6 +213,23 @@ Note that Oodle will still load version 3 and older files, which will start with
 
 [^oodle]: [http://www.radgametools.com/oodle.htm](http://www.radgametools.com/oodle.htm)
 
+## OodleTexture
+
+Oodle Texture[^oodle-tex] is a Block Compression quantizer, with a special runtime for Block Compression 7[^bc7] since that does not compress well.
+
+Oodle Texture will start with the hex `BC 07 00 00` as it's version number, a flags integer and 10 block sizes integer
+
+```c
+struct oodle_texture_prep {
+    uint32_t magic; // 0x7bc
+    uint32_t flags;
+    uint32_t block_sizes[10];
+}
+```
+
+[^oodle-texture]: [https://www.radgametools.com/oodletexture.htm](https://www.radgametools.com/oodletexture.htm)
+[^bc7]: [https://registry.khronos.org/DataFormat/specs/1.1/dataformat.1.1.html#_bc7](https://registry.khronos.org/DataFormat/specs/1.1/dataformat.1.1.html#_bc7), [https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format](https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format)
+
 ## BitKnit
 
 Granny is a resource container format by RAD Games, in the most recent versions it introduced a 8-byte block compression algorithm called BitKnit.
@@ -307,6 +324,7 @@ I'm adding them here for completeness.
 
 ## Changelog
 
+- *Update: 2025-04-09 - Added Oodle Texture info.*
 - *Update: 2025-03-27 - Added Mesh Optimizer and Draco info.*
 - *Update: 2025-01-04 - Added BitKnit info.*
 - *Update: 2024-09-09 - Added DENSITY info.*

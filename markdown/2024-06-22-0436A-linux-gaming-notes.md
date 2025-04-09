@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2025-04-04 5:20 AM
+updated: 2025-04-09 6:34 PM
 ---
 
 I recently migrated to using Linux full time.
@@ -208,37 +208,6 @@ The following environment variables are shown to remove or at least reduce the i
 
 `MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1`
 
-#### Black Screen/GPU crash on launch since Title Update 1
-
-Monster Hunter Wilds updated DirectStorage in it's "Free Title Update 1" to version 1.2.3.
-DirectStorage 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.
-
-The only solution is to roll back to [DirectStorage 1.2.2](https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2).
-The direct link to the nupkg is [here](https://www.nuget.org/api/v2/package/Microsoft.Direct3D.DirectStorage/1.2.2).
-
-Extract the nupkg as a zip file, and copy `native/bin/x64/dstorage.dll` and `native/bin/x64/dstoragecore.dll` to the game installation directory.
-
-Using `~/.steam/root/steamapps` as an example install library, using p7zip on the command line:
-
-```sh
-cd ~/Downloads
-7z x -odstorage microsoft.direct3d.directstorage.1.2.2.nupkg
-cp dstorage/native/bin/x64/dstorage.dll dstorage/native/bin/x64/dstoragecore.dll \
-	~/.steam/root/steamapps/common/MonsterHunterWilds
-```
-
-Notes:
-
-The community "workaround" is to place the 1.2.2 DLLs into the wine prefix's System32, and the 1.2.3 DLLS into the game installation directory.
-This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/SysWOW64) rather than the application path which is a common security practice with Windows.
-Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.
-
-I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
-So rolling back should have no actual change in performance. Newer versions aren't always better.
-
-Since the game prefers to load the DLLs from System32 and the community workaround for these crashes are to place 1.2.2 in System32,
-that is simply more proof that this is a placebo fix for performance.
-
 ### Dauntless
 
 This game has quite a lot of issues with Wine and Proton.
@@ -337,6 +306,7 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk*
 - *Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately*
 - *Update: 2025-03-31 - Added Monster Hunter Wilds GPU Crash pre-emptive workaround*
 - *Update: 2025-03-03 - Added Monster Hunter Wilds Shader compilation workaround*

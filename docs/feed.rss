@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Fri, 04 Apr 2025 04:21:28 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Apr 2025 17:39:39 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -351,37 +351,6 @@ The following environment variables are shown to remove or at least reduce the i
 
 `MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1`
 
-#### Black Screen/GPU crash on launch since Title Update 1
-
-Monster Hunter Wilds updated DirectStorage in it's "Free Title Update 1" to version 1.2.3.
-DirectStorage 1.2.3 which causes a GPU crash on Mesa on some systems at the time of writing.
-
-The only solution is to roll back to [DirectStorage 1.2.2](https://www.nuget.org/packages/Microsoft.Direct3D.DirectStorage/1.2.2).
-The direct link to the nupkg is [here](https://www.nuget.org/api/v2/package/Microsoft.Direct3D.DirectStorage/1.2.2).
-
-Extract the nupkg as a zip file, and copy `native/bin/x64/dstorage.dll` and `native/bin/x64/dstoragecore.dll` to the game installation directory.
-
-Using `~/.steam/root/steamapps` as an example install library, using p7zip on the command line:
-
-```sh
-cd ~/Downloads
-7z x -odstorage microsoft.direct3d.directstorage.1.2.2.nupkg
-cp dstorage/native/bin/x64/dstorage.dll dstorage/native/bin/x64/dstoragecore.dll \
-	~/.steam/root/steamapps/common/MonsterHunterWilds
-```
-
-Notes:
-
-The community "workaround" is to place the 1.2.2 DLLs into the wine prefix's System32, and the 1.2.3 DLLS into the game installation directory.
-This fix indicates that the LoadLibrary flags prefer safe paths (i.e. System32/SysWOW64) rather than the application path which is a common security practice with Windows.
-Given that the crashes return when putting copying the DirectStorage 1.2.3 dlls to System32 the crashes also return, this is likely the case.
-
-I personally believe this fix is a placebo fix since the version only fixes a handful of crash-related bugs and deadlocks.
-So rolling back should have no actual change in performance. Newer versions aren't always better.
-
-Since the game prefers to load the DLLs from System32 and the community workaround for these crashes are to place 1.2.2 in System32,
-that is simply more proof that this is a placebo fix for performance.
-
 ### Dauntless
 
 This game has quite a lot of issues with Wine and Proton.
@@ -480,6 +449,7 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk*
 - *Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately*
 - *Update: 2025-03-31 - Added Monster Hunter Wilds GPU Crash pre-emptive workaround*
 - *Update: 2025-03-03 - Added Monster Hunter Wilds Shader compilation workaround*
@@ -1079,6 +1049,23 @@ Note that Oodle will still load version 3 and older files, which will start with
 
 [^oodle]: [http://www.radgametools.com/oodle.htm](http://www.radgametools.com/oodle.htm)
 
+## OodleTexture
+
+Oodle Texture[^oodle-tex] is a Block Compression quantizer, with a special runtime for Block Compression 7[^bc7] since that does not compress well.
+
+Oodle Texture will start with the hex `BC 07 00 00` as it's version number, a flags integer and 10 block sizes integer
+
+```c
+struct oodle_texture_prep {
+    uint32_t magic; // 0x7bc
+    uint32_t flags;
+    uint32_t block_sizes[10];
+}
+```
+
+[^oodle-texture]: [https://www.radgametools.com/oodletexture.htm](https://www.radgametools.com/oodletexture.htm)
+[^bc7]: [https://registry.khronos.org/DataFormat/specs/1.1/dataformat.1.1.html#_bc7](https://registry.khronos.org/DataFormat/specs/1.1/dataformat.1.1.html#_bc7), [https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format](https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format)
+
 ## BitKnit
 
 Granny is a resource container format by RAD Games, in the most recent versions it introduced a 8-byte block compression algorithm called BitKnit.
@@ -1173,6 +1160,7 @@ I'm adding them here for completeness.
 
 ## Changelog
 
+- *Update: 2025-04-09 - Added Oodle Texture info.*
 - *Update: 2025-03-27 - Added Mesh Optimizer and Draco info.*
 - *Update: 2025-01-04 - Added BitKnit info.*
 - *Update: 2024-09-09 - Added DENSITY info.*
