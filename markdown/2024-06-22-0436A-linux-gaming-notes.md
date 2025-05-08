@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2025-04-09 6:34 PM
+updated: 2025-05-08 2:46 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -286,6 +286,17 @@ You can find [vk_pro](https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/
 
 Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_DRIVERS_DISABLE`, and `VK_LOADER_DRIVERS_SELECT` environment variables.
 
+## Battle.net
+
+### BLZBNTBNA00000005 / Sleeping Battle.net Agent
+
+Also applies to if Battle.net spams the "broken installation please restart" popup.
+
+This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted. 
+Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions, however Wine 10 does exhibit proper behavior.
+
+Try switching to Wine 10 or Proton 10 and restarting the process.
+
 ## Generic Notes
 
 ### Checking if EAC is linux-enabled
@@ -306,6 +317,7 @@ This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If
 
 ## Changelog
 
+- *Update: 2025-05-08 - Battle.net eepy agent*
 - *Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk*
 - *Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately*
 - *Update: 2025-03-31 - Added Monster Hunter Wilds GPU Crash pre-emptive workaround*
