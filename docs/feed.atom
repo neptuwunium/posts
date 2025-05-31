@@ -3,7 +3,7 @@
   <title>ada's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2025-05-08T02:47:02.705432+00:00</updated>
+  <updated>2025-05-31T11:01:17.769409+00:00</updated>
   <author>
     <name>Ada</name>
   </author>
@@ -263,7 +263,7 @@ When you do, force it to use **the same compatability tools as the game** and se
 
 You may need to install more dependencies like .NET 4.8/6.0, etc via protontricks, select the game *not* the non-steam app when installing.
 
-Change `~/.steam/root/steamapps` to the SteamLibrary steamapps folder if installed in a steam library folder.
+Change `~/.steam/root/steamapps` to the SteamLibrary steamapps directory if installed in a steam library directory.
 
 Change 489830 to match the steam id of the mod tool the game is for, 489830 is Skyrim SE/AE.
 It is the number after `/app/` in the Steam store link, alternatively look it up on SteamDB.
@@ -332,7 +332,7 @@ If the game can't seem to locate the save bonuses for having a valid Monster Hun
 
 The save files are stored on the steam cloud, if you have played the game on the machine before they will be in `~/.steam/steam/userdata/[YOUR STEAM ID]/582010/`.
 If this directory does not exist ensure that steam cloud saves are enabled on Monster Hunter World, download it and lauch it completely once. Steam should have downloaded the save files.
-You must copy **that entire directory** to the prefix-appropriate userdata folder. This is located in the same storage medium as the game.
+You must copy **that entire directory** to the prefix-appropriate userdata directory. This is located in the same storage medium as the game.
 
 The related path is: `/path/to/installed/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/[YOUR STEAM ID]`
 
@@ -400,7 +400,7 @@ If you load in to the game and the world geometry is missing/textures are horrid
 
 If you start the game to a black screen follow the steps [outlined in this github issue](https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148).
 
-If you *still* get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and **launch the Qt6 GUI and configure your settings and launch the game via the GUI**. (I have no idea why this works.)
+If you *still* get a black screen, delete the shadPS4 directory in .local/share/shadPS4 and **launch the Qt6 GUI and configure your settings and launch the game via the GUI**. (I have no idea why this works.)
 
 ### Marvel Rivals
 
@@ -447,7 +447,7 @@ Try switching to Wine 10 or Proton 10 and restarting the process.
 
 Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
 This information is all logged in AppData, but the settings file exists in the game installation. 
-This is usually next to the installer (`EasyAntiCheat/Settings.json`, or next to the game executable but usually in the `EasyAntiCheat` folder inside of the game folder)
+This is usually next to the installer (`EasyAntiCheat/Settings.json`, or next to the game executable but usually in the `EasyAntiCheat` directory inside of the game directory)
 
 We can use this to find out if EAC is enabled for a particular game.
 
@@ -459,8 +459,38 @@ jq -r \
 
 This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.
 
+### Deleting Shader Cache Files
+
+Delete the mesa cache directories, preferrably when mesa isn't running, i.e. terminal session rather than desktop session. **Be careful you do not delete a directory you're not supposed to!**
+
+- `$XDG_CACHE_HOME/mesa_shader_cache`
+- `$XDG_CACHE_HOME/mesa_shader_cache_db`
+- `$XDG_CACHE_HOME/mesa_shader_cache_sf`
+
+Note: XDG_CACHE_HOME defaults to `$HOME/.cache` on most systems.
+
+You can control where the shader cache is with the `MESA_SHADER_CACHE_DIR` environment variable.
+
+Note: Proton adds `steamapps/shadercache` to the cache path, relative to the library directory. If shader pre-caching is enabled this will always be populated, but may have directories for games that are no longer installed. Check if a related appmanifest_{id}.acf file is present in the upper directory.
+
+You may also need to delete one or two files that reside in the same location as the executable. Some or none may exist.
+
+- `vkd3d-proton.{ExecutableName}.cache`
+- `vkd3d-proton.{ExecutableName}.cache.write`
+- `{ExecutableName}.dxvk-cache`
+
+You can control where the cache files are saved with the `DXVK_STATE_CACHE_PATH` and `VKD3D_SHADER_CACHE_PATH` environment variables, i.e. I have the following in my dotfiles.
+
+```sh
+export VKD3D_SHADER_CACHE_PATH="$HOME/.cache/vkd3d"
+export DXVK_STATE_CACHE_PATH="$HOME/.cache/dxvk"
+```
+
+Note: I personally encourage setting these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.
+
 ## Changelog
 
+- *Update: 2025-05-31 - Shader Cache*
 - *Update: 2025-05-08 - Battle.net eepy agent*
 - *Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk*
 - *Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately*

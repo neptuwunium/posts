@@ -102,6 +102,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </li>
 <li><a href="#generic-notes">Generic Notes</a><ul>
 <li><a href="#checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</a></li>
+<li><a href="#deleting-shader-cache-files">Deleting Shader Cache Files</a></li>
 </ul>
 </li>
 <li><a href="#changelog">Changelog</a></li>
@@ -169,7 +170,7 @@ and the game has to support ray tracing in any capacity (i.e. World of Warcraft,
 <p>When you do, force it to use <strong>the same compatability tools as the game</strong> and set the launch arguments to:</p>
 <p><code>env STEAM_COMPAT_DATA_PATH="~/.steam/root/steamapps/compatdata/489830" %command%</code></p>
 <p>You may need to install more dependencies like .NET 4.8/6.0, etc via protontricks, select the game <em>not</em> the non-steam app when installing.</p>
-<p>Change <code>~/.steam/root/steamapps</code> to the SteamLibrary steamapps folder if installed in a steam library folder.</p>
+<p>Change <code>~/.steam/root/steamapps</code> to the SteamLibrary steamapps directory if installed in a steam library directory.</p>
 <p>Change 489830 to match the steam id of the mod tool the game is for, 489830 is Skyrim SE/AE.
 It is the number after <code>/app/</code> in the Steam store link, alternatively look it up on SteamDB.</p>
 <h2 id="steamvr-monado">SteamVR / Monado</h2>
@@ -213,7 +214,7 @@ This makes Monado on Linux the only way to still use the device.</p>
 <p>If the game can&rsquo;t seem to locate the save bonuses for having a valid Monster Hunter World save, you need to copy the saves to the correct prefix.</p>
 <p>The save files are stored on the steam cloud, if you have played the game on the machine before they will be in <code>~/.steam/steam/userdata/[YOUR STEAM ID]/582010/</code>.
 If this directory does not exist ensure that steam cloud saves are enabled on Monster Hunter World, download it and lauch it completely once. Steam should have downloaded the save files.
-You must copy <strong>that entire directory</strong> to the prefix-appropriate userdata folder. This is located in the same storage medium as the game.</p>
+You must copy <strong>that entire directory</strong> to the prefix-appropriate userdata directory. This is located in the same storage medium as the game.</p>
 <p>The related path is: <code>/path/to/installed/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/[YOUR STEAM ID]</code></p>
 <p>So for example, if your Steam ID is 1024, and you have installed it to a partition that is mounted on /mnt/games/ you would do the following in a command prompt:</p>
 <div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>-rfvn<span class="w"> </span><span class="s2">&quot;~/.steam/steam/userdata/1024/582010&quot;</span><span class="w"> </span><span class="s2">&quot;/mnt/games/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/1024/&quot;</span>
@@ -248,7 +249,7 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <h3 id="bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</h3>
 <p>If you load in to the game and the world geometry is missing/textures are horrid, it&rsquo;s likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD&rsquo;s proprietary drivers (i.e. <code>vk_pro shadps4</code>) resolves this.</p>
 <p>If you start the game to a black screen follow the steps <a href="https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148">outlined in this github issue</a>.</p>
-<p>If you <em>still</em> get a black screen, delete the shadPS4 folder in .local/share/shadPS4 and <strong>launch the Qt6 GUI and configure your settings and launch the game via the GUI</strong>. (I have no idea why this works.)</p>
+<p>If you <em>still</em> get a black screen, delete the shadPS4 directory in .local/share/shadPS4 and <strong>launch the Qt6 GUI and configure your settings and launch the game via the GUI</strong>. (I have no idea why this works.)</p>
 <h3 id="marvel-rivals">Marvel Rivals</h3>
 <p>As of Season 1 of Marvel Rivals (January 2024) the game skips the launcher and most modals if <code>SteamDeck=1</code> is passed as an launch argument. This may also resolve any startup crashes or weirdness.</p>
 <h3 id="afk-journey">AFK Journey</h3>
@@ -273,7 +274,7 @@ Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions
 <h3 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h3>
 <p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
 This information is all logged in AppData, but the settings file exists in the game installation. 
-This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> folder inside of the game folder)</p>
+This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> directory inside of the game directory)</p>
 <p>We can use this to find out if EAC is enabled for a particular game.</p>
 <div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -281,8 +282,31 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 </code></pre></div>
 
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
+<h3 id="deleting-shader-cache-files">Deleting Shader Cache Files</h3>
+<p>Delete the mesa cache directories, preferrably when mesa isn&rsquo;t running, i.e. terminal session rather than desktop session. <strong>Be careful you do not delete a directory you&rsquo;re not supposed to!</strong></p>
+<ul>
+<li><code>$XDG_CACHE_HOME/mesa_shader_cache</code></li>
+<li><code>$XDG_CACHE_HOME/mesa_shader_cache_db</code></li>
+<li><code>$XDG_CACHE_HOME/mesa_shader_cache_sf</code></li>
+</ul>
+<p>Note: XDG_CACHE_HOME defaults to <code>$HOME/.cache</code> on most systems.</p>
+<p>You can control where the shader cache is with the <code>MESA_SHADER_CACHE_DIR</code> environment variable.</p>
+<p>Note: Proton adds <code>steamapps/shadercache</code> to the cache path, relative to the library directory. If shader pre-caching is enabled this will always be populated, but may have directories for games that are no longer installed. Check if a related appmanifest_{id}.acf file is present in the upper directory.</p>
+<p>You may also need to delete one or two files that reside in the same location as the executable. Some or none may exist.</p>
+<ul>
+<li><code>vkd3d-proton.{ExecutableName}.cache</code></li>
+<li><code>vkd3d-proton.{ExecutableName}.cache.write</code></li>
+<li><code>{ExecutableName}.dxvk-cache</code></li>
+</ul>
+<p>You can control where the cache files are saved with the <code>DXVK_STATE_CACHE_PATH</code> and <code>VKD3D_SHADER_CACHE_PATH</code> environment variables, i.e. I have the following in my dotfiles.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">VKD3D_SHADER_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/vkd3d&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DXVK_STATE_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/dxvk&quot;</span>
+</code></pre></div>
+
+<p>Note: I personally encourage setting these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-05-31 - Shader Cache</em></li>
 <li><em>Update: 2025-05-08 - Battle.net eepy agent</em></li>
 <li><em>Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk</em></li>
 <li><em>Update: 2025-04-04 - Monster Hunter Wilds GPU Crash is real, unfortunately</em></li>

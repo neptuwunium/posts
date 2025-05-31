@@ -1,7 +1,6 @@
 from markdown import Markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
 from glob import glob
-from codecs import open as cope
 from datetime import datetime, timezone
 from os.path import basename, splitext, exists
 from json import dumps as json_serialize
@@ -53,16 +52,16 @@ json_root = {
     "items": json_feed
 }
 
-with cope('post.html', 'r', 'utf8') as post_template:
+with open('post.html', 'r', encoding='utf8') as post_template:
     POST_TEMPLATE = post_template.read().strip().replace('\r\n', '\n') + '\n'
 
-with cope('index.html', 'r', 'utf8') as index_template:
+with open('index.html', 'r', encoding='utf8') as index_template:
     INDEX_TEMPLATE = index_template.read().strip().replace('\r\n', '\n') + '\n'
 
-with cope('docs/index.html', 'w', 'utf8') as index:
+with open('docs/index.html', 'w', encoding='utf8') as index:
     index_lines = ''
     for md_file in reversed(sorted(glob('markdown/*.md'))):
-        with cope(md_file, 'r', 'utf8') as md:
+        with open(md_file, 'r', encoding='utf8') as md:
             markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition', 'mdx_math'])
             md_data = md.read().strip()
             text = markdown.convert(md_data)
@@ -129,23 +128,23 @@ with cope('docs/index.html', 'w', 'utf8') as index:
             if 'headers' in meta:
                 for header_name in meta['headers']:
                     if not exists(f'headers/{header_name}.html'): continue
-                    with cope(f'headers/{header_name}.html', 'r', 'utf8') as header:
+                    with open(f'headers/{header_name}.html', 'r', encoding='utf8') as header:
                         headers = f'{headers}{header.read()}'
 
             print(name)
-            with cope(f'docs/{folder}{name}.html', 'w', 'utf8') as html:
+            with open(f'docs/{folder}{name}.html', 'w', encoding='utf8') as html:
                 html.write(POST_TEMPLATE.format(title=meta['title'][0], short=meta['short'][0], url=name, time=upd_date[0], isotime=upd_date_iso, pub_time=date[0], pub_isotime=pub_date_iso, body=text, rel=rel, headers=headers))
     index.write(INDEX_TEMPLATE.format(body=index_lines))
 
 atom = elem.feed(*atom_feed, xmlns="http://www.w3.org/2005/Atom")
-with cope('docs/feed.atom', 'wb') as atom_file:
+with open('docs/feed.atom', 'wb') as atom_file:
     atom_file.write(xml_serialize(atom, pretty_print=True, xml_declaration=True, encoding='utf-8'))
 
 rss = etree.Element("rss", nsmap={'atom': "http://www.w3.org/2005/Atom"})
 rss.set("version", "2.0")
 rss.append(elem.channel(*rss_feed))
-with cope('docs/feed.rss', 'wb') as rss_file:
+with open('docs/feed.rss', 'wb') as rss_file:
     rss_file.write(xml_serialize(rss, pretty_print=True, xml_declaration=True, encoding='utf-8'))
 
-with cope('docs/feed.json', 'w') as json_file:
+with open('docs/feed.json', 'w') as json_file:
     json_file.write(json_serialize(json_root, indent=2)+'\n')
