@@ -16,6 +16,8 @@ This post mainly serves as a logbook for fixes and workarounds for making games 
 
 ## Extreme stuttering after 30-60 minutes on Steam
 
+**Note:** This is apparently fixed in the Steam Client Beta as of June 2nd.
+
 This is apparently due to the recent Steam Game Overlay update which added Game Recording.
 
 You can disable it by prefixing `LD_PRELOAD=""` to your launch arguments:
@@ -342,10 +344,11 @@ export VKD3D_SHADER_CACHE_PATH="$HOME/.cache/vkd3d"
 export DXVK_STATE_CACHE_PATH="$HOME/.cache/dxvk"
 ```
 
-Note: I personally encourage setting these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.
+Note: I personally use these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.
 
 ## Changelog
 
+- *Update: 2025-06-02 - Added Steam Input Lag Note*
 - *Update: 2025-05-31 - Shader Cache*
 - *Update: 2025-05-08 - Battle.net eepy agent*
 - *Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk*

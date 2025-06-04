@@ -109,6 +109,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </ul>
 </div>
 <h2 id="extreme-stuttering-after-30-60-minutes-on-steam">Extreme stuttering after 30-60 minutes on Steam</h2>
+<p><strong>Note:</strong> This is apparently fixed in the Steam Client Beta as of June 2nd.</p>
 <p>This is apparently due to the recent Steam Game Overlay update which added Game Recording.</p>
 <p>You can disable it by prefixing <code>LD_PRELOAD=""</code> to your launch arguments:</p>
 <p><code>LD_PRELOAD="" %command%</code></p>
@@ -303,9 +304,10 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 <span class="nb">export</span><span class="w"> </span><span class="nv">DXVK_STATE_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/dxvk&quot;</span>
 </code></pre></div>
 
-<p>Note: I personally encourage setting these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
+<p>Note: I personally use these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-06-02 - Added Steam Input Lag Note</em></li>
 <li><em>Update: 2025-05-31 - Shader Cache</em></li>
 <li><em>Update: 2025-05-08 - Battle.net eepy agent</em></li>
 <li><em>Update: 2025-04-09 - Monster Hunter Wilds GPU Crash is fixed in dxvk</em></li>
