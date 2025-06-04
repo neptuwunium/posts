@@ -2,6 +2,7 @@
 title: json-ld is misused
 short: it's not just fancy json.
 date: 2023-07-28 9:25 AM
+unlist: 1
 ---
 
 ActivityStreams is a subset of JSON-LD, specifically the compacted form.

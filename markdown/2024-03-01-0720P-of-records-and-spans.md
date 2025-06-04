@@ -2,6 +2,7 @@
 title: of records and spans
 short: this is just me rambling about a csharp feature
 date: 2024-03-01 07:20 PM
+unlist: 1
 ---
 
 This post is mostly just me speaking fondly of Spans and Records

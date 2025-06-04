@@ -84,45 +84,48 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
             folder = 'private/'
             rel = '../'
             if 'private' not in meta:
-                index_lines += f'<li><a href="{name}.html">{meta['title'][0]}</a></li>\n'
                 folder = ''
                 rel = ''
-                md_data_nohead = md_data.split('---', 2)[-1].strip()
-                feed_data = CDATA(md_data_nohead)
+                if 'unlist' in meta:
+                    index_lines += f'<!-- unlisted: <li><a href="{name}.html">{meta['title'][0]}</a></li> -->\n'
+                else:
+                    index_lines += f'<li><a href="{name}.html">{meta['title'][0]}</a></li>\n'
+                    md_data_nohead = md_data.split('---', 2)[-1].strip()
+                    feed_data = CDATA(md_data_nohead)
 
-                atom_feed.append(
-                    elem.entry(
-                        elem.title(meta['title'][0]),
-                        elem.link(href=f"{BLOG_ROOT}/{name}.html"),
-                        elem.updated(upd_date_iso),
-                        elem.published(pub_date_iso),
-                        elem.summary(meta['short'][0]),
-                        elem.id(BLOG_POST_ID + name),
-                        elem.content(feed_data, type="text/markdown")
+                    atom_feed.append(
+                        elem.entry(
+                            elem.title(meta['title'][0]),
+                            elem.link(href=f"{BLOG_ROOT}/{name}.html"),
+                            elem.updated(upd_date_iso),
+                            elem.published(pub_date_iso),
+                            elem.summary(meta['short'][0]),
+                            elem.id(BLOG_POST_ID + name),
+                            elem.content(feed_data, type="text/markdown")
+                        )
                     )
-                )
 
-                rss_feed.append(
-                    elem.item(
-                        elem.title(meta['title'][0]),
-                        elem.link(f"{BLOG_ROOT}/{name}.html"),
-                        elem.pubDate(format_datetime(pub_date_t)),
-                        elem.description(meta['short'][0]),
-                        elem.author(BLOG_WHOAMI),
-                        elem.guid(BLOG_POST_ID + name),
-                        ATOM_NS.content(feed_data, type="text/markdown")
+                    rss_feed.append(
+                        elem.item(
+                            elem.title(meta['title'][0]),
+                            elem.link(f"{BLOG_ROOT}/{name}.html"),
+                            elem.pubDate(format_datetime(pub_date_t)),
+                            elem.description(meta['short'][0]),
+                            elem.author(BLOG_WHOAMI),
+                            elem.guid(BLOG_POST_ID + name),
+                            ATOM_NS.content(feed_data, type="text/markdown")
+                        )
                     )
-                )
 
-                json_feed.append({
-                    "title": meta['title'][0],
-                    "url": f"{BLOG_ROOT}/{name}.html",
-                    "id": BLOG_POST_ID + name,
-                    "summary": meta['short'][0],
-                    "date_published": pub_date_iso,
-                    "date_modified": upd_date_iso,
-                    "content_text": md_data_nohead,
-                })
+                    json_feed.append({
+                        "title": meta['title'][0],
+                        "url": f"{BLOG_ROOT}/{name}.html",
+                        "id": BLOG_POST_ID + name,
+                        "summary": meta['short'][0],
+                        "date_published": pub_date_iso,
+                        "date_modified": upd_date_iso,
+                        "content_text": md_data_nohead,
+                    })
             
             headers = ''
             if 'headers' in meta:
