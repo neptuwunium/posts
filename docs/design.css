@@ -6,6 +6,7 @@
 	--footer: #999;
 	--bg-gradient: linear-gradient(60deg, rgba(18,35,65,1) 0%, rgba(14,41,66,1) 50%, rgba(56,10,65,1) 100%);
 	--text-gradient: linear-gradient(60deg, rgba(172, 113, 255, .33)0, rgba(0, 179, 245, .33) 100%);
+	--text-gradient2: linear-gradient(60deg, rgba(58, 200, 29, 0.51)0, rgba(199, 107, 41, 0.64) 100%);
 }
 
 body, html {
@@ -67,8 +68,18 @@ header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, 
 	clear: both;
 }
 
-header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
+header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6 {
 	background: var(--text-gradient) var(--fg);
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-text-fill-color: transparent;
+	text-fill-color: transparent;
+}
+
+:not(pre) > code {
+	background: var(--text-gradient2) var(--fg);
 	-webkit-background-clip: text;
 	-moz-background-clip: text;
 	background-clip: text;
