@@ -312,34 +312,6 @@ The following environment variables are shown to remove or at least reduce the i
 
 `MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1`
 
-### Dauntless
-
-This game has quite a lot of issues with Wine and Proton.
-
-#### If you randomly crash, it might be because of stack smashing due to a race condition.
-
-I have managed to reduce the frequency of crashes by limiting how many resources the game can use.
-
-`env DXVK_CONFIG="dxvk.numCompilerThreads=1" WINE_CPU_TOPOLOGY="4:0,2,4,6" %command%`
-
-#### If there is too much lag from the above fix.
-
-You might want to redefine the CPU topology, i.e. `WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"`
-
-#### If you get a "Game Security Integrity Violation" error from EAC.
-
-Set the SteamDeck environment variable:
-
-`env SteamDeck=1 %command%`
-
-#### If you get a "Hash Catalog Not found" error from EAC.
-
-Copy `EasyAntiCheat` from the game's install directory to the `Archon/Binaries/Win64` sub-directory.
-
-#### If you get what seems to be a [test card](https://en.wikipedia.org/wiki/Test_card) instead of the opening video
-
-Try using Proton Experimental or a different version of Proton.
-
 ### Horizon Zero Dawn: Remastered
 
 If you crash upon start, and have multiple displays it's likely due ot mismatched display resolutions.
@@ -378,6 +350,7 @@ Locate both frames and approximate the button locations using the render frame o
 
 ## Changelog
 
+- *Update: 2025-06-08 - Removed Dauntless* [It was a pleasure.](https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/)
 - *Update: 2025-06-08 - Added EAC Outside of Proton*
 - *Update: 2025-06-02 - Added Steam Input Lag Note*
 - *Update: 2025-05-31 - Shader Cache*

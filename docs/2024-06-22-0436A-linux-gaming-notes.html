@@ -92,14 +92,6 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#shader-compilation-on-every-startup">Shader compilation on every startup</a></li>
 </ul>
 </li>
-<li><a href="#dauntless">Dauntless</a><ul>
-<li><a href="#if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</a></li>
-<li><a href="#if-there-is-too-much-lag-from-the-above-fix">If there is too much lag from the above fix.</a></li>
-<li><a href="#if-you-get-a-game-security-integrity-violation-error-from-eac">If you get a &ldquo;Game Security Integrity Violation&rdquo; error from EAC.</a></li>
-<li><a href="#if-you-get-a-hash-catalog-not-found-error-from-eac">If you get a &ldquo;Hash Catalog Not found&rdquo; error from EAC.</a></li>
-<li><a href="#if-you-get-what-seems-to-be-a-test-card-instead-of-the-opening-video">If you get what seems to be a test card instead of the opening video</a></li>
-</ul>
-</li>
 <li><a href="#horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</a></li>
 <li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
 <li><a href="#marvel-rivals">Marvel Rivals</a></li>
@@ -295,20 +287,6 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>It would appear that in some situations, the game will compile shaders every time it has been started.</p>
 <p>The following environment variables are shown to remove or at least reduce the instances of this happening significantly:</p>
 <p><code>MESA_DISK_CACHE_SINGLE_FILE=0 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1</code></p>
-<h3 id="dauntless">Dauntless</h3>
-<p>This game has quite a lot of issues with Wine and Proton.</p>
-<h4 id="if-you-randomly-crash-it-might-be-because-of-stack-smashing-due-to-a-race-condition">If you randomly crash, it might be because of stack smashing due to a race condition.</h4>
-<p>I have managed to reduce the frequency of crashes by limiting how many resources the game can use.</p>
-<p><code>env DXVK_CONFIG="dxvk.numCompilerThreads=1" WINE_CPU_TOPOLOGY="4:0,2,4,6" %command%</code></p>
-<h4 id="if-there-is-too-much-lag-from-the-above-fix">If there is too much lag from the above fix.</h4>
-<p>You might want to redefine the CPU topology, i.e. <code>WINE_CPU_TOPOLOGY="8:0,1,2,3,4,5,6,7"</code></p>
-<h4 id="if-you-get-a-game-security-integrity-violation-error-from-eac">If you get a &ldquo;Game Security Integrity Violation&rdquo; error from EAC.</h4>
-<p>Set the SteamDeck environment variable:</p>
-<p><code>env SteamDeck=1 %command%</code></p>
-<h4 id="if-you-get-a-hash-catalog-not-found-error-from-eac">If you get a &ldquo;Hash Catalog Not found&rdquo; error from EAC.</h4>
-<p>Copy <code>EasyAntiCheat</code> from the game&rsquo;s install directory to the <code>Archon/Binaries/Win64</code> sub-directory.</p>
-<h4 id="if-you-get-what-seems-to-be-a-test-card-instead-of-the-opening-video">If you get what seems to be a <a href="https://en.wikipedia.org/wiki/Test_card">test card</a> instead of the opening video</h4>
-<p>Try using Proton Experimental or a different version of Proton.</p>
 <h3 id="horizon-zero-dawn-remastered">Horizon Zero Dawn: Remastered</h3>
 <p>If you crash upon start, and have multiple displays it&rsquo;s likely due ot mismatched display resolutions.</p>
 <p>This can be solved by using gamescope:</p>
@@ -329,6 +307,7 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>Locate both frames and approximate the button locations using the render frame on the black frame.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-06-08 - Removed Dauntless</em> <a href="https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/">It was a pleasure.</a></li>
 <li><em>Update: 2025-06-08 - Added EAC Outside of Proton</em></li>
 <li><em>Update: 2025-06-02 - Added Steam Input Lag Note</em></li>
 <li><em>Update: 2025-05-31 - Shader Cache</em></li>
