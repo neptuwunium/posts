@@ -53,7 +53,9 @@ You disable GPU Web View Acceleration in the Steam settings.
 - Uncheck "Enable GPU accelerated rendering in Web Views"
 - Restart Steam
 
-## EAC "Failed to Intialize Dependencies" error
+## SDL "Failed to Intialize Dependencies" error
+
+(Also applies to EAC, since that uses SDL.)
 
 This is likely due to a `SDL_VIDEODRIVER` and/or `SDL_VIDEO_DRIVER` environment variable being present.
 

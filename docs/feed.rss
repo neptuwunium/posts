@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Sun, 08 Jun 2025 00:04:29 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 08 Jun 2025 00:06:26 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -196,7 +196,9 @@ You disable GPU Web View Acceleration in the Steam settings.
 - Uncheck "Enable GPU accelerated rendering in Web Views"
 - Restart Steam
 
-## EAC "Failed to Intialize Dependencies" error
+## SDL "Failed to Intialize Dependencies" error
+
+(Also applies to EAC, since that uses SDL.)
 
 This is likely due to a `SDL_VIDEODRIVER` and/or `SDL_VIDEO_DRIVER` environment variable being present.
 

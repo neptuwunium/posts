@@ -59,7 +59,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#alternate-resolution">Alternate Resolution</a></li>
 </ul>
 </li>
-<li><a href="#eac-failed-to-intialize-dependencies-error">EAC &ldquo;Failed to Intialize Dependencies&rdquo; error</a></li>
+<li><a href="#sdl-failed-to-intialize-dependencies-error">SDL &ldquo;Failed to Intialize Dependencies&rdquo; error</a></li>
 <li><a href="#enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</a></li>
 <li><a href="#games-not-capturing-mouse-cursor">Games not capturing mouse cursor</a></li>
 <li><a href="#gamescope-exiting-early-due-to-short-lived-launcher-processes">Gamescope exiting early due to short-lived launcher processes</a></li>
@@ -137,7 +137,8 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li>Uncheck &ldquo;Enable GPU accelerated rendering in Web Views&rdquo;</li>
 <li>Restart Steam</li>
 </ul>
-<h2 id="eac-failed-to-intialize-dependencies-error">EAC &ldquo;Failed to Intialize Dependencies&rdquo; error</h2>
+<h2 id="sdl-failed-to-intialize-dependencies-error">SDL &ldquo;Failed to Intialize Dependencies&rdquo; error</h2>
+<p>(Also applies to EAC, since that uses SDL.)</p>
 <p>This is likely due to a <code>SDL_VIDEODRIVER</code> and/or <code>SDL_VIDEO_DRIVER</code> environment variable being present.</p>
 <p>Try using the following launch arguments:</p>
 <p><code>env --unset=SDL_VIDEODRIVER --unset=SDL_VIDEO_DRIVER %command%</code></p>
