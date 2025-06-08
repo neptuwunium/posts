@@ -56,20 +56,34 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <div class="toc">
 <ul>
 <li><a href="#extreme-stuttering-after-30-60-minutes-on-steam">Extreme stuttering after 30-60 minutes on Steam</a><ul>
-<li><a href="#alternate-resolution">Alternate Resolution</a></li>
+<li><a href="#alternate-solution">Alternate Solution</a></li>
 </ul>
 </li>
 <li><a href="#sdl-failed-to-intialize-dependencies-error">SDL &ldquo;Failed to Intialize Dependencies&rdquo; error</a></li>
+<li><a href="#enabling-eac-on-wine-outside-of-proton">Enabling EAC on Wine outside of Proton</a></li>
+<li><a href="#deleting-shader-cache-files">Deleting Shader Cache Files</a></li>
+<li><a href="#checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</a></li>
 <li><a href="#enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</a></li>
 <li><a href="#games-not-capturing-mouse-cursor">Games not capturing mouse cursor</a></li>
+<li><a href="#windows-only-third-party-mod-tooling-on-steam">Windows-only Third-Party Mod Tooling on Steam</a></li>
+<li><a href="#gamescope">Gamescope</a><ul>
 <li><a href="#gamescope-exiting-early-due-to-short-lived-launcher-processes">Gamescope exiting early due to short-lived launcher processes</a></li>
 <li><a href="#gamescope-resolution-being-fixed-to-the-first-window-size-under-sdl">Gamescope resolution being fixed to the first window size under SDL</a></li>
 <li><a href="#gamescope-and-steam">Gamescope and Steam</a></li>
-<li><a href="#windows-only-third-party-mod-tooling-on-steam">Windows-only Third-Party Mod Tooling on Steam</a></li>
+</ul>
+</li>
 <li><a href="#steamvr-monado">SteamVR / Monado</a><ul>
 <li><a href="#amdgpu">AMDGPU</a></li>
 <li><a href="#wmr">WMR</a></li>
 <li><a href="#headset-off-when-calibrating">&ldquo;Headset Off&rdquo; when calibrating</a></li>
+</ul>
+</li>
+<li><a href="#amdgpu-pro">AMDGPU-Pro</a><ul>
+<li><a href="#gamescope_1">Gamescope</a></li>
+</ul>
+</li>
+<li><a href="#battlenet">Battle.net</a><ul>
+<li><a href="#blzbntbna00000005-sleeping-battlenet-agent">BLZBNTBNA00000005 / Sleeping Battle.net Agent</a></li>
 </ul>
 </li>
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
@@ -90,20 +104,6 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
 <li><a href="#marvel-rivals">Marvel Rivals</a></li>
 <li><a href="#afk-journey">AFK Journey</a></li>
-</ul>
-</li>
-<li><a href="#amdgpu-pro">AMDGPU-Pro</a><ul>
-<li><a href="#gamescope">Gamescope</a></li>
-</ul>
-</li>
-<li><a href="#battlenet">Battle.net</a><ul>
-<li><a href="#blzbntbna00000005-sleeping-battlenet-agent">BLZBNTBNA00000005 / Sleeping Battle.net Agent</a></li>
-</ul>
-</li>
-<li><a href="#generic-notes">Generic Notes</a><ul>
-<li><a href="#checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</a></li>
-<li><a href="#enabling-eac-on-wine-outside-of-proton">Enabling EAC on Wine outside of Proton</a></li>
-<li><a href="#deleting-shader-cache-files">Deleting Shader Cache Files</a></li>
 </ul>
 </li>
 <li><a href="#changelog">Changelog</a></li>
@@ -129,7 +129,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li>RenderDoc: <code>VK_LAYER_RENDERDOC_Capture</code></li>
 </ul>
 <p>You can view layers present on your system by running <code>vulkaninfo --summary</code> (present in the <code>vulkan-tools</code> package available in every distro worth using.)</p>
-<h3 id="alternate-resolution">Alternate Resolution</h3>
+<h3 id="alternate-solution">Alternate Solution</h3>
 <p>According to <a href="https://github.com/ValveSoftware/steam-for-linux/issues/11446#issuecomment-2558605371">this comment</a> on <a href="https://github.com/ValveSoftware/steam-for-linux/issues/11446">ValveSoftware/steam-for-linux#11446</a>, disabling GPU acceleration for web views may also help performance related issues.</p>
 <p>You disable GPU Web View Acceleration in the Steam settings.</p>
 <ul>
@@ -146,6 +146,59 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <p><code>env SDL_VIDEODRIVER=windows SDL_VIDEO_DRIVER=windows %command%</code></p>
 <p>Alternatively, set the variable to an empty string in whatever launch manager you&rsquo;re using (Heroic, Lutris).</p>
 <p>The EAC splash also sometimes fails to load if you are using the proprietary AMD drivers (i.e. <code>vk_pro %command%</code>.)</p>
+<h2 id="enabling-eac-on-wine-outside-of-proton">Enabling EAC on Wine outside of Proton</h2>
+<p><strong><em>CAVEAT EMPTOR: I do not know if this works long term or if EAC will inevitably cause bans, if possible always prefer to do it via Proton and Steam. This is mostly intended as a guide to help prevent double purchases.</em></strong></p>
+<p>Here be dragons.</p>
+<p>This is assuming the game uses EAC v2 (not v1, if there is an EasyAntiCheat.dll in the game install folder then it&rsquo;s using v1.)</p>
+<p>Proton has a few workarounds to load the correct EAC libraries for it to work (<a href="https://github.com/ValveSoftware/wine/blob/c8391877a485307cb67fecf963af6b855ed39b4b/dlls/ntdll/unix/loader.c#L374">this is what the <code>PROTON_EAC_RUNTIME</code> environment variable is for</a>).</p>
+<p>You will need to download the Proton EasyAntiCheat Runtime from Steam. I do not know if these libraries depend on Steam or not.</p>
+<p>Assuming the Proton runtime exists at: <code>/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime</code>, and the program you are trying to start is called <code>nya.exe</code>:</p>
+<ul>
+<li>For ProtonGE and wine with Proton patches (i.e. wine-tkg), you can simply set the <code>PROTON_EAC_RUNTIME</code> environment variable (ProtonGE has a helper that does this automatically.)</li>
+</ul>
+<p><code>env PROTON_EAC_RUNTIME="/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime" proton nya.exe</code></p>
+<ul>
+<li>For regular vanilla/staging Wine you can replicate the same behavior as that loader workaround:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PROTON_EAC_RUNTIME</span><span class="o">=</span><span class="s2">&quot;/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">WINEDLLPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROTON_EAC_RUNTIME</span><span class="si">}</span><span class="s2">/v2/lib32/:</span><span class="si">${</span><span class="nv">PROTON_EAC_RUNTIME</span><span class="si">}</span><span class="s2">/v2/lib64/&quot;</span>
+wine<span class="w"> </span>nya.exe
+</code></pre></div>
+
+<p><strong>Note:</strong> The client certificate for EAC (<code>EasyAntiCheat/Certificates/client.bin</code>) probably needs to accept linux. I do not know the specifics behind this besides that when games enable Linux support this file tends to update so I assume it is related. If the Steam version works on Linux with EAC enabled, but not outside of Steam, then the client certificate likely mismatches and you should ask (somehow, big task) the developers to keep the client certificates in line between Steam and the off-Steam platform.</p>
+<h2 id="deleting-shader-cache-files">Deleting Shader Cache Files</h2>
+<p>Delete the mesa cache directories, preferrably when mesa isn&rsquo;t running, i.e. terminal session rather than desktop session. <strong>Be careful you do not delete a directory you&rsquo;re not supposed to!</strong></p>
+<ul>
+<li><code>$XDG_CACHE_HOME/mesa_shader_cache</code></li>
+<li><code>$XDG_CACHE_HOME/mesa_shader_cache_db</code></li>
+<li><code>$XDG_CACHE_HOME/mesa_shader_cache_sf</code></li>
+</ul>
+<p>Note: XDG_CACHE_HOME defaults to <code>$HOME/.cache</code> on most systems.</p>
+<p>You can control where the shader cache is with the <code>MESA_SHADER_CACHE_DIR</code> environment variable.</p>
+<p>Note: Proton adds <code>steamapps/shadercache</code> to the cache path, relative to the library directory. If shader pre-caching is enabled this will always be populated, but may have directories for games that are no longer installed. Check if a related appmanifest_{id}.acf file is present in the upper directory.</p>
+<p>You may also need to delete one or two files that reside in the same location as the executable. Some or none may exist.</p>
+<ul>
+<li><code>vkd3d-proton.{ExecutableName}.cache</code></li>
+<li><code>vkd3d-proton.{ExecutableName}.cache.write</code></li>
+<li><code>{ExecutableName}.dxvk-cache</code></li>
+</ul>
+<p>You can control where the cache files are saved with the <code>DXVK_STATE_CACHE_PATH</code> and <code>VKD3D_SHADER_CACHE_PATH</code> environment variables, i.e. I have the following in my dotfiles.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">VKD3D_SHADER_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/vkd3d&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DXVK_STATE_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/dxvk&quot;</span>
+</code></pre></div>
+
+<p>Note: I personally use these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
+<h2 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h2>
+<p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
+This information is all logged in AppData, but the settings file exists in the game installation. 
+This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> directory inside of the game directory)</p>
+<p>We can use this to find out if EAC is enabled for a particular game.</p>
+<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>Settings.json
+</code></pre></div>
+
+<p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</h2>
 <p>If you have a ray tracing capable GPU (RTX 2000 or newer, RX 6800 or newer)
 you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by using the following launch arguments:</p>
@@ -158,16 +211,6 @@ and the game has to support ray tracing in any capacity (i.e. World of Warcraft,
 <p>Some games don&rsquo;t play nice with mouse capture, an easy way to solve this is by changing the launch arguments to:</p>
 <p><code>gamescope --force-grab-cursor -f -- %command%</code></p>
 <p>You may swap -f with -b for borderless windowed instead of fullscreen.</p>
-<h2 id="gamescope-exiting-early-due-to-short-lived-launcher-processes">Gamescope exiting early due to short-lived launcher processes</h2>
-<p>Some games launch via third party launchers that cause gamescope to exit before the wine device.</p>
-<p>This may be solved by forcing the SDL backend.</p>
-<p><code>gamescope --backend sdl -- %command%</code></p>
-<h2 id="gamescope-resolution-being-fixed-to-the-first-window-size-under-sdl">Gamescope resolution being fixed to the first window size under SDL</h2>
-<p>Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you&rsquo;re using it for launcher processes.), to solve this you must force the window to be fullscreen.</p>
-<p><code>gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f -- %command%</code></p>
-<p>(Special thanks to <a href="https://twitch.tv/hollyrious">Hollyrious</a> for helping me diagnose this!)</p>
-<h2 id="gamescope-and-steam">Gamescope and Steam</h2>
-<p>Gamescope might break steam ingration or just exit, in that case add <code>-e</code> to the end of your command. Also ensure that <code>--</code> (with spaces) exists <strong><em>before</em></strong> <code>%command%</code></p>
 <h2 id="windows-only-third-party-mod-tooling-on-steam">Windows-only Third-Party Mod Tooling on Steam</h2>
 <p>You can add the mod tools as a non-steam game, given it has a GUI.</p>
 <p>When you do, force it to use <strong>the same compatability tools as the game</strong> and set the launch arguments to:</p>
@@ -176,6 +219,17 @@ and the game has to support ray tracing in any capacity (i.e. World of Warcraft,
 <p>Change <code>~/.steam/root/steamapps</code> to the SteamLibrary steamapps directory if installed in a steam library directory.</p>
 <p>Change 489830 to match the steam id of the mod tool the game is for, 489830 is Skyrim SE/AE.
 It is the number after <code>/app/</code> in the Steam store link, alternatively look it up on SteamDB.</p>
+<h2 id="gamescope">Gamescope</h2>
+<h3 id="gamescope-exiting-early-due-to-short-lived-launcher-processes">Gamescope exiting early due to short-lived launcher processes</h3>
+<p>Some games launch via third party launchers that cause gamescope to exit before the wine device.</p>
+<p>This may be solved by forcing the SDL backend.</p>
+<p><code>gamescope --backend sdl -- %command%</code></p>
+<h3 id="gamescope-resolution-being-fixed-to-the-first-window-size-under-sdl">Gamescope resolution being fixed to the first window size under SDL</h3>
+<p>Gamescope under SDL has a hard time adjusting to resolution changes (i.e. if you&rsquo;re using it for launcher processes.), to solve this you must force the window to be fullscreen.</p>
+<p><code>gamescope -w YOUR_RESOLUTION_HERE -h YOUR_RESOLUTION_HERE -r YOUR_REFRESH_RATE_HERE --backend sdl --force-windows-fullscreen -f -- %command%</code></p>
+<p>(Special thanks to <a href="https://twitch.tv/hollyrious">Hollyrious</a> for helping me diagnose this!)</p>
+<h3 id="gamescope-and-steam">Gamescope and Steam</h3>
+<p>Gamescope might break steam ingration or just exit, in that case add <code>-e</code> to the end of your command. Also ensure that <code>--</code> (with spaces) exists <strong><em>before</em></strong> <code>%command%</code></p>
 <h2 id="steamvr-monado">SteamVR / Monado</h2>
 <p>SteamVR and VR in general on Linux is not good, however it is possible.
 Your experience will be extremely improved if you have a Valve Index.
@@ -211,6 +265,19 @@ This makes Monado on Linux the only way to still use the device.</p>
 <h3 id="headset-off-when-calibrating">&ldquo;Headset Off&rdquo; when calibrating</h3>
 <p>Instruct Monado to emulate the Index Controlller. This might magically fix it. It did for me.</p>
 <p>Failing that follow the instructions laid out by the <a href="https://lvra.gitlab.io/docs/steamvr/">Linux VR Adventures Wiki</a>.</p>
+<h2 id="amdgpu-pro">AMDGPU-Pro</h2>
+<h3 id="gamescope_1">Gamescope</h3>
+<p>AMD&rsquo;s proprietary drivers does not implement an extension that Gamescope relies on, which results in Gamescope crashing (See <a href="https://github.com/ValveSoftware/gamescope/issues/1465">this issue on GameScope&rsquo;s repository.</a>)</p>
+<p>You can avoid this by moving the <code>amd_pro_icd64.json</code> file (<code>/usr/share/vulkan/icd.d/amd_pro_icd64.json</code>) to a different path (i.e. <code>/usr/share/vulkan/icd.disabled/amd_pro_icd64.json</code>)</p>
+<p>And then modifying your <code>vk_pro</code> wrapper script to point to the new path. When needed, prefix <code>vk_pro</code> to whatever command needs proprietary AMD drivers.</p>
+<p>You can find <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_pro">vk_pro</a> and <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_radv">vk_radv</a> wrapper scripts provided by Gentoo, but they likely are also provided by other distros.</p>
+<p>Gamescope seems to ignore the <code>VK_DRIVER_FILES</code>, <code>VK_ICD_FILENAMES</code>, <code>VK_LOADER_DRIVERS_DISABLE</code>, and <code>VK_LOADER_DRIVERS_SELECT</code> environment variables.</p>
+<h2 id="battlenet">Battle.net</h2>
+<h3 id="blzbntbna00000005-sleeping-battlenet-agent">BLZBNTBNA00000005 / Sleeping Battle.net Agent</h3>
+<p>Also applies to if Battle.net spams the &ldquo;broken installation please restart&rdquo; popup.</p>
+<p>This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted. 
+Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions, however Wine 10 does exhibit proper behavior.</p>
+<p>Try switching to Wine 10 or Proton 10 and restarting the process.</p>
 <h2 id="game-specific-fixes">Game-Specific Fixes</h2>
 <h3 id="monster-hunter-wilds">Monster Hunter Wilds</h3>
 <h4 id="monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</h4>
@@ -260,73 +327,6 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>If you use a tiled window manager and see a black square, this is the input frame.</p>
 <p>If you do not see a black square but the web view is not accepting inputs, the black square is likely beneath this window.</p>
 <p>Locate both frames and approximate the button locations using the render frame on the black frame.</p>
-<h2 id="amdgpu-pro">AMDGPU-Pro</h2>
-<h3 id="gamescope">Gamescope</h3>
-<p>AMD&rsquo;s proprietary drivers does not implement an extension that Gamescope relies on, which results in Gamescope crashing (See <a href="https://github.com/ValveSoftware/gamescope/issues/1465">this issue on GameScope&rsquo;s repository.</a>)</p>
-<p>You can avoid this by moving the <code>amd_pro_icd64.json</code> file (<code>/usr/share/vulkan/icd.d/amd_pro_icd64.json</code>) to a different path (i.e. <code>/usr/share/vulkan/icd.disabled/amd_pro_icd64.json</code>)</p>
-<p>And then modifying your <code>vk_pro</code> wrapper script to point to the new path. When needed, prefix <code>vk_pro</code> to whatever command needs proprietary AMD drivers.</p>
-<p>You can find <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_pro">vk_pro</a> and <a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/media-libs/amdgpu-pro-vulkan/files/vk_radv">vk_radv</a> wrapper scripts provided by Gentoo, but they likely are also provided by other distros.</p>
-<p>Gamescope seems to ignore the <code>VK_DRIVER_FILES</code>, <code>VK_ICD_FILENAMES</code>, <code>VK_LOADER_DRIVERS_DISABLE</code>, and <code>VK_LOADER_DRIVERS_SELECT</code> environment variables.</p>
-<h2 id="battlenet">Battle.net</h2>
-<h3 id="blzbntbna00000005-sleeping-battlenet-agent">BLZBNTBNA00000005 / Sleeping Battle.net Agent</h3>
-<p>Also applies to if Battle.net spams the &ldquo;broken installation please restart&rdquo; popup.</p>
-<p>This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted. 
-Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions, however Wine 10 does exhibit proper behavior.</p>
-<p>Try switching to Wine 10 or Proton 10 and restarting the process.</p>
-<h2 id="generic-notes">Generic Notes</h2>
-<h3 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h3>
-<p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
-This information is all logged in AppData, but the settings file exists in the game installation. 
-This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> directory inside of the game directory)</p>
-<p>We can use this to find out if EAC is enabled for a particular game.</p>
-<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>Settings.json
-</code></pre></div>
-
-<p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
-<h3 id="enabling-eac-on-wine-outside-of-proton">Enabling EAC on Wine outside of Proton</h3>
-<p><strong><em>CAVEAT EMPTOR: I do not know if this works long term or if EAC will inevitably cause bans, if possible always prefer to do it via Proton and Steam. This is mostly intended as a guide to help prevent double purchases.</em></strong></p>
-<p>Here be dragons.</p>
-<p>This is assuming the game uses EAC v2 (not v1, if there is an EasyAntiCheat.dll in the game install folder then it&rsquo;s using v1.)</p>
-<p>Proton has a few workarounds to load the correct EAC libraries for it to work (<a href="https://github.com/ValveSoftware/wine/blob/c8391877a485307cb67fecf963af6b855ed39b4b/dlls/ntdll/unix/loader.c#L374">this is what the <code>PROTON_EAC_RUNTIME</code> environment variable is for</a>).</p>
-<p>You will need to download the Prtoon EasyAntiCheat Runtime from Steam. I do not know if these libraries depend on Steam or not.</p>
-<p>Assuming the Proton runtime exists at: <code>/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime</code>, and the program you are trying to start is called <code>nya.exe</code>:</p>
-<ul>
-<li>For ProtonGE and wine with Proton patches (i.e. wine-tkg), you can simply set the <code>PROTON_EAC_RUNTIME</code> environment variable (ProtonGE has a helper that does this automatically.)</li>
-</ul>
-<p><code>env PROTON_EAC_RUNTIME="/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime" proton nya.exe</code></p>
-<ul>
-<li>For regular vanilla/staging Wine you can replicate the same behavior as that loader workaround:</li>
-</ul>
-<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PROTON_EAC_RUNTIME</span><span class="o">=</span><span class="s2">&quot;/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">WINEDLLPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROTON_EAC_RUNTIME</span><span class="si">}</span><span class="s2">/v2/lib32/:</span><span class="si">${</span><span class="nv">PROTON_EAC_RUNTIME</span><span class="si">}</span><span class="s2">/v2/lib64/&quot;</span>
-wine<span class="w"> </span>nya.exe
-</code></pre></div>
-
-<p><strong>Note:</strong> The client certificate for EAC (<code>EasyAntiCheat/Certificates/client.bin</code>) probably needs to accept linux. I do not know the specifics behind this besides that when games enable Linux support this file tends to update so I assume it is related. If the Steam version works on Linux with EAC enabled, but not outside of Steam, then the client certificate likely mismatches and you should ask (somehow, big task) the developers to keep the client certificates in line between Steam and the off-Steam platform.</p>
-<h3 id="deleting-shader-cache-files">Deleting Shader Cache Files</h3>
-<p>Delete the mesa cache directories, preferrably when mesa isn&rsquo;t running, i.e. terminal session rather than desktop session. <strong>Be careful you do not delete a directory you&rsquo;re not supposed to!</strong></p>
-<ul>
-<li><code>$XDG_CACHE_HOME/mesa_shader_cache</code></li>
-<li><code>$XDG_CACHE_HOME/mesa_shader_cache_db</code></li>
-<li><code>$XDG_CACHE_HOME/mesa_shader_cache_sf</code></li>
-</ul>
-<p>Note: XDG_CACHE_HOME defaults to <code>$HOME/.cache</code> on most systems.</p>
-<p>You can control where the shader cache is with the <code>MESA_SHADER_CACHE_DIR</code> environment variable.</p>
-<p>Note: Proton adds <code>steamapps/shadercache</code> to the cache path, relative to the library directory. If shader pre-caching is enabled this will always be populated, but may have directories for games that are no longer installed. Check if a related appmanifest_{id}.acf file is present in the upper directory.</p>
-<p>You may also need to delete one or two files that reside in the same location as the executable. Some or none may exist.</p>
-<ul>
-<li><code>vkd3d-proton.{ExecutableName}.cache</code></li>
-<li><code>vkd3d-proton.{ExecutableName}.cache.write</code></li>
-<li><code>{ExecutableName}.dxvk-cache</code></li>
-</ul>
-<p>You can control where the cache files are saved with the <code>DXVK_STATE_CACHE_PATH</code> and <code>VKD3D_SHADER_CACHE_PATH</code> environment variables, i.e. I have the following in my dotfiles.</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">VKD3D_SHADER_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/vkd3d&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DXVK_STATE_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/dxvk&quot;</span>
-</code></pre></div>
-
-<p>Note: I personally use these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li><em>Update: 2025-06-08 - Added EAC Outside of Proton</em></li>
