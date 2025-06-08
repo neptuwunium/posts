@@ -2,7 +2,7 @@
 title: some notes about gaming on linux
 short: this is mostly so i don't forget
 date: 2024-06-22 4:36 AM
-updated: 2025-05-08 2:46 AM
+updated: 2025-06-08 1:02 AM
 ---
 
 I recently migrated to using Linux full time.
@@ -317,6 +317,34 @@ jq -r \
 
 This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.
 
+### Enabling EAC on Wine outside of Proton
+
+***CAVEAT EMPTOR: I do not know if this works long term or if EAC will inevitably cause bans, if possible always prefer to do it via Proton and Steam. This is mostly intended as a guide to help prevent double purchases.***
+
+Here be dragons.
+
+This is assuming the game uses EAC v2 (not v1, if there is an EasyAntiCheat.dll in the game install folder then it's using v1.)
+
+Proton has a few workarounds to load the correct EAC libraries for it to work ([this is what the `PROTON_EAC_RUNTIME` environment variable is for](https://github.com/ValveSoftware/wine/blob/c8391877a485307cb67fecf963af6b855ed39b4b/dlls/ntdll/unix/loader.c#L374)).
+
+You will need to download the Prtoon EasyAntiCheat Runtime from Steam. I do not know if these libraries depend on Steam or not.
+
+Assuming the Proton runtime exists at: `/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime`, and the program you are trying to start is called `nya.exe`:
+
+- For ProtonGE and wine with Proton patches (i.e. wine-tkg), you can simply set the `PROTON_EAC_RUNTIME` environment variable (ProtonGE has a helper that does this automatically.)
+
+`env PROTON_EAC_RUNTIME="/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime" proton nya.exe`
+
+- For regular vanilla/staging Wine you can replicate the same behavior as that loader workaround:
+
+```sh
+export PROTON_EAC_RUNTIME="/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime"
+export WINEDLLPATH="${PROTON_EAC_RUNTIME}/v2/lib32/:${PROTON_EAC_RUNTIME}/v2/lib64/"
+wine nya.exe
+```
+
+**Note:** The client certificate for EAC (`EasyAntiCheat/Certificates/client.bin`) probably needs to accept linux. I do not know the specifics behind this besides that when games enable Linux support this file tends to update so I assume it is related. If the Steam version works on Linux with EAC enabled, but not outside of Steam, then the client certificate likely mismatches and you should ask (somehow, big task) the developers to keep the client certificates in line between Steam and the off-Steam platform.
+
 ### Deleting Shader Cache Files
 
 Delete the mesa cache directories, preferrably when mesa isn't running, i.e. terminal session rather than desktop session. **Be careful you do not delete a directory you're not supposed to!**
@@ -348,6 +376,7 @@ Note: I personally use these environment variables, as steam will not delete the
 
 ## Changelog
 
+- *Update: 2025-06-08 - Added EAC Outside of Proton*
 - *Update: 2025-06-02 - Added Steam Input Lag Note*
 - *Update: 2025-05-31 - Shader Cache*
 - *Update: 2025-05-08 - Battle.net eepy agent*
