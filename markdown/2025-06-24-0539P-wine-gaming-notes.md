@@ -1,14 +1,14 @@
 ---
-title: some notes about gaming on linux
-short: this is mostly so i don't forget
+title: some notes about gaming via wine
+short: it has become quite a bit, huh?
 date: 2024-06-22 4:36 AM
-updated: 2025-06-08 1:02 AM
+updated: 2025-06-24 5:56 PM
 ---
 
 I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
 
-This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux.
+This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux (and sometimes macOS.)
 
 **Note:** This document has a lot of terminal commands and may be unsuitable for screen readers.
 
@@ -282,6 +282,56 @@ Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions
 
 Try switching to Wine 10 or Proton 10 and restarting the process.
 
+## Steam
+
+### CEF 0x3009 or 0x3008 Error
+
+Valve Updated CEF, utilizing new rendering APIs which may break specifically in non-CW D3DMetal. You can revert back to an older version of Steam by doing the following (or following the guide [here](https://docs.getwhisky.app/steam.html#steam-encountered-an-unexpected-error-during-startup-0x3008), though use the link below instead):
+
+`wine64 Steam.exe -forcesteamupdate -forcepackagedownload -overridepackageurl https://raw.githubusercontent.com/SteamDatabase/SteamTracking/4be7a78d0330c53ce059fdb50d198009f5ddeb73/ClientManifest/ -exitsteam`
+
+The package URL is from the SteamDB Steam Tracking repository, 4be7a78d0330c53ce059fdb50d198009f5ddeb73 is the commit for the Steam Update from the 28th of January.
+Steam signs and strongly validates the signatures of manifests so tampering is unlikely if not impossible without Valve private keys.
+
+Then **only** launch with these arguments:
+
+`wine64 steam.exe -noverifyfiles -nobootstrapupdate -skipinitialbootstrap -norepairfiles -overridepackageurl  https://raw.githubusercontent.com/SteamDatabase/SteamTracking/4be7a78d0330c53ce059fdb50d198009f5ddeb73/ClientManifest/`
+
+Otherwise Steam **WILL** update to latest again and you **WILL** have to run the first command again.
+
+### Corrupt Download error
+
+When using the above workaround, Steam is running a pre-ZStandard version. On the 11th of March, Steam updated it's compression system to use ZStandard. Some parts of downloads may use this new system.
+This means that you will occassionally (with increasing frequency as time goes on and more parts use the new download compression) get a "Corrupt Download" error.
+
+In these cases, when pinning Steam to a specific version as above, you can use [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD) to download the game files instead.
+SteamCMD uses the same SteamClient APIs to download games, however because it is a command line program it does not rely on CEF (ergo doesn't crash.)
+
+You can use it as follows:
+
+```sh
+steamcmd.sh \
+	+@sSteamCmdForcePlatformType windows \
+	+force_install_dir "~/.wine/drive_c/Program Files (x86)/Steam/" \
+	+login YOUR_USERNAME_HERE \
+	+app_update APP_ID_HERE \
+	+quit
+```
+	
+or via wine:
+
+```sh
+wine64 steamcmd.exe \
+	+force_install_dir "C:\\Program Files (x86)\\Steam\\" \
+	+login YOUR_USERNAME_HERE \
+	+app_update APP_ID_HERE \
+	+quit
+```
+
+replacing `YOUR_USERNAME_HERE` with your steam username, and `APP_ID_HERE` with the steam app id of the game (the first number in the store page.).
+
+Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix. 
+
 ## Game-Specific Fixes
 
 ### Monster Hunter Wilds
@@ -350,6 +400,7 @@ Locate both frames and approximate the button locations using the render frame o
 
 ## Changelog
 
+- *Update: 2025-06-24 - macOS Steam on Wine Workaround, rename page*
 - *Update: 2025-06-08 - Removed Dauntless* [It was a pleasure.](https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/)
 - *Update: 2025-06-08 - Added EAC Outside of Proton*
 - *Update: 2025-06-02 - Added Steam Input Lag Note*

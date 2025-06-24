@@ -5,153 +5,20 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Sun, 08 Jun 2025 00:28:21 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 17:04:44 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
-      <title>bitpacking cheat codes</title>
-      <link>https://chronovore.dev/posts/2024-09-27-1239A-bitpacking-cheat-codes.html</link>
-      <pubDate>Thu, 26 Sep 2024 23:39:00 +0000</pubDate>
-      <description>up up down down left right left right b a start</description>
-      <author>Ada</author>
-      <guid>tag:chronovore.dev,posts:2024-09-27-1239A-bitpacking-cheat-codes</guid>
-      <atom:content type="text/markdown"><![CDATA[**Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
-
-A little while ago we were talking to someone about cheat-codes in old games 
-and how they're very often stored as numbers, but how would you implement something like that?
-
-In theory you need to figure out how many key states you need to track, because the "up-up-down-down" code is extremely iconic I'll be using that for this post but really anything can work.
-
-So the code goes something like `up up down down left right left right b a`. 
-That's 6 states, let's add in a seventh for a reset state.
-
-```py
-from enum import Enum
-
-
-class BUTTON_STATE(Enum):
-  BUTTON_RESET = 0
-  BUTTON_UP = 1
-  BUTTON_RIGHT = 2
-  BUTTON_DOWN = 3
-  BUTTON_LEFT = 4
-  BUTTON_B = 5
-  BUTTON_A = 6
-```
-
-That's the easy part. Now we need to figure out how many bits one state would take. Fortunately it's a simple equation.
-
-## $$\frac{n}{\log_2(S)}$$
-
-Where `n` is the number of total bits available for storage, and `S` is the number of states. **Note:** the log2 product has to be **rounded up** and the fraction product has to be **rounded down.**
-
-```py
-from math import ceil, log2
-
-
-# we have 6 states + a reset value
-NUMBER_OF_STATES = 7
-
-# we are storing in a 32-bit integer
-BITS = 32
-
-# the number of bits required to safely store the state value, which can be no more than 7
-STORAGE_WIDTH = ceil(log2(NUMBER_OF_STATES))
-
-# the maximum number of states we can store in our number
-MAX_SEQUENCE = BITS // STORAGE_WIDTH
-
-print(f'{STORAGE_WIDTH} bits can fit {MAX_SEQUENCE} times in {BITS} bits')
-# 3 bits can fit 10 times in 32 bits
-```
-
-This means that we can store 10 states in a 32-bit number!
-
-Okay, now we need to calculate a magic check value.
-We do this by shifting the bits to the right by *3* (since that's the bit width of all states), and do the same with an accompanying mask value.
-
-```py
-# test sequence value
-seq = 0
-# test mask value
-mask = 0
-
-
-def handle_seq(state):
-    global seq, mask
-
-    # shift sequence to the right by 3 bits, since that's all our states use.
-    seq = seq << 3
-    # apply the button state bits to the sequence
-    seq |= state
-
-    # repeat the same but with all bits set, so we can later check the appropriate amount of bits
-    mask = mask << 3
-    mask |= (1 << 3) - 1
-
-
-# emulate button presses
-handle_seq(BUTTON_STATE.BUTTON_UP.value)
-handle_seq(BUTTON_STATE.BUTTON_UP.value)
-handle_seq(BUTTON_STATE.BUTTON_DOWN.value)
-handle_seq(BUTTON_STATE.BUTTON_DOWN.value)
-handle_seq(BUTTON_STATE.BUTTON_LEFT.value)
-handle_seq(BUTTON_STATE.BUTTON_RIGHT.value)
-handle_seq(BUTTON_STATE.BUTTON_LEFT.value)
-handle_seq(BUTTON_STATE.BUTTON_RIGHT.value)
-handle_seq(BUTTON_STATE.BUTTON_B.value)
-handle_seq(BUTTON_STATE.BUTTON_A.value)
-
-print(f'the code sequence is {hex(seq)} and masked by {hex(mask)}')
-# the code sequence is 0x96e28ae and masked by 0x3fffffff
-```
-
-So now we have our input code sequence and our bit test mask. Now all we have to do is replicate the code in some input event loop.
-
-```py
-egg_seq = 0
-
-def handle_egg_button_press(state):
-  global egg_seq
-
-  # append the state bits to our sequence tracker for this easter egg (and restrict it to 64-bits)
-  egg_seq = ((egg_seq << 3) | state) & 0xffffffffffffffff
-
-  # if the last 30 bits do not match to our pre-calculated value, return early.
-  if (egg_seq & 0x3fffffff) != 0x96e28ae:
-    return
-  
-  # the secret has been found!
-
-  # reset state so we can't accidentally trigger it again 
-  egg_seq = 0
-
-  # better trigger it :)
-  trigger_egg_secret()
-```
-
-And that's all there's to it. Just a little bit (heh) of bit manipulation and bit packing.
-
-This has a lot of advantages, such as: 
-
-- Only really using 4 (or 8) bytes of memory
-- Doesn't use recursion or any loops.
-- We aren't pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function. 
-- A little harder to notice if somene is hunting through game source code for debug or cheat input sequences
-
-In practice, a conventional controller will have about 16 states and a keyboard will have on average 105 states. This means a code can reasonably be 4 keyboard inputs long in a 32-bit number, or 8 controller inputs. However, in the year 2024 we can safely use 64-bit, which expectedly double the storage space compared to 32-bit. We're also only using basic bit manipulation, so we could use SIMD and expand this to 128-bits and 256-bits of storage (18/36 states for keyboard, 32/64 for controller). 256-bit numbers will work on x86-64 computers released in the last decade, assuming they have the AVX2 instruction set available.]]></atom:content>
-    </item>
-    <item>
-      <title>some notes about gaming on linux</title>
-      <link>https://chronovore.dev/posts/2024-06-22-0436A-linux-gaming-notes.html</link>
+      <title>some notes about gaming via wine</title>
+      <link>https://chronovore.dev/posts/2025-06-24-0539P-wine-gaming-notes.html</link>
       <pubDate>Sat, 22 Jun 2024 03:36:00 +0000</pubDate>
-      <description>this is mostly so i don't forget</description>
+      <description>it has become quite a bit, huh?</description>
       <author>Ada</author>
-      <guid>tag:chronovore.dev,posts:2024-06-22-0436A-linux-gaming-notes</guid>
+      <guid>tag:chronovore.dev,posts:2025-06-24-0539P-wine-gaming-notes</guid>
       <atom:content type="text/markdown"><![CDATA[I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
 
-This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux.
+This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux (and sometimes macOS.)
 
 **Note:** This document has a lot of terminal commands and may be unsuitable for screen readers.
 
@@ -425,6 +292,56 @@ Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions
 
 Try switching to Wine 10 or Proton 10 and restarting the process.
 
+## Steam
+
+### CEF 0x3009 or 0x3008 Error
+
+Valve Updated CEF, utilizing new rendering APIs which may break specifically in non-CW D3DMetal. You can revert back to an older version of Steam by doing the following (or following the guide [here](https://docs.getwhisky.app/steam.html#steam-encountered-an-unexpected-error-during-startup-0x3008), though use the link below instead):
+
+`wine64 Steam.exe -forcesteamupdate -forcepackagedownload -overridepackageurl https://raw.githubusercontent.com/SteamDatabase/SteamTracking/4be7a78d0330c53ce059fdb50d198009f5ddeb73/ClientManifest/ -exitsteam`
+
+The package URL is from the SteamDB Steam Tracking repository, 4be7a78d0330c53ce059fdb50d198009f5ddeb73 is the commit for the Steam Update from the 28th of January.
+Steam signs and strongly validates the signatures of manifests so tampering is unlikely if not impossible without Valve private keys.
+
+Then **only** launch with these arguments:
+
+`wine64 steam.exe -noverifyfiles -nobootstrapupdate -skipinitialbootstrap -norepairfiles -overridepackageurl  https://raw.githubusercontent.com/SteamDatabase/SteamTracking/4be7a78d0330c53ce059fdb50d198009f5ddeb73/ClientManifest/`
+
+Otherwise Steam **WILL** update to latest again and you **WILL** have to run the first command again.
+
+### Corrupt Download error
+
+When using the above workaround, Steam is running a pre-ZStandard version. On the 11th of March, Steam updated it's compression system to use ZStandard. Some parts of downloads may use this new system.
+This means that you will occassionally (with increasing frequency as time goes on and more parts use the new download compression) get a "Corrupt Download" error.
+
+In these cases, when pinning Steam to a specific version as above, you can use [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD) to download the game files instead.
+SteamCMD uses the same SteamClient APIs to download games, however because it is a command line program it does not rely on CEF (ergo doesn't crash.)
+
+You can use it as follows:
+
+```sh
+steamcmd.sh \
+	+@sSteamCmdForcePlatformType windows \
+	+force_install_dir "~/.wine/drive_c/Program Files (x86)/Steam/" \
+	+login YOUR_USERNAME_HERE \
+	+app_update APP_ID_HERE \
+	+quit
+```
+	
+or via wine:
+
+```sh
+wine64 steamcmd.exe \
+	+force_install_dir "C:\\Program Files (x86)\\Steam\\" \
+	+login YOUR_USERNAME_HERE \
+	+app_update APP_ID_HERE \
+	+quit
+```
+
+replacing `YOUR_USERNAME_HERE` with your steam username, and `APP_ID_HERE` with the steam app id of the game (the first number in the store page.).
+
+Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix. 
+
 ## Game-Specific Fixes
 
 ### Monster Hunter Wilds
@@ -493,6 +410,7 @@ Locate both frames and approximate the button locations using the render frame o
 
 ## Changelog
 
+- *Update: 2025-06-24 - macOS Steam on Wine Workaround, rename page*
 - *Update: 2025-06-08 - Removed Dauntless* [It was a pleasure.](https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/)
 - *Update: 2025-06-08 - Added EAC Outside of Proton*
 - *Update: 2025-06-02 - Added Steam Input Lag Note*
@@ -514,6 +432,139 @@ Locate both frames and approximate the button locations using the render frame o
 - *Update: 2024-10-29 - Added note about proprietary drivers and EAC*
 - *Update: 2024-10-29 - Added Monado/SteamVR*
 - *Update: 2024-09-22 - Added gamescope-related workarounds*]]></atom:content>
+    </item>
+    <item>
+      <title>bitpacking cheat codes</title>
+      <link>https://chronovore.dev/posts/2024-09-27-1239A-bitpacking-cheat-codes.html</link>
+      <pubDate>Thu, 26 Sep 2024 23:39:00 +0000</pubDate>
+      <description>up up down down left right left right b a start</description>
+      <author>Ada</author>
+      <guid>tag:chronovore.dev,posts:2024-09-27-1239A-bitpacking-cheat-codes</guid>
+      <atom:content type="text/markdown"><![CDATA[**Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
+
+A little while ago we were talking to someone about cheat-codes in old games 
+and how they're very often stored as numbers, but how would you implement something like that?
+
+In theory you need to figure out how many key states you need to track, because the "up-up-down-down" code is extremely iconic I'll be using that for this post but really anything can work.
+
+So the code goes something like `up up down down left right left right b a`. 
+That's 6 states, let's add in a seventh for a reset state.
+
+```py
+from enum import Enum
+
+
+class BUTTON_STATE(Enum):
+  BUTTON_RESET = 0
+  BUTTON_UP = 1
+  BUTTON_RIGHT = 2
+  BUTTON_DOWN = 3
+  BUTTON_LEFT = 4
+  BUTTON_B = 5
+  BUTTON_A = 6
+```
+
+That's the easy part. Now we need to figure out how many bits one state would take. Fortunately it's a simple equation.
+
+## $$\frac{n}{\log_2(S)}$$
+
+Where `n` is the number of total bits available for storage, and `S` is the number of states. **Note:** the log2 product has to be **rounded up** and the fraction product has to be **rounded down.**
+
+```py
+from math import ceil, log2
+
+
+# we have 6 states + a reset value
+NUMBER_OF_STATES = 7
+
+# we are storing in a 32-bit integer
+BITS = 32
+
+# the number of bits required to safely store the state value, which can be no more than 7
+STORAGE_WIDTH = ceil(log2(NUMBER_OF_STATES))
+
+# the maximum number of states we can store in our number
+MAX_SEQUENCE = BITS // STORAGE_WIDTH
+
+print(f'{STORAGE_WIDTH} bits can fit {MAX_SEQUENCE} times in {BITS} bits')
+# 3 bits can fit 10 times in 32 bits
+```
+
+This means that we can store 10 states in a 32-bit number!
+
+Okay, now we need to calculate a magic check value.
+We do this by shifting the bits to the right by *3* (since that's the bit width of all states), and do the same with an accompanying mask value.
+
+```py
+# test sequence value
+seq = 0
+# test mask value
+mask = 0
+
+
+def handle_seq(state):
+    global seq, mask
+
+    # shift sequence to the right by 3 bits, since that's all our states use.
+    seq = seq << 3
+    # apply the button state bits to the sequence
+    seq |= state
+
+    # repeat the same but with all bits set, so we can later check the appropriate amount of bits
+    mask = mask << 3
+    mask |= (1 << 3) - 1
+
+
+# emulate button presses
+handle_seq(BUTTON_STATE.BUTTON_UP.value)
+handle_seq(BUTTON_STATE.BUTTON_UP.value)
+handle_seq(BUTTON_STATE.BUTTON_DOWN.value)
+handle_seq(BUTTON_STATE.BUTTON_DOWN.value)
+handle_seq(BUTTON_STATE.BUTTON_LEFT.value)
+handle_seq(BUTTON_STATE.BUTTON_RIGHT.value)
+handle_seq(BUTTON_STATE.BUTTON_LEFT.value)
+handle_seq(BUTTON_STATE.BUTTON_RIGHT.value)
+handle_seq(BUTTON_STATE.BUTTON_B.value)
+handle_seq(BUTTON_STATE.BUTTON_A.value)
+
+print(f'the code sequence is {hex(seq)} and masked by {hex(mask)}')
+# the code sequence is 0x96e28ae and masked by 0x3fffffff
+```
+
+So now we have our input code sequence and our bit test mask. Now all we have to do is replicate the code in some input event loop.
+
+```py
+egg_seq = 0
+
+def handle_egg_button_press(state):
+  global egg_seq
+
+  # append the state bits to our sequence tracker for this easter egg (and restrict it to 64-bits)
+  egg_seq = ((egg_seq << 3) | state) & 0xffffffffffffffff
+
+  # if the last 30 bits do not match to our pre-calculated value, return early.
+  if (egg_seq & 0x3fffffff) != 0x96e28ae:
+    return
+  
+  # the secret has been found!
+
+  # reset state so we can't accidentally trigger it again 
+  egg_seq = 0
+
+  # better trigger it :)
+  trigger_egg_secret()
+```
+
+And that's all there's to it. Just a little bit (heh) of bit manipulation and bit packing.
+
+This has a lot of advantages, such as: 
+
+- Only really using 4 (or 8) bytes of memory
+- Doesn't use recursion or any loops.
+- We aren't pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function. 
+- A little harder to notice if somene is hunting through game source code for debug or cheat input sequences
+
+In practice, a conventional controller will have about 16 states and a keyboard will have on average 105 states. This means a code can reasonably be 4 keyboard inputs long in a 32-bit number, or 8 controller inputs. However, in the year 2024 we can safely use 64-bit, which expectedly double the storage space compared to 32-bit. We're also only using basic bit manipulation, so we could use SIMD and expand this to 128-bits and 256-bits of storage (18/36 states for keyboard, 32/64 for controller). 256-bit numbers will work on x86-64 computers released in the last decade, assuming they have the AVX2 instruction set available.]]></atom:content>
     </item>
     <item>
       <title>compression algorithms</title>
