@@ -1,6 +1,6 @@
 ---
 title: PROJECTS
-short: 🥴
+short: <span class="emoji">🥴</span>
 date: 2025-09-16 11:54 AM
 private: true
 ---

@@ -8,6 +8,28 @@ from lxml.etree import CDATA, tostring as xml_serialize
 from lxml import etree
 from lxml.builder import ElementMaker, E as elem
 from email.utils import format_datetime
+from io import StringIO
+from html.parser import HTMLParser
+
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.strict = False
+        self.convert_charrefs= True
+        self.text = StringIO()
+    def handle_data(self, d):
+        self.text.write(d)
+    def get_data(self):
+        return self.text.getvalue()
+
+
+def strip_html(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
 
 BLOG_NAME = "ada's blog"
 BLOG_ROOT = "https://chronovore.dev/posts"
@@ -80,6 +102,10 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
             upd_date_t = datetime.strptime(upd_date[0], '%Y-%m-%d %I:%M %p').astimezone(timezone.utc)
             pub_date_iso = pub_date_t.isoformat()
             upd_date_iso = upd_date_t.isoformat()
+            title = meta['title'][0]
+            short = meta['short'][0]
+            title_safe = strip_html(title)
+            short_safe = strip_html(short)
 
             folder = 'private/'
             rel = '../'
@@ -87,19 +113,19 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
                 folder = ''
                 rel = ''
                 if 'unlist' in meta:
-                    index_lines += f'<!-- unlisted: <li><a href="{name}.html">{meta['title'][0]}</a></li> -->\n'
+                    index_lines += f'<!-- unlisted: <li><a href="{name}.html">{title}</a></li> -->\n'
                 else:
-                    index_lines += f'<li><a href="{name}.html">{meta['title'][0]}</a></li>\n'
+                    index_lines += f'<li><a href="{name}.html">{title}</a></li>\n'
                     md_data_nohead = md_data.split('---', 2)[-1].strip()
                     feed_data = CDATA(md_data_nohead)
 
                     atom_feed.append(
                         elem.entry(
-                            elem.title(meta['title'][0]),
+                            elem.title(title_safe),
                             elem.link(href=f"{BLOG_ROOT}/{name}.html"),
                             elem.updated(upd_date_iso),
                             elem.published(pub_date_iso),
-                            elem.summary(meta['short'][0]),
+                            elem.summary(short_safe),
                             elem.id(BLOG_POST_ID + name),
                             elem.content(feed_data, type="text/markdown")
                         )
@@ -107,10 +133,10 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
 
                     rss_feed.append(
                         elem.item(
-                            elem.title(meta['title'][0]),
+                            elem.title(title_safe),
                             elem.link(f"{BLOG_ROOT}/{name}.html"),
                             elem.pubDate(format_datetime(pub_date_t)),
-                            elem.description(meta['short'][0]),
+                            elem.description(short_safe),
                             elem.author(BLOG_WHOAMI),
                             elem.guid(BLOG_POST_ID + name),
                             ATOM_NS.content(feed_data, type="text/markdown")
@@ -118,10 +144,10 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
                     )
 
                     json_feed.append({
-                        "title": meta['title'][0],
+                        "title": title_safe,
                         "url": f"{BLOG_ROOT}/{name}.html",
                         "id": BLOG_POST_ID + name,
-                        "summary": meta['short'][0],
+                        "summary": short_safe,
                         "date_published": pub_date_iso,
                         "date_modified": upd_date_iso,
                         "content_text": md_data_nohead,
@@ -136,7 +162,7 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
 
             print(name)
             with open(f'docs/{folder}{name}.html', 'w', encoding='utf8') as html:
-                html.write(POST_TEMPLATE.format(title=meta['title'][0], short=meta['short'][0], url=name, time=upd_date[0], isotime=upd_date_iso, pub_time=date[0], pub_isotime=pub_date_iso, body=text, rel=rel, headers=headers))
+                html.write(POST_TEMPLATE.format(title=title, short=short, title_safe=title_safe, short_safe=short_safe, url=name, time=upd_date[0], isotime=upd_date_iso, pub_time=date[0], pub_isotime=pub_date_iso, body=text, rel=rel, headers=headers))
     index.write(INDEX_TEMPLATE.format(body=index_lines))
 
 atom = elem.feed(*atom_feed, xmlns="http://www.w3.org/2005/Atom")

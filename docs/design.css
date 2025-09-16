@@ -109,12 +109,18 @@ header figure {
 	font-size: 20pt;
 }
 
-header figure span {
+header figure span:not(.emoji) {
 	display: block;
 	font-size: 12pt;
 	text-transform: uppercase;
 	font-weight: 200;
 	font-style: italic;
+}
+
+.emoji {
+    -webkit-text-fill-color: white;
+    -moz-text-fill-color: white;
+    text-fill-color: white;
 }
 
 a {
