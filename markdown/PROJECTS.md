@@ -10,13 +10,9 @@ private: true
 - Convallaria: C# Lua 5.4 Bytecode Interpreter
 - Formet: C# Python Unpickler
 - Knit: C# Granny3D 2 Decoder
-- Mica: Mod Installer Framework
 - Myna: Swift/C#/Rust Encryption and Hashing Algorithms
 - Pepper: C# Wwise WEM/BNK Decoder
 - Salt: C# FMOD FEV Decoder
-- Shard: CAS Archive
-- Starfall: Display constellations in terminal 
-- Starvalve: Swift Valve VDF Parser
 - Titania: C Dualsense/Access Library
 - Triton: C# Image Encoder/Decoder
 - Waterfall: C# Compression Helper
@@ -24,6 +20,10 @@ private: true
 ## Tools
 
 - DepotArchiver: Steam Depot Archival Tool
+- Mica: Mod Installer Framework
+- Shard: CAS Archive
+- Starfall: Display constellations in terminal
+- Starvalve: CLI tool to manipulate Steam libraries
 - SteamUFS: Steam Cloud Files Downloader
 
 ## Research
