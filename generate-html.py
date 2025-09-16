@@ -31,9 +31,9 @@ def strip_html(html):
     return s.get_data()
 
 
-BLOG_NAME = "ada's blog"
+BLOG_NAME = "np93's blog"
 BLOG_ROOT = "https://chronovore.dev/posts"
-BLOG_WHOAMI = "Ada"
+BLOG_WHOAMI = "Neptuwunium"
 BLOG_DESCRIPTION = "just a collection of thoughts~"
 BLOG_ID = "tag:chronovore.dev,posts:root"
 BLOG_POST_ID = "tag:chronovore.dev,posts:"

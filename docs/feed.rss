@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>ada's blog</title>
+    <title>np93's blog</title>
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Tue, 24 Jun 2025 17:04:44 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 18:17:30 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
       <title>some notes about gaming via wine</title>
       <link>https://chronovore.dev/posts/2025-06-24-0539P-wine-gaming-notes.html</link>
-      <pubDate>Sat, 22 Jun 2024 03:36:00 +0000</pubDate>
+      <pubDate>Fri, 21 Jun 2024 23:06:00 +0000</pubDate>
       <description>it has become quite a bit, huh?</description>
-      <author>Ada</author>
+      <author>Neptuwunium</author>
       <guid>tag:chronovore.dev,posts:2025-06-24-0539P-wine-gaming-notes</guid>
       <atom:content type="text/markdown"><![CDATA[I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
@@ -408,8 +408,19 @@ If you do not see a black square but the web view is not accepting inputs, the b
 
 Locate both frames and approximate the button locations using the render frame on the black frame.
 
+### Hollow Knight: Silksong GOG on Steam Deck
+
+Discovered by [navi@vlhl.dev](https://social.vlhl.dev/notice/AyGtMIGRViMhnSyhzE).
+
+The input mapping that the SDL version Unity uses has an oudated Steam input scheme causing the triggers to not be recognized, to fix this run:
+
+`export SDL_GAMECONTROLLERCONFIG="03000000de2800000512000011010000,Steam Deck,a:b3,b:b4,back:b11,dpdown:b17,dpleft:b18,dpright:b19,dpup:b16,guide:b13,leftshoulder:b7,leftstick:b14,lefttrigger:h2.2,leftx:a0,lefty:a1,misc1:b2,paddle1:b21,paddle2:b20,paddle3:b23,paddle4:b22,rightshoulder:b8,rightstick:b15,righttrigger:h2.4,rightx:a2,righty:a3,start:b12,x:b5,y:b6,"`
+
+in the same terminal before running the game.
+
 ## Changelog
 
+- *Update: 2025-09-16 - Silksong Steam Deck*
 - *Update: 2025-06-24 - macOS Steam on Wine Workaround, rename page*
 - *Update: 2025-06-08 - Removed Dauntless* [It was a pleasure.](https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/)
 - *Update: 2025-06-08 - Added EAC Outside of Proton*
@@ -436,9 +447,9 @@ Locate both frames and approximate the button locations using the render frame o
     <item>
       <title>bitpacking cheat codes</title>
       <link>https://chronovore.dev/posts/2024-09-27-1239A-bitpacking-cheat-codes.html</link>
-      <pubDate>Thu, 26 Sep 2024 23:39:00 +0000</pubDate>
+      <pubDate>Thu, 26 Sep 2024 19:09:00 +0000</pubDate>
       <description>up up down down left right left right b a start</description>
-      <author>Ada</author>
+      <author>Neptuwunium</author>
       <guid>tag:chronovore.dev,posts:2024-09-27-1239A-bitpacking-cheat-codes</guid>
       <atom:content type="text/markdown"><![CDATA[**Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
 
@@ -569,9 +580,9 @@ In practice, a conventional controller will have about 16 states and a keyboard 
     <item>
       <title>compression algorithms</title>
       <link>https://chronovore.dev/posts/2023-01-25-1234P-compression-deepdive.html</link>
-      <pubDate>Wed, 25 Jan 2023 14:42:00 +0000</pubDate>
+      <pubDate>Wed, 25 Jan 2023 09:12:00 +0000</pubDate>
       <description>a deep dive into compression algorithms and how to notice them in hex</description>
-      <author>Ada</author>
+      <author>Neptuwunium</author>
       <guid>tag:chronovore.dev,posts:2023-01-25-1234P-compression-deepdive</guid>
       <atom:content type="text/markdown"><![CDATA[One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
 This is an interesting question, and I hope that this post will help you understand how I notice compression algorithms in hex.

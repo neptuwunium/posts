@@ -2,7 +2,7 @@
 title: some notes about gaming via wine
 short: it has become quite a bit, huh?
 date: 2024-06-22 4:36 AM
-updated: 2025-06-24 5:56 PM
+updated: 2025-09-16 11:35 PM
 ---
 
 I recently migrated to using Linux full time.
@@ -398,8 +398,19 @@ If you do not see a black square but the web view is not accepting inputs, the b
 
 Locate both frames and approximate the button locations using the render frame on the black frame.
 
+### Hollow Knight: Silksong GOG on Steam Deck
+
+Discovered by [navi@vlhl.dev](https://social.vlhl.dev/notice/AyGtMIGRViMhnSyhzE).
+
+The input mapping that the SDL version Unity uses has an oudated Steam input scheme causing the triggers to not be recognized, to fix this run:
+
+`export SDL_GAMECONTROLLERCONFIG="03000000de2800000512000011010000,Steam Deck,a:b3,b:b4,back:b11,dpdown:b17,dpleft:b18,dpright:b19,dpup:b16,guide:b13,leftshoulder:b7,leftstick:b14,lefttrigger:h2.2,leftx:a0,lefty:a1,misc1:b2,paddle1:b21,paddle2:b20,paddle3:b23,paddle4:b22,rightshoulder:b8,rightstick:b15,righttrigger:h2.4,rightx:a2,righty:a3,start:b12,x:b5,y:b6,"`
+
+in the same terminal before running the game.
+
 ## Changelog
 
+- *Update: 2025-09-16 - Silksong Steam Deck*
 - *Update: 2025-06-24 - macOS Steam on Wine Workaround, rename page*
 - *Update: 2025-06-08 - Removed Dauntless* [It was a pleasure.](https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/)
 - *Update: 2025-06-08 - Added EAC Outside of Proton*
