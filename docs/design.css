@@ -200,6 +200,7 @@ img {
 	padding: .5em;
 	border-radius: .2em;
 	font-family: monospace;
+	line-break: anywhere;
 }
 
 code {
