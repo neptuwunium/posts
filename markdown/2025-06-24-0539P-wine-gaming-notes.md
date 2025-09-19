@@ -404,7 +404,7 @@ Discovered by [navi@vlhl.dev](https://social.vlhl.dev/notice/AyGtMIGRViMhnSyhzE)
 
 The input mapping that the SDL version Unity Linux uses has an oudated Steam Deck input scheme causing the triggers to not be recognized, to fix this run:
 
-`export SDL_GAMECONTROLLERCONFIG="03000000de2800000512000011010000,Steam Deck,a:b3,b:b4,back:b11,dpdown:b17,dpleft:b18,dpright:b19,dpup:b16,guide:b13,leftshoulder:b7,leftstick:b14,lefttrigger:h2.2,leftx:a0,lefty:a1,misc1:b2,paddle1:b21,paddle2:b20,paddle3:b23,paddle4:b22,rightshoulder:b8,rightstick:b15,righttrigger:h2.4,rightx:a2,righty:a3,start:b12,x:b5,y:b6,"`
+`export SDL_GAMECONTROLLERCONFIG="03000000de2800000512000011010000,Steam Deck,a:b3,b:b4,back:b11,dpdown:b17,dpleft:b18,dpright:b19,dpup:b16,guide:b13,leftshoulder:b7,leftstick:b14,lefttrigger:h2.4,leftx:a0,lefty:a1,misc1:b2,paddle1:b21,paddle2:b20,paddle3:b23,paddle4:b22,rightshoulder:b8,rightstick:b15,righttrigger:h2.2,rightx:a2,righty:a3,start:b12,x:b5,y:b6,"`
 
 in the same terminal before running the game.
 
