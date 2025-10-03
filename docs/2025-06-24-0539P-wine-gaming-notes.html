@@ -158,10 +158,10 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <ul>
 <li>For regular vanilla/staging Wine you can replicate the same behavior as that loader workaround:</li>
 </ul>
-<pre class="codehilite"><code class="language-sh">export PROTON_EAC_RUNTIME=&quot;/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime&quot;
-export WINEDLLPATH=&quot;${PROTON_EAC_RUNTIME}/v2/lib32/:${PROTON_EAC_RUNTIME}/v2/lib64/&quot;
-wine nya.exe
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PROTON_EAC_RUNTIME</span><span class="o">=</span><span class="s2">&quot;/home/user/.steam/steam/steamapps/common/Proton EasyAntiCheat Runtime&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">WINEDLLPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROTON_EAC_RUNTIME</span><span class="si">}</span><span class="s2">/v2/lib32/:</span><span class="si">${</span><span class="nv">PROTON_EAC_RUNTIME</span><span class="si">}</span><span class="s2">/v2/lib64/&quot;</span>
+wine<span class="w"> </span>nya.exe
+</code></pre></div>
 
 <p><strong>Note:</strong> The client certificate for EAC (<code>EasyAntiCheat/Certificates/client.bin</code>) probably needs to accept linux. I do not know the specifics behind this besides that when games enable Linux support this file tends to update so I assume it is related. If the Steam version works on Linux with EAC enabled, but not outside of Steam, then the client certificate likely mismatches and you should ask (somehow, big task) the developers to keep the client certificates in line between Steam and the off-Steam platform.</p>
 <h2 id="deleting-shader-cache-files">Deleting Shader Cache Files</h2>
@@ -181,9 +181,9 @@ wine nya.exe
 <li><code>{ExecutableName}.dxvk-cache</code></li>
 </ul>
 <p>You can control where the cache files are saved with the <code>DXVK_STATE_CACHE_PATH</code> and <code>VKD3D_SHADER_CACHE_PATH</code> environment variables, i.e. I have the following in my dotfiles.</p>
-<pre class="codehilite"><code class="language-sh">export VKD3D_SHADER_CACHE_PATH=&quot;$HOME/.cache/vkd3d&quot;
-export DXVK_STATE_CACHE_PATH=&quot;$HOME/.cache/dxvk&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">VKD3D_SHADER_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/vkd3d&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DXVK_STATE_CACHE_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.cache/dxvk&quot;</span>
+</code></pre></div>
 
 <p>Note: I personally use these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
 <h2 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h2>
@@ -191,10 +191,10 @@ export DXVK_STATE_CACHE_PATH=&quot;$HOME/.cache/dxvk&quot;
 This information is all logged in AppData, but the settings file exists in the game installation. 
 This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> directory inside of the game directory)</p>
 <p>We can use this to find out if EAC is enabled for a particular game.</p>
-<pre class="codehilite"><code class="language-sh">jq -r \
-    '@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;' \
-    Settings.json
-</code></pre>
+<div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s1">&#39;@uri &quot;https://modules-cdn.eac-prod.on.epicgames.com/modules/\(.productid)/\(.deploymentid)/linux64&quot;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>Settings.json
+</code></pre></div>
 
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
 <h2 id="enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</h2>
@@ -291,21 +291,21 @@ This means that you will occassionally (with increasing frequency as time goes o
 <p>In these cases, when pinning Steam to a specific version as above, you can use <a href="https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD">SteamCMD</a> to download the game files instead.
 SteamCMD uses the same SteamClient APIs to download games, however because it is a command line program it does not rely on CEF (ergo doesn&rsquo;t crash.)</p>
 <p>You can use it as follows:</p>
-<pre class="codehilite"><code class="language-sh">steamcmd.sh \
-    +@sSteamCmdForcePlatformType windows \
-    +force_install_dir &quot;~/.wine/drive_c/Program Files (x86)/Steam/&quot; \
-    +login YOUR_USERNAME_HERE \
-    +app_update APP_ID_HERE \
-    +quit
-</code></pre>
+<div class="codehilite"><pre><span></span><code>steamcmd.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+@sSteamCmdForcePlatformType<span class="w"> </span>windows<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+force_install_dir<span class="w"> </span><span class="s2">&quot;~/.wine/drive_c/Program Files (x86)/Steam/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+login<span class="w"> </span>YOUR_USERNAME_HERE<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+app_update<span class="w"> </span>APP_ID_HERE<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+quit
+</code></pre></div>
 
 <p>or via wine:</p>
-<pre class="codehilite"><code class="language-sh">wine64 steamcmd.exe \
-    +force_install_dir &quot;C:\\Program Files (x86)\\Steam\\&quot; \
-    +login YOUR_USERNAME_HERE \
-    +app_update APP_ID_HERE \
-    +quit
-</code></pre>
+<div class="codehilite"><pre><span></span><code>wine64<span class="w"> </span>steamcmd.exe<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+force_install_dir<span class="w"> </span><span class="s2">&quot;C:\\Program Files (x86)\\Steam\\&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+login<span class="w"> </span>YOUR_USERNAME_HERE<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+app_update<span class="w"> </span>APP_ID_HERE<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>+quit
+</code></pre></div>
 
 <p>replacing <code>YOUR_USERNAME_HERE</code> with your steam username, and <code>APP_ID_HERE</code> with the steam app id of the game (the first number in the store page.).</p>
 <p>Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix. </p>
@@ -318,8 +318,8 @@ If this directory does not exist ensure that steam cloud saves are enabled on Mo
 You must copy <strong>that entire directory</strong> to the prefix-appropriate userdata directory. This is located in the same storage medium as the game.</p>
 <p>The related path is: <code>/path/to/installed/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/[YOUR STEAM ID]</code></p>
 <p>So for example, if your Steam ID is 1024, and you have installed it to a partition that is mounted on /mnt/games/ you would do the following in a command prompt:</p>
-<pre class="codehilite"><code class="language-sh">cp -rfvn &quot;~/.steam/steam/userdata/1024/582010&quot; &quot;/mnt/games/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/1024/&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>-rfvn<span class="w"> </span><span class="s2">&quot;~/.steam/steam/userdata/1024/582010&quot;</span><span class="w"> </span><span class="s2">&quot;/mnt/games/SteamLibrary/steamapps/compatdata/2246340/pfx/drive_c/Program Files (x86)/Steam/userdata/1024/&quot;</span>
+</code></pre></div>
 
 <p>The next time Monster Hunter Wilds launches, you should get a prompt for the Monster Hunter World incentives.</p>
 <h4 id="shader-compilation-on-every-startup">Shader compilation on every startup</h4>
