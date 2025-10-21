@@ -5,7 +5,7 @@
     <link>https://chronovore.dev/posts</link>
     <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Fri, 03 Oct 2025 07:27:43 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Oct 2025 11:20:05 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -418,8 +418,43 @@ The input mapping that the SDL version Unity Linux uses has an oudated Steam Dec
 
 in the same terminal before running the game.
 
+**Note** This may no longer apply on Silksong Patch 4 (1.0.28954) as that updates the input controller.
+
+### FORSPOKEN
+
+Oh, geez.
+
+#### FORSPOKEN Stuck on very low settings
+
+Steam advertises every game running through Proton as running on a SteamDeck,
+you can opt out of this by setting "SteamDeck=0" as an environment variable in the launch command.
+
+Note: The game sets graphics settings to below "low" if you are on a steamdeck;
+including but not limited to restricting the game to use only 6 threads, enforcing VSync + 60 fps cap and mandating FSR + FSR FrameGen.
+
+There's also more wine-related "fixes" and "optimizations" that makes it hard to diagnose how to properly implement the fix on wine.
+I have implemented a small(-ish) library that changes how the game behaves in this regard and will update the blog when it's fit for public consumption.
+
+Paradoxically, the game runs better when it doesn't add hacks for Wine showing just how far Wine has come through Wine 9 and 10 onwards.
+
+#### FORSPOKEN Flickering aggressively
+
+This is due to the game having a broken FSR implementation that conflicts with DLSS.
+There's 2 ways to solve this.
+
+Either you enable FSR 3.0 and enable Native AA (this can create visual artifacting) OR
+you install [DLSSG to FSR3](https://www.nexusmods.com/site/mods/738) ([github](https://github.com/Nukem9/dlssg-to-fsr3)).
+
+I know how this sounds, but the game apparently fixes itself when both FSR and DLSS are valid options.
+You do not have to enable FSR or DLSS in this scenario, though I do not know if the game secretly enables DLSS or FSR in the background like it does with the SteamDeck.
+
+I only tested this with the addition of [OptiScaler](https://github.com/TheRazerMD/OptiScaler) to go the route of DLSS -> FSR 3.1 -> FSR 4,
+but I believe it is purely the nvngx.dll that Nukem provides that fixes this.
+
 ## Changelog
 
+- *Update: 2025-10-21 - FORSPOKEN*
+- *Update: 2025-10-21 - Silksong Note*
 - *Update: 2025-09-16 - Silksong Steam Deck*
 - *Update: 2025-06-24 - macOS Steam on Wine Workaround, rename page*
 - *Update: 2025-06-08 - Removed Dauntless* [It was a pleasure.](https://web.archive.org/web/20250601154507/https://playdauntless.com/news/sunset-notice/)
