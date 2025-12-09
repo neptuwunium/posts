@@ -63,7 +63,6 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#enabling-eac-on-wine-outside-of-proton">Enabling EAC on Wine outside of Proton</a></li>
 <li><a href="#deleting-shader-cache-files">Deleting Shader Cache Files</a></li>
 <li><a href="#checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</a></li>
-<li><a href="#enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</a></li>
 <li><a href="#games-not-capturing-mouse-cursor">Games not capturing mouse cursor</a></li>
 <li><a href="#windows-only-third-party-mod-tooling-on-steam">Windows-only Third-Party Mod Tooling on Steam</a></li>
 <li><a href="#gamescope">Gamescope</a><ul>
@@ -101,9 +100,10 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</a></li>
 <li><a href="#marvel-rivals">Marvel Rivals</a></li>
 <li><a href="#afk-journey">AFK Journey</a></li>
-<li><a href="#hollow-knight-silksong-on-steam-deck">Hollow Knight: Silksong on Steam Deck</a></li>
+<li><a href="#hollow-knight-silksong-on-steam-deck-hollow-knight-silksong-controller-input">Hollow Knight: Silksong on Steam Deck / Hollow Knight: Silksong Controller Input</a></li>
 <li><a href="#forspoken">FORSPOKEN</a><ul>
 <li><a href="#forspoken-stuck-on-very-low-settings">FORSPOKEN Stuck on very low settings</a></li>
+<li><a href="#forspoken-black-screen-with-steamdeck0">FORSPOKEN Black Screen with SteamDeck=0</a></li>
 <li><a href="#forspoken-flickering-aggressively">FORSPOKEN Flickering aggressively</a></li>
 </ul>
 </li>
@@ -202,14 +202,6 @@ This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>,
 </code></pre></div>
 
 <p>This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.</p>
-<h2 id="enabling-dx12-ray-tracing">Enabling DX12 Ray Tracing</h2>
-<p>If you have a ray tracing capable GPU (RTX 2000 or newer, RX 6800 or newer)
-you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by using the following launch arguments:</p>
-<p><code>env RADV_PERFTEST=rt VKD3D_CONFIG=dxr VKD3D_FEATURE_LEVEL=12_2 %command%</code></p>
-<p>If you have an older GPU you can try:</p>
-<p><code>env RADV_PERFTEST=emulate_rt VKD3D_CONFIG=dxr VKD3D_FEATURE_LEVEL=12_2 %command%</code></p>
-<p>This assumes you have a relatively recent VKD3D and Mesa installation,
-and the game has to support ray tracing in any capacity (i.e. World of Warcraft, Ratchet and Clank: Rift Apart)</p>
 <h2 id="games-not-capturing-mouse-cursor">Games not capturing mouse cursor</h2>
 <p>Some games don&rsquo;t play nice with mouse capture, an easy way to solve this is by changing the launch arguments to:</p>
 <p><code>gamescope --force-grab-cursor -f -- %command%</code></p>
@@ -349,12 +341,12 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>If you use a tiled window manager and see a black square, this is the input frame.</p>
 <p>If you do not see a black square but the web view is not accepting inputs, the black square is likely beneath this window.</p>
 <p>Locate both frames and approximate the button locations using the render frame on the black frame.</p>
-<h3 id="hollow-knight-silksong-on-steam-deck">Hollow Knight: Silksong on Steam Deck</h3>
+<h3 id="hollow-knight-silksong-on-steam-deck-hollow-knight-silksong-controller-input">Hollow Knight: Silksong on Steam Deck / Hollow Knight: Silksong Controller Input</h3>
 <p>Discovered by <a href="https://social.vlhl.dev/notice/AyGtMIGRViMhnSyhzE">navi@vlhl.dev</a>.</p>
 <p>The input mapping that the SDL version Unity Linux uses has an oudated Steam Deck input scheme causing the triggers to not be recognized, to fix this run:</p>
 <p><code>export SDL_GAMECONTROLLERCONFIG="03000000de2800000512000011010000,Steam Deck,a:b3,b:b4,back:b11,dpdown:b17,dpleft:b18,dpright:b19,dpup:b16,guide:b13,leftshoulder:b7,leftstick:b14,lefttrigger:h2.4,leftx:a0,lefty:a1,misc1:b2,paddle1:b21,paddle2:b20,paddle3:b23,paddle4:b22,rightshoulder:b8,rightstick:b15,righttrigger:h2.2,rightx:a2,righty:a3,start:b12,x:b5,y:b6,"</code></p>
 <p>in the same terminal before running the game.</p>
-<p><strong>Note</strong> This may no longer apply on Silksong Patch 4 (1.0.28954) as that updates the input controller.</p>
+<p><strong>Note</strong> On Silksong Patch 4 onwards (1.0.28954) they have updated the input library to use the new Unity Input System <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.17/manual/SupportedDevices.html">which has inconsistent support on Linux</a>. My general recommendation at this point is to force Proton if your controller does not work.</p>
 <h3 id="forspoken">FORSPOKEN</h3>
 <p>Oh, geez.</p>
 <h4 id="forspoken-stuck-on-very-low-settings">FORSPOKEN Stuck on very low settings</h4>
@@ -365,9 +357,13 @@ including but not limited to restricting the game to use only 6 threads, enforci
 <p>There&rsquo;s also more wine-related &ldquo;fixes&rdquo; and &ldquo;optimizations&rdquo; that makes it hard to diagnose how to properly implement the fix on wine.
 I have implemented a small(-ish) library that changes how the game behaves in this regard and will update the blog when it&rsquo;s fit for public consumption.</p>
 <p>Paradoxically, the game runs better when it doesn&rsquo;t add hacks for Wine showing just how far Wine has come through Wine 9 and 10 onwards.</p>
+<h4 id="forspoken-black-screen-with-steamdeck0">FORSPOKEN Black Screen with SteamDeck=0</h4>
+<p>Launch the game at least once with SteamDeck=1, then navigate to the compat folder for the game. (<code>SteamLibrary/steamapps/compatdata/1680880</code>)</p>
+<p>Navigate to the save folder of the game (<code>pfx/drive_c/users/steamuser/AppData/Local/FORSPOKEN/Steam/{your steam id}/savestorage/</code>).</p>
+<p>Copy system_steamdeck.save to system.save.</p>
+<p>I don&rsquo;t know why this fixes it, but it does. The game likely sets some flag that disables a component that freezes under Wine.</p>
 <h4 id="forspoken-flickering-aggressively">FORSPOKEN Flickering aggressively</h4>
-<p>This is due to the game having a broken FSR implementation that conflicts with DLSS.
-There&rsquo;s 2 ways to solve this.</p>
+<p>This is due to the game having a broken FSR implementation that conflicts with the game&rsquo;s DLSS implementation. There&rsquo;s 2 ways to solve this.</p>
 <p>Either you enable FSR 3.0 and enable Native AA (this can create visual artifacting) OR
 you install <a href="https://www.nexusmods.com/site/mods/738">DLSSG to FSR3</a> (<a href="https://github.com/Nukem9/dlssg-to-fsr3">github</a>).</p>
 <p>I know how this sounds, but the game apparently fixes itself when both FSR and DLSS are valid options.
@@ -376,6 +372,8 @@ You do not have to enable FSR or DLSS in this scenario, though I do not know if 
 but I believe it is purely the nvngx.dll that Nukem provides that fixes this.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-12-09 - Update Silksong</em></li>
+<li><em>Update: 2025-12-09 - Update FORSPOKEN</em></li>
 <li><em>Update: 2025-10-21 - FORSPOKEN</em></li>
 <li><em>Update: 2025-10-21 - Silksong Note</em></li>
 <li><em>Update: 2025-09-16 - Silksong Steam Deck</em></li>

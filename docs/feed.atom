@@ -3,7 +3,7 @@
   <title>np93's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2025-10-31T05:12:50.369750+00:00</updated>
+  <updated>2025-12-09T04:44:37.111746+00:00</updated>
   <author>
     <name>Neptuwunium</name>
   </author>
@@ -154,20 +154,6 @@ jq -r \
 ```
 
 This will print out a URL. If the url yields HTTP 403, EAC Linux is disabled. If it returns HTTP 200, it is enabled.
-
-## Enabling DX12 Ray Tracing
-
-If you have a ray tracing capable GPU (RTX 2000 or newer, RX 6800 or newer)
-you might be able to tell Mesa and VKD3D that ray-tracing can be enabled by using the following launch arguments:
-
-`env RADV_PERFTEST=rt VKD3D_CONFIG=dxr VKD3D_FEATURE_LEVEL=12_2 %command%`
-
-If you have an older GPU you can try:
-
-`env RADV_PERFTEST=emulate_rt VKD3D_CONFIG=dxr VKD3D_FEATURE_LEVEL=12_2 %command%`
-
-This assumes you have a relatively recent VKD3D and Mesa installation,
-and the game has to support ray tracing in any capacity (i.e. World of Warcraft, Ratchet and Clank: Rift Apart)
 
 ## Games not capturing mouse cursor
 
@@ -409,7 +395,7 @@ If you do not see a black square but the web view is not accepting inputs, the b
 
 Locate both frames and approximate the button locations using the render frame on the black frame.
 
-### Hollow Knight: Silksong on Steam Deck
+### Hollow Knight: Silksong on Steam Deck / Hollow Knight: Silksong Controller Input
 
 Discovered by [navi@vlhl.dev](https://social.vlhl.dev/notice/AyGtMIGRViMhnSyhzE).
 
@@ -419,7 +405,7 @@ The input mapping that the SDL version Unity Linux uses has an oudated Steam Dec
 
 in the same terminal before running the game.
 
-**Note** This may no longer apply on Silksong Patch 4 (1.0.28954) as that updates the input controller.
+**Note** On Silksong Patch 4 onwards (1.0.28954) they have updated the input library to use the new Unity Input System [which has inconsistent support on Linux](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.17/manual/SupportedDevices.html). My general recommendation at this point is to force Proton if your controller does not work.
 
 ### FORSPOKEN
 
@@ -438,10 +424,19 @@ I have implemented a small(-ish) library that changes how the game behaves in th
 
 Paradoxically, the game runs better when it doesn't add hacks for Wine showing just how far Wine has come through Wine 9 and 10 onwards.
 
+#### FORSPOKEN Black Screen with SteamDeck=0
+
+Launch the game at least once with SteamDeck=1, then navigate to the compat folder for the game. (`SteamLibrary/steamapps/compatdata/1680880`)
+
+Navigate to the save folder of the game (`pfx/drive_c/users/steamuser/AppData/Local/FORSPOKEN/Steam/{your steam id}/savestorage/`).
+
+Copy system_steamdeck.save to system.save.
+
+I don't know why this fixes it, but it does. The game likely sets some flag that disables a component that freezes under Wine.
+
 #### FORSPOKEN Flickering aggressively
 
-This is due to the game having a broken FSR implementation that conflicts with DLSS.
-There's 2 ways to solve this.
+This is due to the game having a broken FSR implementation that conflicts with the game's DLSS implementation. There's 2 ways to solve this.
 
 Either you enable FSR 3.0 and enable Native AA (this can create visual artifacting) OR
 you install [DLSSG to FSR3](https://www.nexusmods.com/site/mods/738) ([github](https://github.com/Nukem9/dlssg-to-fsr3)).
@@ -454,6 +449,8 @@ but I believe it is purely the nvngx.dll that Nukem provides that fixes this.
 
 ## Changelog
 
+- *Update: 2025-12-09 - Update Silksong*
+- *Update: 2025-12-09 - Update FORSPOKEN*
 - *Update: 2025-10-21 - FORSPOKEN*
 - *Update: 2025-10-21 - Silksong Note*
 - *Update: 2025-09-16 - Silksong Steam Deck*
