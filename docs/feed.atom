@@ -3,7 +3,7 @@
   <title>np93's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2025-12-09T04:44:37.111746+00:00</updated>
+  <updated>2025-12-12T00:29:37.196815+00:00</updated>
   <author>
     <name>Neptuwunium</name>
   </author>
@@ -377,7 +377,8 @@ to the command options.
 
 If you load in to the game and the world geometry is missing/textures are horrid, it's likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD's proprietary drivers (i.e. `vk_pro shadps4`) resolves this.
 
-If you start the game to a black screen follow the steps [outlined in this github issue](https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148).
+If you start the game to a black screen follow the steps [outlined in this github issue](https://github.com/shadps4-emu56.6%
+﻿/shadPS4/issues/1409#issuecomment-2423382148).
 
 If you *still* get a black screen, delete the shadPS4 directory in .local/share/shadPS4 and **launch the Qt6 GUI and configure your settings and launch the game via the GUI**. (I have no idea why this works.)
 
@@ -447,8 +448,28 @@ You do not have to enable FSR or DLSS in this scenario, though I do not know if 
 I only tested this with the addition of [OptiScaler](https://github.com/TheRazerMD/OptiScaler) to go the route of DLSS -> FSR 3.1 -> FSR 4,
 but I believe it is purely the nvngx.dll that Nukem provides that fixes this.
 
+### Wild Assault Shows "EasyAntiCheat_Setup_x64.exe" command prompt and then exits
+
+**Use GE-Proton-10.25, Proton 10, or Proton Experimental**
+
+Run the following in a Wine cmd (via protontricks):
+
+```bash
+C:
+cd "Program Files (x86)\EasyAntiCheat_EOS"
+EasyAntiCheat_EOS.exe uninstall 22af04e0d5714084adfd927e1d44ac16
+S:
+cd "common\WildAssaultEA\EasyAntiCheat"
+installeac.exe
+```
+
+`22af04e0d5714084adfd927e1d44ac16` is the Product ID, if you can find this ID in the `EasyAntiCheat/Settings.json` file from the game directory.
+
+GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base will not launch. Unreal Engine never fully initializes, logs don't get written. Hopefully this is not a regression.
+
 ## Changelog
 
+- *Update: 2025-12-12 - Wild Assault*
 - *Update: 2025-12-09 - Update Silksong*
 - *Update: 2025-12-09 - Update FORSPOKEN*
 - *Update: 2025-10-21 - FORSPOKEN*

@@ -107,6 +107,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#forspoken-flickering-aggressively">FORSPOKEN Flickering aggressively</a></li>
 </ul>
 </li>
+<li><a href="#wild-assault-shows-easyanticheat_setup_x64exe-command-prompt-and-then-exits">Wild Assault Shows &ldquo;EasyAntiCheat_Setup_x64.exe&rdquo; command prompt and then exits</a></li>
 </ul>
 </li>
 <li><a href="#changelog">Changelog</a></li>
@@ -332,7 +333,8 @@ You must copy <strong>that entire directory</strong> to the prefix-appropriate u
 <p>to the command options.</p>
 <h3 id="bloodborne-via-shadps4-with-patches">Bloodborne (via shadPS4 with patches)</h3>
 <p>If you load in to the game and the world geometry is missing/textures are horrid, it&rsquo;s likely because the GPU drivers lack a certain extension set. In my experience running shadPS4 with AMD&rsquo;s proprietary drivers (i.e. <code>vk_pro shadps4</code>) resolves this.</p>
-<p>If you start the game to a black screen follow the steps <a href="https://github.com/shadps4-emu/shadPS4/issues/1409#issuecomment-2423382148">outlined in this github issue</a>.</p>
+<p>If you start the game to a black screen follow the steps <a href="https://github.com/shadps4-emu56.6%
+﻿/shadPS4/issues/1409#issuecomment-2423382148">outlined in this github issue</a>.</p>
 <p>If you <em>still</em> get a black screen, delete the shadPS4 directory in .local/share/shadPS4 and <strong>launch the Qt6 GUI and configure your settings and launch the game via the GUI</strong>. (I have no idea why this works.)</p>
 <h3 id="marvel-rivals">Marvel Rivals</h3>
 <p>As of Season 1 of Marvel Rivals (January 2024) the game skips the launcher and most modals if <code>SteamDeck=1</code> is passed as an launch argument. This may also resolve any startup crashes or weirdness.</p>
@@ -370,8 +372,22 @@ you install <a href="https://www.nexusmods.com/site/mods/738">DLSSG to FSR3</a> 
 You do not have to enable FSR or DLSS in this scenario, though I do not know if the game secretly enables DLSS or FSR in the background like it does with the SteamDeck.</p>
 <p>I only tested this with the addition of <a href="https://github.com/TheRazerMD/OptiScaler">OptiScaler</a> to go the route of DLSS -&gt; FSR 3.1 -&gt; FSR 4,
 but I believe it is purely the nvngx.dll that Nukem provides that fixes this.</p>
+<h3 id="wild-assault-shows-easyanticheat_setup_x64exe-command-prompt-and-then-exits">Wild Assault Shows &ldquo;EasyAntiCheat_Setup_x64.exe&rdquo; command prompt and then exits</h3>
+<p><strong>Use GE-Proton-10.25, Proton 10, or Proton Experimental</strong></p>
+<p>Run the following in a Wine cmd (via protontricks):</p>
+<div class="codehilite"><pre><span></span><code>C:
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;Program Files (x86)\EasyAntiCheat_EOS&quot;</span>
+EasyAntiCheat_EOS.exe<span class="w"> </span>uninstall<span class="w"> </span>22af04e0d5714084adfd927e1d44ac16
+S:
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;common\WildAssaultEA\EasyAntiCheat&quot;</span>
+installeac.exe
+</code></pre></div>
+
+<p><code>22af04e0d5714084adfd927e1d44ac16</code> is the Product ID, if you can find this ID in the <code>EasyAntiCheat/Settings.json</code> file from the game directory.</p>
+<p>GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base will not launch. Unreal Engine never fully initializes, logs don&rsquo;t get written. Hopefully this is not a regression.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2025-12-12 - Wild Assault</em></li>
 <li><em>Update: 2025-12-09 - Update Silksong</em></li>
 <li><em>Update: 2025-12-09 - Update FORSPOKEN</em></li>
 <li><em>Update: 2025-10-21 - FORSPOKEN</em></li>
