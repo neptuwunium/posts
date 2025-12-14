@@ -441,6 +441,8 @@ but I believe it is purely the nvngx.dll that Nukem provides that fixes this.
 
 **Use GE-Proton-10.25, Proton 10, or Proton Experimental**
 
+A valid audio device also has to be present.
+
 Run the following in a Wine cmd (via protontricks):
 
 ```bash
@@ -454,7 +456,7 @@ installeac.exe
 
 `22af04e0d5714084adfd927e1d44ac16` is the Product ID, if you can find this ID in the `EasyAntiCheat/Settings.json` file from the game directory.
 
-GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base will not launch. Unreal Engine never fully initializes, logs don't get written. Hopefully this is not a regression.
+GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base may not launch. Unreal Engine never fully initializes, logs don't get written. Hopefully this is not a regression.
 
 ## Changelog
 

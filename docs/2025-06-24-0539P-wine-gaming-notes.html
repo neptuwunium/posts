@@ -374,6 +374,7 @@ You do not have to enable FSR or DLSS in this scenario, though I do not know if 
 but I believe it is purely the nvngx.dll that Nukem provides that fixes this.</p>
 <h3 id="wild-assault-shows-easyanticheat_setup_x64exe-command-prompt-and-then-exits">Wild Assault Shows &ldquo;EasyAntiCheat_Setup_x64.exe&rdquo; command prompt and then exits</h3>
 <p><strong>Use GE-Proton-10.25, Proton 10, or Proton Experimental</strong></p>
+<p>A valid audio device also has to be present.</p>
 <p>Run the following in a Wine cmd (via protontricks):</p>
 <div class="codehilite"><pre><span></span><code>C:
 <span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;Program Files (x86)\EasyAntiCheat_EOS&quot;</span>
@@ -384,7 +385,7 @@ installeac.exe
 </code></pre></div>
 
 <p><code>22af04e0d5714084adfd927e1d44ac16</code> is the Product ID, if you can find this ID in the <code>EasyAntiCheat/Settings.json</code> file from the game directory.</p>
-<p>GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base will not launch. Unreal Engine never fully initializes, logs don&rsquo;t get written. Hopefully this is not a regression.</p>
+<p>GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base may not launch. Unreal Engine never fully initializes, logs don&rsquo;t get written. Hopefully this is not a regression.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li><em>Update: 2025-12-12 - Wild Assault</em></li>
