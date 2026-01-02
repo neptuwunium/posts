@@ -3,7 +3,7 @@
   <title>np93's blog</title>
   <link href="https://chronovore.dev/posts"/>
   <link rel="self" href="https://chronovore.dev/posts/feed.atom"/>
-  <updated>2025-12-14T04:09:02.354021+00:00</updated>
+  <updated>2026-01-02T06:32:25.892144+00:00</updated>
   <author>
     <name>Neptuwunium</name>
   </author>
@@ -850,7 +850,7 @@ Note that Oodle will still load version 3 and older files, which will start with
 
 ## OodleTexture
 
-Oodle Texture[^oodle-tex] is a Block Compression quantizer, with a special runtime for Block Compression 7[^bc7] since that does not compress well.
+Oodle Texture[^oodle-texture] is a Block Compression quantizer, with a special runtime for Block Compression 7[^bc7] since that does not compress well.
 
 Oodle Texture will start with the hex `BC 07 00 00` as it's version number, a flags integer and 10 block sizes integer
 

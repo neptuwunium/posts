@@ -1,3 +1,5 @@
 markdown
 python-markdown-math
 lxml
+beautifulsoup4
+libsass

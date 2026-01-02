@@ -215,7 +215,7 @@ Note that Oodle will still load version 3 and older files, which will start with
 
 ## OodleTexture
 
-Oodle Texture[^oodle-tex] is a Block Compression quantizer, with a special runtime for Block Compression 7[^bc7] since that does not compress well.
+Oodle Texture[^oodle-texture] is a Block Compression quantizer, with a special runtime for Block Compression 7[^bc7] since that does not compress well.
 
 Oodle Texture will start with the hex `BC 07 00 00` as it's version number, a flags integer and 10 block sizes integer
 
