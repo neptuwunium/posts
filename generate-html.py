@@ -32,11 +32,11 @@ def strip_html(html):
 
 
 BLOG_NAME = "np93's blog"
-BLOG_ROOT = "https://chronovore.dev/posts"
+BLOG_ROOT = "https://neptuwunium.space/posts"
 BLOG_WHOAMI = "Neptuwunium"
 BLOG_DESCRIPTION = "just a collection of thoughts~"
-BLOG_ID = "tag:chronovore.dev,posts:root"
-BLOG_POST_ID = "tag:chronovore.dev,posts:"
+BLOG_ID = "tag:neptuwunium.space,posts:root"
+BLOG_POST_ID = "tag:neptuwunium.space,posts:"
 
 atom_feed = [
     elem.title(BLOG_NAME),

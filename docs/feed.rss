@@ -2,19 +2,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>np93's blog</title>
-    <link>https://chronovore.dev/posts</link>
-    <atom:link rel="self" href="https://chronovore.dev/posts/feed.rss"/>
+    <link>https://neptuwunium.space/posts</link>
+    <atom:link rel="self" href="https://neptuwunium.space/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Fri, 02 Jan 2026 06:32:25 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 16:02:14 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
       <title>some notes about gaming via wine</title>
-      <link>https://chronovore.dev/posts/2025-06-24-0539P-wine-gaming-notes.html</link>
+      <link>https://neptuwunium.space/posts/2025-06-24-0539P-wine-gaming-notes.html</link>
       <pubDate>Fri, 21 Jun 2024 23:06:00 +0000</pubDate>
       <description>it has become quite a bit, huh?</description>
       <author>Neptuwunium</author>
-      <guid>tag:chronovore.dev,posts:2025-06-24-0539P-wine-gaming-notes</guid>
+      <guid>tag:neptuwunium.space,posts:2025-06-24-0539P-wine-gaming-notes</guid>
       <atom:content type="text/markdown"><![CDATA[I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
 
@@ -501,11 +501,11 @@ GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base may 
     </item>
     <item>
       <title>bitpacking cheat codes</title>
-      <link>https://chronovore.dev/posts/2024-09-27-1239A-bitpacking-cheat-codes.html</link>
+      <link>https://neptuwunium.space/posts/2024-09-27-1239A-bitpacking-cheat-codes.html</link>
       <pubDate>Thu, 26 Sep 2024 19:09:00 +0000</pubDate>
       <description>up up down down left right left right b a start</description>
       <author>Neptuwunium</author>
-      <guid>tag:chronovore.dev,posts:2024-09-27-1239A-bitpacking-cheat-codes</guid>
+      <guid>tag:neptuwunium.space,posts:2024-09-27-1239A-bitpacking-cheat-codes</guid>
       <atom:content type="text/markdown"><![CDATA[**Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
 
 A little while ago we were talking to someone about cheat-codes in old games 
@@ -634,11 +634,11 @@ In practice, a conventional controller will have about 16 states and a keyboard 
     </item>
     <item>
       <title>compression algorithms</title>
-      <link>https://chronovore.dev/posts/2023-01-25-1234P-compression-deepdive.html</link>
+      <link>https://neptuwunium.space/posts/2023-01-25-1234P-compression-deepdive.html</link>
       <pubDate>Wed, 25 Jan 2023 09:12:00 +0000</pubDate>
       <description>a deep dive into compression algorithms and how to notice them in hex</description>
       <author>Neptuwunium</author>
-      <guid>tag:chronovore.dev,posts:2023-01-25-1234P-compression-deepdive</guid>
+      <guid>tag:neptuwunium.space,posts:2023-01-25-1234P-compression-deepdive</guid>
       <atom:content type="text/markdown"><![CDATA[One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
 This is an interesting question, and I hope that this post will help you understand how I notice compression algorithms in hex.
 

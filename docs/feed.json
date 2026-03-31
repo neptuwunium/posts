@@ -2,8 +2,8 @@
   "version": "https://jsonfeed.org/version/1.1",
   "title": "np93's blog",
   "description": "just a collection of thoughts~",
-  "home_page_url": "https://chronovore.dev/posts",
-  "feed_url": "https://chronovore.dev/posts/feed.json",
+  "home_page_url": "https://neptuwunium.space/posts",
+  "feed_url": "https://neptuwunium.space/posts/feed.json",
   "authors": [
     {
       "name": "Neptuwunium"
@@ -14,8 +14,8 @@
   "items": [
     {
       "title": "some notes about gaming via wine",
-      "url": "https://chronovore.dev/posts/2025-06-24-0539P-wine-gaming-notes.html",
-      "id": "tag:chronovore.dev,posts:2025-06-24-0539P-wine-gaming-notes",
+      "url": "https://neptuwunium.space/posts/2025-06-24-0539P-wine-gaming-notes.html",
+      "id": "tag:neptuwunium.space,posts:2025-06-24-0539P-wine-gaming-notes",
       "summary": "it has become quite a bit, huh?",
       "date_published": "2024-06-21T23:06:00+00:00",
       "date_modified": "2025-09-16T18:05:00+00:00",
@@ -23,8 +23,8 @@
     },
     {
       "title": "bitpacking cheat codes",
-      "url": "https://chronovore.dev/posts/2024-09-27-1239A-bitpacking-cheat-codes.html",
-      "id": "tag:chronovore.dev,posts:2024-09-27-1239A-bitpacking-cheat-codes",
+      "url": "https://neptuwunium.space/posts/2024-09-27-1239A-bitpacking-cheat-codes.html",
+      "id": "tag:neptuwunium.space,posts:2024-09-27-1239A-bitpacking-cheat-codes",
       "summary": "up up down down left right left right b a start",
       "date_published": "2024-09-26T19:09:00+00:00",
       "date_modified": "2024-09-26T19:09:00+00:00",
@@ -32,8 +32,8 @@
     },
     {
       "title": "compression algorithms",
-      "url": "https://chronovore.dev/posts/2023-01-25-1234P-compression-deepdive.html",
-      "id": "tag:chronovore.dev,posts:2023-01-25-1234P-compression-deepdive",
+      "url": "https://neptuwunium.space/posts/2023-01-25-1234P-compression-deepdive.html",
+      "id": "tag:neptuwunium.space,posts:2023-01-25-1234P-compression-deepdive",
       "summary": "a deep dive into compression algorithms and how to notice them in hex",
       "date_published": "2023-01-25T09:12:00+00:00",
       "date_modified": "2025-04-09T13:09:00+00:00",
