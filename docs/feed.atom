@@ -3,7 +3,7 @@
   <title>np93's blog</title>
   <link href="https://neptuwunium.space/posts"/>
   <link rel="self" href="https://neptuwunium.space/posts/feed.atom"/>
-  <updated>2026-03-31T16:02:14.924553+00:00</updated>
+  <updated>2026-04-22T17:31:50.435004+00:00</updated>
   <author>
     <name>Neptuwunium</name>
   </author>
@@ -142,7 +142,7 @@ Note: I personally use these environment variables, as steam will not delete the
 ## Checking if EAC is linux-enabled
 
 Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
-This information is all logged in AppData, but the settings file exists in the game installation. 
+This information is all logged in AppData, but the settings file exists in the game installation.
 This is usually next to the installer (`EasyAntiCheat/Settings.json`, or next to the game executable but usually in the `EasyAntiCheat` directory inside of the game directory)
 
 We can use this to find out if EAC is enabled for a particular game.
@@ -274,7 +274,7 @@ Gamescope seems to ignore the `VK_DRIVER_FILES`, `VK_ICD_FILENAMES`, `VK_LOADER_
 
 Also applies to if Battle.net spams the "broken installation please restart" popup.
 
-This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted. 
+This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted.
 Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions, however Wine 10 does exhibit proper behavior.
 
 Try switching to Wine 10 or Proton 10 and restarting the process.
@@ -314,7 +314,7 @@ steamcmd.sh \
 	+app_update APP_ID_HERE \
 	+quit
 ```
-	
+
 or via wine:
 
 ```sh
@@ -327,7 +327,7 @@ wine64 steamcmd.exe \
 
 replacing `YOUR_USERNAME_HERE` with your steam username, and `APP_ID_HERE` with the steam app id of the game (the first number in the store page.).
 
-Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix. 
+Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix.
 
 ## Game-Specific Fixes
 
@@ -423,30 +423,43 @@ including but not limited to restricting the game to use only 6 threads, enforci
 There's also more wine-related "fixes" and "optimizations" that makes it hard to diagnose how to properly implement the fix on wine.
 I have implemented a small(-ish) library that changes how the game behaves in this regard and will update the blog when it's fit for public consumption.
 
-Paradoxically, the game runs better when it doesn't add hacks for Wine showing just how far Wine has come through Wine 9 and 10 onwards.
+Paradoxically, the game runs better when it doesn't add hacks for Wine showing just how far Wine has come through Wine 9 onwards.
 
 #### FORSPOKEN Black Screen with SteamDeck=0
 
-Launch the game at least once with SteamDeck=1, then navigate to the compat folder for the game. (`SteamLibrary/steamapps/compatdata/1680880`)
-
+Launch the game at least once with SteamDeck=1 until you are in the main menu.
+Then navigate to the compat folder for the game. (`SteamLibrary/steamapps/compatdata/1680880`)
 Navigate to the save folder of the game (`pfx/drive_c/users/steamuser/AppData/Local/FORSPOKEN/Steam/{your steam id}/savestorage/`).
 
-Copy system_steamdeck.save to system.save.
+Copy `system_steamdeck.save` to `system.save`.
 
 I don't know why this fixes it, but it does. The game likely sets some flag that disables a component that freezes under Wine.
 
 #### FORSPOKEN Flickering aggressively
 
-This is due to the game having a broken FSR implementation that conflicts with the game's DLSS implementation. There's 2 ways to solve this.
+This is due to the game having a broken FSR implementation that conflicts with the game's DLSS implementation.
 
-Either you enable FSR 3.0 and enable Native AA (this can create visual artifacting) OR
-you install [DLSSG to FSR3](https://www.nexusmods.com/site/mods/738) ([github](https://github.com/Nukem9/dlssg-to-fsr3)).
+The game always assumes you have frame generation enabled, which results in every other frame being black (causing the flicker.)
+To resolve this, enable frame generation which is enabled by default on SteamDeck mode.
 
-I know how this sounds, but the game apparently fixes itself when both FSR and DLSS are valid options.
-You do not have to enable FSR or DLSS in this scenario, though I do not know if the game secretly enables DLSS or FSR in the background like it does with the SteamDeck.
+On the plus side, you can enable FSR4.0 via [DLSSG to FSR3](https://www.nexusmods.com/site/mods/738)
+along with [OptiScaler](https://github.com/optiscaler/OptiScaler/releases/tag/v0.7.9) + [fakenvapi](https://github.com/optiscaler/fakenvapi/releases/tag/v1.4.0).
 
-I only tested this with the addition of [OptiScaler](https://github.com/TheRazerMD/OptiScaler) to go the route of DLSS -> FSR 3.1 -> FSR 4,
-but I believe it is purely the nvngx.dll that Nukem provides that fixes this.
+NOTE: This only works on OptiScaler 0.7.9. OptiScaler 0.9.0 does not work.
+
+Below is the changes to to my optiscaler config, which is also available [here](files/FORSPOKEN-OptiScaler.ini.patch) as a patch file.
+
+```diff
++Dx12Upscaler=fsr31
++FGType=optifg
+
+[OptiFG]
++Enabled=true
++AllowAsync=true
++HUDFix=true
+
++Fsr4Update=true
+```
 
 ### Wild Assault Shows "EasyAntiCheat_Setup_x64.exe" command prompt and then exits
 
@@ -471,6 +484,7 @@ GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base may 
 
 ## Changelog
 
+- *Update: 2026-04-22 - Update FORSPOKEN FG*
 - *Update: 2025-12-12 - Wild Assault*
 - *Update: 2025-12-09 - Update Silksong*
 - *Update: 2025-12-09 - Update FORSPOKEN*

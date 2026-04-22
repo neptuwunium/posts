@@ -194,7 +194,7 @@ wine<span class="w"> </span>nya.exe
 <p>Note: I personally use these environment variables, as steam will not delete these cache files which may slowly rot your storage medium with leftover cache files. Where these distinct directories can easily be cleaned.</p>
 <h2 id="checking-if-eac-is-linux-enabled">Checking if EAC is linux-enabled</h2>
 <p>Most EAC games ship with a Settings.json file, this tells the EAC runtime what deployment and product to use.
-This information is all logged in AppData, but the settings file exists in the game installation. 
+This information is all logged in AppData, but the settings file exists in the game installation.
 This is usually next to the installer (<code>EasyAntiCheat/Settings.json</code>, or next to the game executable but usually in the <code>EasyAntiCheat</code> directory inside of the game directory)</p>
 <p>We can use this to find out if EAC is enabled for a particular game.</p>
 <div class="codehilite"><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="se">\</span>
@@ -271,7 +271,7 @@ This makes Monado on Linux the only way to still use the device.</p>
 <h2 id="battlenet">Battle.net</h2>
 <h3 id="blzbntbna00000005-sleeping-battlenet-agent">BLZBNTBNA00000005 / Sleeping Battle.net Agent</h3>
 <p>Also applies to if Battle.net spams the &ldquo;broken installation please restart&rdquo; popup.</p>
-<p>This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted. 
+<p>This is due to a security change in Battle.net which verifies if the calling process is signed by Blizzard and trusted.
 Wine 9 and earlier seem to incorrectly implement the WinTrust/WinCrypt functions, however Wine 10 does exhibit proper behavior.</p>
 <p>Try switching to Wine 10 or Proton 10 and restarting the process.</p>
 <h2 id="steam">Steam</h2>
@@ -306,7 +306,7 @@ SteamCMD uses the same SteamClient APIs to download games, however because it is
 </code></pre></div>
 
 <p>replacing <code>YOUR_USERNAME_HERE</code> with your steam username, and <code>APP_ID_HERE</code> with the steam app id of the game (the first number in the store page.).</p>
-<p>Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix. </p>
+<p>Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix.</p>
 <h2 id="game-specific-fixes">Game-Specific Fixes</h2>
 <h3 id="monster-hunter-wilds">Monster Hunter Wilds</h3>
 <h4 id="monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</h4>
@@ -358,20 +358,32 @@ you can opt out of this by setting &ldquo;SteamDeck=0&rdquo; as an environment v
 including but not limited to restricting the game to use only 6 threads, enforcing VSync + 60 fps cap and mandating FSR + FSR FrameGen.</p>
 <p>There&rsquo;s also more wine-related &ldquo;fixes&rdquo; and &ldquo;optimizations&rdquo; that makes it hard to diagnose how to properly implement the fix on wine.
 I have implemented a small(-ish) library that changes how the game behaves in this regard and will update the blog when it&rsquo;s fit for public consumption.</p>
-<p>Paradoxically, the game runs better when it doesn&rsquo;t add hacks for Wine showing just how far Wine has come through Wine 9 and 10 onwards.</p>
+<p>Paradoxically, the game runs better when it doesn&rsquo;t add hacks for Wine showing just how far Wine has come through Wine 9 onwards.</p>
 <h4 id="forspoken-black-screen-with-steamdeck0">FORSPOKEN Black Screen with SteamDeck=0</h4>
-<p>Launch the game at least once with SteamDeck=1, then navigate to the compat folder for the game. (<code>SteamLibrary/steamapps/compatdata/1680880</code>)</p>
-<p>Navigate to the save folder of the game (<code>pfx/drive_c/users/steamuser/AppData/Local/FORSPOKEN/Steam/{your steam id}/savestorage/</code>).</p>
-<p>Copy system_steamdeck.save to system.save.</p>
+<p>Launch the game at least once with SteamDeck=1 until you are in the main menu.
+Then navigate to the compat folder for the game. (<code>SteamLibrary/steamapps/compatdata/1680880</code>)
+Navigate to the save folder of the game (<code>pfx/drive_c/users/steamuser/AppData/Local/FORSPOKEN/Steam/{your steam id}/savestorage/</code>).</p>
+<p>Copy <code>system_steamdeck.save</code> to <code>system.save</code>.</p>
 <p>I don&rsquo;t know why this fixes it, but it does. The game likely sets some flag that disables a component that freezes under Wine.</p>
 <h4 id="forspoken-flickering-aggressively">FORSPOKEN Flickering aggressively</h4>
-<p>This is due to the game having a broken FSR implementation that conflicts with the game&rsquo;s DLSS implementation. There&rsquo;s 2 ways to solve this.</p>
-<p>Either you enable FSR 3.0 and enable Native AA (this can create visual artifacting) OR
-you install <a href="https://www.nexusmods.com/site/mods/738">DLSSG to FSR3</a> (<a href="https://github.com/Nukem9/dlssg-to-fsr3">github</a>).</p>
-<p>I know how this sounds, but the game apparently fixes itself when both FSR and DLSS are valid options.
-You do not have to enable FSR or DLSS in this scenario, though I do not know if the game secretly enables DLSS or FSR in the background like it does with the SteamDeck.</p>
-<p>I only tested this with the addition of <a href="https://github.com/TheRazerMD/OptiScaler">OptiScaler</a> to go the route of DLSS -&gt; FSR 3.1 -&gt; FSR 4,
-but I believe it is purely the nvngx.dll that Nukem provides that fixes this.</p>
+<p>This is due to the game having a broken FSR implementation that conflicts with the game&rsquo;s DLSS implementation.</p>
+<p>The game always assumes you have frame generation enabled, which results in every other frame being black (causing the flicker.)
+To resolve this, enable frame generation which is enabled by default on SteamDeck mode.</p>
+<p>On the plus side, you can enable FSR4.0 via <a href="https://www.nexusmods.com/site/mods/738">DLSSG to FSR3</a>
+along with <a href="https://github.com/optiscaler/OptiScaler/releases/tag/v0.7.9">OptiScaler</a> + <a href="https://github.com/optiscaler/fakenvapi/releases/tag/v1.4.0">fakenvapi</a>.</p>
+<p>NOTE: This only works on OptiScaler 0.7.9. OptiScaler 0.9.0 does not work.</p>
+<p>Below is the changes to to my optiscaler config, which is also available <a href="files/FORSPOKEN-OptiScaler.ini.patch">here</a> as a patch file.</p>
+<div class="codehilite"><pre><span></span><code><span class="gi">+Dx12Upscaler=fsr31</span>
+<span class="gi">+FGType=optifg</span>
+
+[OptiFG]
+<span class="gi">+Enabled=true</span>
+<span class="gi">+AllowAsync=true</span>
+<span class="gi">+HUDFix=true</span>
+
+<span class="gi">+Fsr4Update=true</span>
+</code></pre></div>
+
 <h3 id="wild-assault-shows-easyanticheat_setup_x64exe-command-prompt-and-then-exits">Wild Assault Shows &ldquo;EasyAntiCheat_Setup_x64.exe&rdquo; command prompt and then exits</h3>
 <p><strong>Use GE-Proton-10.25, Proton 10, or Proton Experimental</strong></p>
 <p>A valid audio device also has to be present.</p>
@@ -388,6 +400,7 @@ installeac.exe
 <p>GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base may not launch. Unreal Engine never fully initializes, logs don&rsquo;t get written. Hopefully this is not a regression.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2026-04-22 - Update FORSPOKEN FG</em></li>
 <li><em>Update: 2025-12-12 - Wild Assault</em></li>
 <li><em>Update: 2025-12-09 - Update Silksong</em></li>
 <li><em>Update: 2025-12-09 - Update FORSPOKEN</em></li>

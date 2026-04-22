@@ -1,0 +1,53 @@
+--- a/OptiScaler.ini	2026-04-22 22:50:16.540799686 +0530
++++ b/OptiScaler.ini	2026-04-22 22:51:46.129374437 +0530
+@@ -7,7 +7,7 @@
+ 
+ ; Select upscaler for Dx12 games
+ ; xess, fsr21, fsr22, fsr31 (also for FSR4), dlss - Default (auto) is xess
+-Dx12Upscaler=auto
++Dx12Upscaler=fsr31
+ 
+ ; Select upscaler for Vulkan games
+ ; fsr21, fsr22, fsr31, xess, dlss - Default (auto) is fsr21
+@@ -22,7 +22,7 @@
+ ; optifg - requires amd_fidelityfx_dx12.dll
+ ; nukems - requires dlssg_to_fsr3_amd_is_better.dll, AMD/Intel GPU users need to add fakenvapi as well
+ ; nofg, optifg, nukems - Default (auto) is nofg
+-FGType=auto
++FGType=optifg
+ 
+ 
+ 
+@@ -31,7 +31,7 @@
+ ; -------------------------------------------------------
+ ; Enables FSR3.1 frame generation
+ ; true or false - Default (auto) is false
+-Enabled=auto
++Enabled=true
+ 
+ ; Enables FSR3.1 frame generation debug view
+ ; true or false - Default (auto) is false
+@@ -51,12 +51,12 @@
+ 
+ ; Enables async FSR3.1 frame generation 
+ ; true or false - Default (auto) is false
+-AllowAsync=auto
++AllowAsync=true
+ 
+ ; Enables HUD fix FSR3.1 frame generation 
+ ; Might cause crashes, specially with Async
+ ; true or false - Default (auto) is false
+-HUDFix=auto
++HUDFix=true
+ 
+ ; Delays HUDless image capture
+ ; Might cause crashes, specially if set too high!
+@@ -344,7 +344,7 @@
+ 
+ ; Enables updating of FSR3.X to FSR4
+ ; true or false - Default (auto) is depends on GPU
+-Fsr4Update=auto
++Fsr4Update=true
+ 
+ ; Select FSR4 model to use
+ ; 0 = model used for FSR AA/Quality, 5 = model used for FSR Ultra Performance
