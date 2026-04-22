@@ -3,7 +3,7 @@
   <title>np93's blog</title>
   <link href="https://neptuwunium.space/posts"/>
   <link rel="self" href="https://neptuwunium.space/posts/feed.atom"/>
-  <updated>2026-04-22T17:31:50.435004+00:00</updated>
+  <updated>2026-04-22T17:41:24.385485+00:00</updated>
   <author>
     <name>Neptuwunium</name>
   </author>
@@ -463,11 +463,9 @@ Below is the changes to to my optiscaler config, which is also available [here](
 
 ### Wild Assault Shows "EasyAntiCheat_Setup_x64.exe" command prompt and then exits
 
-**Use GE-Proton-10.25, Proton 10, or Proton Experimental**
+A valid audio device has to be present when starting the game.
 
-A valid audio device also has to be present.
-
-Run the following in a Wine cmd (via protontricks):
+Run the following in a Wine cmd (via `protontricks 2827230 wine cmd`):
 
 ```bash
 C:
@@ -480,10 +478,9 @@ installeac.exe
 
 `22af04e0d5714084adfd927e1d44ac16` is the Product ID, if you can find this ID in the `EasyAntiCheat/Settings.json` file from the game directory.
 
-GE-Proton-10.26 and any Proton-CachyOS version using a newer GE-Proton base may not launch. Unreal Engine never fully initializes, logs don't get written. Hopefully this is not a regression.
-
 ## Changelog
 
+- *Update: 2026-04-22 - Update Wild Assault*
 - *Update: 2026-04-22 - Update FORSPOKEN FG*
 - *Update: 2025-12-12 - Wild Assault*
 - *Update: 2025-12-09 - Update Silksong*
