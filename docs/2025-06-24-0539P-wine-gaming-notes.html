@@ -90,6 +90,7 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 <li><a href="#corrupt-download-error">Corrupt Download error</a></li>
 </ul>
 </li>
+<li><a href="#disabling-fsr4-on-rdna3">Disabling FSR4 on RDNA3</a></li>
 <li><a href="#game-specific-fixes">Game-Specific Fixes</a><ul>
 <li><a href="#monster-hunter-wilds">Monster Hunter Wilds</a><ul>
 <li><a href="#monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</a></li>
@@ -108,6 +109,8 @@ You need to not look far to find an ocean of reasons why Windows has been a bit 
 </ul>
 </li>
 <li><a href="#wild-assault-shows-easyanticheat_setup_x64exe-command-prompt-and-then-exits">Wild Assault Shows &ldquo;EasyAntiCheat_Setup_x64.exe&rdquo; command prompt and then exits</a></li>
+<li><a href="#force-enable-lumen-rt-on-unreal-engine-5">Force-Enable Lumen RT on Unreal Engine 5</a></li>
+<li><a href="#force-opengl-vulkan-d3d12-or-d3d11-on-unreal-engine-5-games">Force OpenGL, Vulkan, D3D12 or D3D11 on Unreal Engine 5 games</a></li>
 </ul>
 </li>
 <li><a href="#changelog">Changelog</a></li>
@@ -307,6 +310,12 @@ SteamCMD uses the same SteamClient APIs to download games, however because it is
 
 <p>replacing <code>YOUR_USERNAME_HERE</code> with your steam username, and <code>APP_ID_HERE</code> with the steam app id of the game (the first number in the store page.).</p>
 <p>Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix.</p>
+<h2 id="disabling-fsr4-on-rdna3">Disabling FSR4 on RDNA3</h2>
+<p>Certain games perform signfiicantly worse with FSR4 on RDNA3, you can disable it with:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">FSR4_UPGRADE</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">PROTON_FSR4_UPGRADE</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">PROTON_FSR4_RDNA3_UPGRADE</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>%command%
+</code></pre></div>
+
+<p>(<a href="https://www.reddit.com/r/linux_gaming/comments/1v69w73/how_can_i_downgrade_fsr4_to_fsr3_on_newest_proton/">source</a>)</p>
 <h2 id="game-specific-fixes">Game-Specific Fixes</h2>
 <h3 id="monster-hunter-wilds">Monster Hunter Wilds</h3>
 <h4 id="monster-hunter-world-save-bonuses">Monster Hunter World Save Bonuses</h4>
@@ -396,8 +405,111 @@ installeac.exe
 </code></pre></div>
 
 <p><code>22af04e0d5714084adfd927e1d44ac16</code> is the Product ID, if you can find this ID in the <code>EasyAntiCheat/Settings.json</code> file from the game directory.</p>
+<h3 id="force-enable-lumen-rt-on-unreal-engine-5">Force-Enable Lumen RT on Unreal Engine 5</h3>
+<p>Add this to your saved Engine.ini file (usually in <code>{prefix}/drive_c/users/{user}/AppData/Local/{game}/Saved/Config/Windows/Engine.ini</code>). Also applies to Windows (<code>%LOCALAPPDATA%/{game}/Saved/Config/Windows/Engine.ini</code>).</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[SystemSettings]</span>
+<span class="na">r.AmbientOcclusion.Compute</span><span class="o">=</span><span class="s">3</span>
+<span class="na">r.AmbientOcclusionLevels</span><span class="o">=</span><span class="s">2</span>
+<span class="na">r.AmbientOcclusionStaticFraction</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Bloom.AsyncCompute</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.ContactShadows.NonShadowCastingIntensity</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.DepthOfFieldQuality</span><span class="o">=</span><span class="s">3</span>
+<span class="na">r.DFDistanceScale</span><span class="o">=</span><span class="s">10</span>
+<span class="na">r.DFFullResolution</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.DFShadowAsyncCompute</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.DynamicGlobalIlluminationMethod</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Emitter.FastPoolEnable</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.EnableAsyncComputeTranslucencyLightingVolumeClear</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Filter.SizeScale</span><span class="o">=</span><span class="s">2</span>
+<span class="na">r.ForceHighestMipOnUITextures</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.GBufferFormat</span><span class="o">=</span><span class="s">5</span>
+<span class="na">r.GenerateMeshDistanceFields</span><span class="o">=</span><span class="s">True</span>
+<span class="na">r.LandscapeLOD0DistributionScale</span><span class="o">=</span><span class="s">4</span>
+<span class="na">r.LandscapeLODDistributionScale</span><span class="o">=</span><span class="s">4</span>
+<span class="na">r.LensFlareQuality</span><span class="o">=</span><span class="s">3</span>
+<span class="na">r.Lumen.DiffuseIndirect.Allow</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.DiffuseIndirect.AsyncCompute</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.DiffuseIndirect.SSAO</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.HardwareRayTracing</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.Reflections.Allow</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.Reflections.AsyncCompute</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.Reflections.HierarchicalScreenTraces.MaxIterations</span><span class="o">=</span><span class="s">12</span>
+<span class="na">r.Lumen.Reflections.HierarchicalScreenTraces.RelativeDepthThickness</span><span class="o">=</span><span class="s">0.07</span>
+<span class="na">r.Lumen.Reflections.MaxRayIntensity</span><span class="o">=</span><span class="s">10</span>
+<span class="na">r.Lumen.Reflections.MaxRoughnessToTrace</span><span class="o">=</span><span class="s">0.25</span>
+<span class="na">r.Lumen.Reflections.SmoothBias</span><span class="o">=</span><span class="s">100</span>
+<span class="na">r.Lumen.ScreenProbeGather.MaxRoughnessToEvaluateRoughSpecular</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.ScreenProbeGather.ScreenSpaceBentNormal</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Lumen.ScreenProbeGather.ScreenTraces.HZBTraversal</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.ScreenProbeGather.ScreenTraces</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Lumen.ScreenProbeGather.Temporal.MaxFramesAccumulated</span><span class="o">=</span><span class="s">32</span>
+<span class="na">r.Lumen.ScreenProbeGather.TemporalFilterProbes</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Lumen.ScreenProbeGather.TraceMeshSDFs</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Lumen.TraceDistanceScale</span><span class="o">=</span><span class="s">5</span>
+<span class="na">r.Lumen.TranslucencyReflections.FrontLayer.Enable</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.LumenScene.GlobalSDF.ClipmapExtent</span><span class="o">=</span><span class="s">25000</span>
+<span class="na">r.LumenScene.GlobalSDF.CoveredExpandSurfaceScale</span><span class="o">=</span><span class="s">0.1</span>
+<span class="na">r.LumenScene.GlobalSDF.NotCoveredExpandSurfaceScale</span><span class="o">=</span><span class="s">0.5</span>
+<span class="na">r.LumenScene.GlobalSDF.SimpleCoverageBasedExpand</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.LumenScene.Lighting.AsyncCompute</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.LumenScene.Radiosity.HemisphereProbeResolution</span><span class="o">=</span><span class="s">8</span>
+<span class="na">r.LumenScene.Radiosity.Temporal.MaxFramesAccumulated</span><span class="o">=</span><span class="s">10</span>
+<span class="na">r.MaxAnisotropy</span><span class="o">=</span><span class="s">16</span>
+<span class="na">r.MotionBlurQuality</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.PostProcessingColorFormat</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.ReflectionCapture.EnableLightFunctions</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.ReflectionMethod</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.RefractionQuality</span><span class="o">=</span><span class="s">3</span>
+<span class="na">r.RenderTargetPoolMin</span><span class="o">=</span><span class="s">1000</span>
+<span class="na">r.SceneColorFringe.Max</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.SceneColorFringeQuality</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Shadow.CSM.MaxCascades</span><span class="o">=</span><span class="s">10</span>
+<span class="na">r.Shadow.CSM.TransitionScale</span><span class="o">=</span><span class="s">2</span>
+<span class="na">r.Shadow.CSMShadowDistanceFadeoutMultiplier</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Shadow.DistanceScale</span><span class="o">=</span><span class="s">2</span>
+<span class="na">r.Shadow.FilterMethod</span><span class="o">=</span><span class="s">2</span>
+<span class="na">r.Shadow.MaxCSMResolution</span><span class="o">=</span><span class="s">8192</span>
+<span class="na">r.Shadow.MaxResolution</span><span class="o">=</span><span class="s">8192</span>
+<span class="na">r.Shadow.RadiusThreshold</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.SkeletalMeshLODBias</span><span class="o">=</span><span class="s">-1</span>
+<span class="na">r.SkyAtmosphereASyncCompute</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.SSR.MaxRoughness</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.SSR.Quality</span><span class="o">=</span><span class="s">3</span>
+<span class="na">r.SSR.Temporal</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.StaticMeshLODDistanceScale</span><span class="o">=</span><span class="s">0.1</span>
+<span class="na">r.Streaming.LimitPoolSizeToVRAM</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Streaming.PoolSize</span><span class="o">=</span><span class="s">-1</span>
+<span class="na">r.Tonemapper.Sharpen</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.TranslucencyVolumeBlur</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.TSR.AsyncCompute</span><span class="o">=</span><span class="s">3</span>
+<span class="na">r.ViewDistanceScale</span><span class="o">=</span><span class="s">5</span>
+<span class="na">r.Water.SingleLayer.DepthPrepass</span><span class="o">=</span><span class="s">1</span>
+<span class="na">sg.GlobalIlluminationQuality</span><span class="o">=</span><span class="s">3</span>
+<span class="na">sg.ReflectionQuality</span><span class="o">=</span><span class="s">3</span>
+<span class="na">sg.ShadowQuality</span><span class="o">=</span><span class="s">3</span>
+
+<span class="c1">; Quality = (4: Cinematic, 3: Epic, 2: High, 1: Medium, 0: Low) - Cinematic can crash games if the shader quality is not compiled</span>
+<span class="c1">; ReflectionMethod &amp; DynamicGlobalIlluminationMethod = (0: None, 1: Lumen, 2: ScreenSpace)</span>
+</code></pre></div>
+
+<p>You can also attempt to add:</p>
+<div class="codehilite"><pre><span></span><code><span class="na">r.Shadow.Virtual.Enable</span><span class="o">=</span><span class="s">1</span>
+<span class="na">r.Shadow.Virtual.UseFarShadowCulling</span><span class="o">=</span><span class="s">0</span>
+<span class="na">r.Shadow.Virtual.ForceOnlyVirtualShadowMaps</span><span class="o">=</span><span class="s">1</span>
+</code></pre></div>
+
+<p>This can end up crashing games if they have not enabled virtual textures engine-wide, and can crash regardless on VKD3D/DXVK (Linux.)</p>
+<h3 id="force-opengl-vulkan-d3d12-or-d3d11-on-unreal-engine-5-games">Force OpenGL, Vulkan, D3D12 or D3D11 on Unreal Engine 5 games</h3>
+<p>add</p>
+<div class="codehilite"><pre><span></span><code><span class="nf">%command</span><span class="o">%</span><span class="w"> </span><span class="o">-</span><span class="n">dx12</span>
+</code></pre></div>
+
+<p>to the launch arguments. <code>-dx11</code> or d3d11 or <code>-vulkan</code> for vulkan.</p>
+<p><strong>Note:</strong> The game must already have the target rendering host interface compiled, if it does not, it will just error on launch.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><em>Update: 2026-07-27 - Disable FSR4 on FSR3</em></li>
+<li><em>Update: 2026-07-27 - Unreal Tweaks</em></li>
 <li><em>Update: 2026-04-22 - Update Wild Assault</em></li>
 <li><em>Update: 2026-04-22 - Update FORSPOKEN FG</em></li>
 <li><em>Update: 2025-12-12 - Wild Assault</em></li>

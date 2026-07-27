@@ -5,7 +5,7 @@
     <link>https://neptuwunium.space/posts</link>
     <atom:link rel="self" href="https://neptuwunium.space/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Wed, 22 Apr 2026 17:41:24 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 07:15:23 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -328,6 +328,16 @@ replacing `YOUR_USERNAME_HERE` with your steam username, and `APP_ID_HERE` with 
 
 Note: if you use a different wine prefix, steamcmd must also run in the same prefix when via wine, or the path to force_install_dir in the native command should point to the correct prefix.
 
+## Disabling FSR4 on RDNA3
+
+Certain games perform signfiicantly worse with FSR4 on RDNA3, you can disable it with:
+
+```sh
+FSR4_UPGRADE=0 PROTON_FSR4_UPGRADE=0 PROTON_FSR4_RDNA3_UPGRADE=0 %command%
+```
+
+([source](https://www.reddit.com/r/linux_gaming/comments/1v69w73/how_can_i_downgrade_fsr4_to_fsr3_on_newest_proton/))
+
 ## Game-Specific Fixes
 
 ### Monster Hunter Wilds
@@ -477,8 +487,122 @@ installeac.exe
 
 `22af04e0d5714084adfd927e1d44ac16` is the Product ID, if you can find this ID in the `EasyAntiCheat/Settings.json` file from the game directory.
 
+### Force-Enable Lumen RT on Unreal Engine 5
+
+Add this to your saved Engine.ini file (usually in `{prefix}/drive_c/users/{user}/AppData/Local/{game}/Saved/Config/Windows/Engine.ini`). Also applies to Windows (`%LOCALAPPDATA%/{game}/Saved/Config/Windows/Engine.ini`).
+
+```ini
+[SystemSettings]
+r.AmbientOcclusion.Compute=3
+r.AmbientOcclusionLevels=2
+r.AmbientOcclusionStaticFraction=1
+r.Bloom.AsyncCompute=1
+r.ContactShadows.NonShadowCastingIntensity=1
+r.DepthOfFieldQuality=3
+r.DFDistanceScale=10
+r.DFFullResolution=1
+r.DFShadowAsyncCompute=1
+r.DynamicGlobalIlluminationMethod=1
+r.Emitter.FastPoolEnable=1
+r.EnableAsyncComputeTranslucencyLightingVolumeClear=1
+r.Filter.SizeScale=2
+r.ForceHighestMipOnUITextures=1
+r.GBufferFormat=5
+r.GenerateMeshDistanceFields=True
+r.LandscapeLOD0DistributionScale=4
+r.LandscapeLODDistributionScale=4
+r.LensFlareQuality=3
+r.Lumen.DiffuseIndirect.Allow=1
+r.Lumen.DiffuseIndirect.AsyncCompute=1
+r.Lumen.DiffuseIndirect.SSAO=1
+r.Lumen.HardwareRayTracing=1
+r.Lumen.Reflections.Allow=1
+r.Lumen.Reflections.AsyncCompute=1
+r.Lumen.Reflections.HierarchicalScreenTraces.MaxIterations=12
+r.Lumen.Reflections.HierarchicalScreenTraces.RelativeDepthThickness=0.07
+r.Lumen.Reflections.MaxRayIntensity=10
+r.Lumen.Reflections.MaxRoughnessToTrace=0.25
+r.Lumen.Reflections.SmoothBias=100
+r.Lumen.ScreenProbeGather.MaxRoughnessToEvaluateRoughSpecular=1
+r.Lumen.ScreenProbeGather.ScreenSpaceBentNormal=0
+r.Lumen.ScreenProbeGather.ScreenTraces.HZBTraversal=1
+r.Lumen.ScreenProbeGather.ScreenTraces=0
+r.Lumen.ScreenProbeGather.Temporal.MaxFramesAccumulated=32
+r.Lumen.ScreenProbeGather.TemporalFilterProbes=1
+r.Lumen.ScreenProbeGather.TraceMeshSDFs=0
+r.Lumen.TraceDistanceScale=5
+r.Lumen.TranslucencyReflections.FrontLayer.Enable=1
+r.LumenScene.GlobalSDF.ClipmapExtent=25000
+r.LumenScene.GlobalSDF.CoveredExpandSurfaceScale=0.1
+r.LumenScene.GlobalSDF.NotCoveredExpandSurfaceScale=0.5
+r.LumenScene.GlobalSDF.SimpleCoverageBasedExpand=1
+r.LumenScene.Lighting.AsyncCompute=1
+r.LumenScene.Radiosity.HemisphereProbeResolution=8
+r.LumenScene.Radiosity.Temporal.MaxFramesAccumulated=10
+r.MaxAnisotropy=16
+r.MotionBlurQuality=0
+r.PostProcessingColorFormat=1
+r.ReflectionCapture.EnableLightFunctions=1
+r.ReflectionMethod=1
+r.RefractionQuality=3
+r.RenderTargetPoolMin=1000
+r.SceneColorFringe.Max=0
+r.SceneColorFringeQuality=0
+r.Shadow.CSM.MaxCascades=10
+r.Shadow.CSM.TransitionScale=2
+r.Shadow.CSMShadowDistanceFadeoutMultiplier=0
+r.Shadow.DistanceScale=2
+r.Shadow.FilterMethod=2
+r.Shadow.MaxCSMResolution=8192
+r.Shadow.MaxResolution=8192
+r.Shadow.RadiusThreshold=0
+r.SkeletalMeshLODBias=-1
+r.SkyAtmosphereASyncCompute=1
+r.SSR.MaxRoughness=1
+r.SSR.Quality=3
+r.SSR.Temporal=1
+r.StaticMeshLODDistanceScale=0.1
+r.Streaming.LimitPoolSizeToVRAM=0
+r.Streaming.PoolSize=-1
+r.Tonemapper.Sharpen=1
+r.TranslucencyVolumeBlur=0
+r.TSR.AsyncCompute=3
+r.ViewDistanceScale=5
+r.Water.SingleLayer.DepthPrepass=1
+sg.GlobalIlluminationQuality=3
+sg.ReflectionQuality=3
+sg.ShadowQuality=3
+
+; Quality = (4: Cinematic, 3: Epic, 2: High, 1: Medium, 0: Low) - Cinematic can crash games if the shader quality is not compiled
+; ReflectionMethod & DynamicGlobalIlluminationMethod = (0: None, 1: Lumen, 2: ScreenSpace)
+```
+
+You can also attempt to add:
+
+```ini
+r.Shadow.Virtual.Enable=1
+r.Shadow.Virtual.UseFarShadowCulling=0
+r.Shadow.Virtual.ForceOnlyVirtualShadowMaps=1
+```
+
+This can end up crashing games if they have not enabled virtual textures engine-wide, and can crash regardless on VKD3D/DXVK (Linux.)
+
+### Force OpenGL, Vulkan, D3D12 or D3D11 on Unreal Engine 5 games
+
+add
+
+```
+%command% -dx12
+```
+
+to the launch arguments. `-dx11` or d3d11 or `-vulkan` for vulkan.
+
+**Note:** The game must already have the target rendering host interface compiled, if it does not, it will just error on launch.
+
 ## Changelog
 
+- *Update: 2026-07-27 - Disable FSR4 on FSR3*
+- *Update: 2026-07-27 - Unreal Tweaks*
 - *Update: 2026-04-22 - Update Wild Assault*
 - *Update: 2026-04-22 - Update FORSPOKEN FG*
 - *Update: 2025-12-12 - Wild Assault*
