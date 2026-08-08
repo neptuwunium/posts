@@ -28,7 +28,6 @@ SPDX-License-Identifier: EUPL-1.2
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
     <meta property="article:published_time" content="2023-07-28T03:55:00+00:00">
-    
 </head>
 
 <body>
@@ -68,8 +67,8 @@ SPDX-License-Identifier: EUPL-1.2
 <p>This essentially looks like fancy JSON with a schema attached to it.
 But it&rsquo;s not&hellip; That <code>@context</code> is important, and <strong>not</strong> set in stone.</p>
 <blockquote>
-<p>For extensions, JSON-LD is used as the primary mechanism for defining and disambiguating extensions. Implementations that wish to fully support extensions SHOULD use JSON-LD mechanisms. </p>
-<p>It is important to note that the JSON-LD Processing Algorithms, as currently defined, will silently ignore any property not defined in a JSON-LD @context. Implementations that publish Activity Streams 2.0 documents containing extension properties SHOULD provide a @context definition for all extensions<sup id="fnref:asextensibility"><a class="footnote-ref" href="#fn:asextensibility">3</a></sup>. </p>
+<p>For extensions, JSON-LD is used as the primary mechanism for defining and disambiguating extensions. Implementations that wish to fully support extensions SHOULD use JSON-LD mechanisms.</p>
+<p>It is important to note that the JSON-LD Processing Algorithms, as currently defined, will silently ignore any property not defined in a JSON-LD @context. Implementations that publish Activity Streams 2.0 documents containing extension properties SHOULD provide a @context definition for all extensions<sup id="fnref:asextensibility"><a class="footnote-ref" href="#fn:asextensibility">3</a></sup>.</p>
 </blockquote>
 <p>While Activity vocabulary is set in stone and should not and will not ever change,
 Extensions are not.</p>
@@ -107,11 +106,11 @@ Extensions are not.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Both <code>"foo"</code> and <code>"other_foo"</code> are <code>foo</code> terms. 
+<p>Both <code>"foo"</code> and <code>"other_foo"</code> are <code>foo</code> terms.
 They can swap, or even be a different term entierly. It&rsquo;s implementation-defined.
 This would still be a valid JSON-LD object and a valid Activity Object.</p>
 <p>Then, there&rsquo;s also the use of IRIs.</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="w">   </span>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="s2">&quot;https://www.w3.org/ns/activitystreams&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">{</span>
@@ -128,7 +127,7 @@ This would still be a valid JSON-LD object and a valid Activity Object.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>This one is more set-in-stone, however you should still verify that the namespace is actually what you expect. 
+<p>This one is more set-in-stone, however you should still verify that the namespace is actually what you expect.
 However now everyone is forced to use &ldquo;ex2:foo&rdquo; if we were to include this extension (much like we&rsquo;re currently forced to use the short IRI <code>"vcard:location"</code>)</p>
 <p>JSON-LD algorithms would transform all three objects, essentially into:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -152,13 +151,13 @@ However now everyone is forced to use &ldquo;ex2:foo&rdquo; if we were to includ
 
 <p>You would then just access it via either it&rsquo;s shortened IRI, or it&rsquo;s full URI&ndash; disambiguating the result.
 This is very important because as ActivityPub is getting more popular, and more third-party extensions are introduced by Litepub, Misskey, and others.</p>
-<p>I found this out when I was looking into adding <code>schema:license</code> and <code>schema:description</code> into ActivityStreams&rsquo; <code>Image</code> type. 
+<p>I found this out when I was looking into adding <code>schema:license</code> and <code>schema:description</code> into ActivityStreams&rsquo; <code>Image</code> type.
 To provide a means to define a copyright SPDX and/or author citation, while also allowing for descriptive text<sup id="fnref:ap-descriptive-text"><a class="footnote-ref" href="#fn:ap-descriptive-text">4</a></sup>.
 As it stands right now, i&rsquo;m using <code>schema:license</code> and <code>schema:description</code> directly into the object;
 now knowing that every implementation will have to blindly check that short IRI.</p>
 <p>The only social-network-style ActivityPub implementation that I&rsquo;ve found that implements proper JSON-LD parsing is GoToSocial,
 which very effectively utilizes Go&rsquo;s struct tags to map JSON-LD URIs to struct fields.</p>
-<p>I do understand that processing JSON-LD at all is way more computationally heavy than JSON by itself, 
+<p>I do understand that processing JSON-LD at all is way more computationally heavy than JSON by itself,
 but if you&rsquo;re going to introduce JSON-LD extension contexts <strong>please</strong> create a json-ld spec file<sup id="fnref:its-just-xml"><a class="footnote-ref" href="#fn:its-just-xml">5</a></sup>.</p>
 <p>You can federate anything over ActivityStreams, even new Activity types if you wanted&ndash; as long as you properly define them.
 Support for them in other platforms might not ever exist, though.</p>

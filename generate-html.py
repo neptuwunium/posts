@@ -173,13 +173,15 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
                         "date_modified": upd_date_iso,
                         "content_text": md_data_nohead,
                     })
-            
+
             headers = ''
             if 'headers' in meta:
                 for header_name in meta['headers']:
                     if not exists(f'headers/{header_name}.html'): continue
                     with open(f'headers/{header_name}.html', 'r', encoding='utf8') as header:
                         headers = f'{headers}{header.read()}'
+                if len(headers) > 0:
+                    header = '\n' + headers
 
             print(name)
             with open(f'docs/{folder}{name}.html', 'w', encoding='utf8') as html:

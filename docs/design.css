@@ -1,4 +1,4 @@
-/* 
+/*
 SPDX-FileCopyrightText: 2026 Neptuwunium
 
 SPDX-License-Identifier: EUPL-1.2
@@ -311,7 +311,7 @@ header figure br:last-child {
 		--footer: #999;
 		--bg-gradient: unset;
 	}
-	
+
 	header figure, header h1, .footnote-ref, .footnote li:target p, h1, h2, h3, h4, h5, h6, :not(pre) > code {
 		background: unset;
 		-webkit-background-clip: unset;
@@ -383,4 +383,35 @@ article.index > ol > li:nth-child(6n+6) a::selection {
 
 .footnote-backref {
 	-webkit-text-fill-color: black;
+}
+
+.language-bubble:first-child {
+	border-bottom-left-radius: 1em;
+	border-top-left-radius: 1em;
+	margin-left: 1pt;
+	border-left: 2px solid;
+}
+
+.language-bubble:last-child {
+	border-bottom-right-radius: 1em;
+	border-top-right-radius: 1em;
+	margin-right: 1pt;
+	border-right: 2px solid;
+}
+
+.language-bubble {
+	display: inline-block;
+	padding: 0 5pt;
+	margin: 1pt 0;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	color: white;
+}
+
+@media print {
+	.language-bubble {
+		border: 0 !important;
+		background: transparent !important;
+		color: black !important;
+	}
 }

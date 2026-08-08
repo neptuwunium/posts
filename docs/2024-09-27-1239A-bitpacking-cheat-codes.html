@@ -27,8 +27,7 @@ SPDX-License-Identifier: EUPL-1.2
     <meta property="og:url" content="https://neptuwunium.space/posts/2024-09-27-1239A-bitpacking-cheat-codes.html">
     <meta property="og:type" content="article">
     <meta property="og:author" content="Ada">
-    <meta property="article:published_time" content="2024-09-26T19:09:00+00:00">
-    <!--
+    <meta property="article:published_time" content="2024-09-26T19:09:00+00:00"><!--
 SPDX-FileCopyrightText: 2026 Neptuwunium
 
 SPDX-License-Identifier: EUPL-1.2
@@ -71,10 +70,10 @@ SPDX-License-Identifier: EUPL-1.2
 -->
 
 <p><strong>Note:</strong> This document has a lot of code snippets and may be unsuitable for screen readers.</p>
-<p>A little while ago we were talking to someone about cheat-codes in old games 
+<p>A little while ago we were talking to someone about cheat-codes in old games
 and how they&rsquo;re very often stored as numbers, but how would you implement something like that?</p>
 <p>In theory you need to figure out how many key states you need to track, because the &ldquo;up-up-down-down&rdquo; code is extremely iconic I&rsquo;ll be using that for this post but really anything can work.</p>
-<p>So the code goes something like <code>up up down down left right left right b a</code>. 
+<p>So the code goes something like <code>up up down down left right left right b a</code>.
 That&rsquo;s 6 states, let&rsquo;s add in a seventh for a reset state.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
 
@@ -166,7 +165,7 @@ We do this by shifting the bits to the right by <em>3</em> (since that&rsquo;s t
 
   <span class="c1"># the secret has been found!</span>
 
-  <span class="c1"># reset state so we can&#39;t accidentally trigger it again </span>
+  <span class="c1"># reset state so we can&#39;t accidentally trigger it again</span>
   <span class="n">egg_seq</span> <span class="o">=</span> <span class="mi">0</span>
 
   <span class="c1"># better trigger it :)</span>
@@ -174,11 +173,11 @@ We do this by shifting the bits to the right by <em>3</em> (since that&rsquo;s t
 </code></pre></div>
 
 <p>And that&rsquo;s all there&rsquo;s to it. Just a little bit (heh) of bit manipulation and bit packing.</p>
-<p>This has a lot of advantages, such as: </p>
+<p>This has a lot of advantages, such as:</p>
 <ul>
 <li>Only really using 4 (or 8) bytes of memory</li>
 <li>Doesn&rsquo;t use recursion or any loops.</li>
-<li>We aren&rsquo;t pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function. </li>
+<li>We aren&rsquo;t pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function.</li>
 <li>A little harder to notice if somene is hunting through game source code for debug or cheat input sequences</li>
 </ul>
 <p>In practice, a conventional controller will have about 16 states and a keyboard will have on average 105 states. This means a code can reasonably be 4 keyboard inputs long in a 32-bit number, or 8 controller inputs. However, in the year 2024 we can safely use 64-bit, which expectedly double the storage space compared to 32-bit. We&rsquo;re also only using basic bit manipulation, so we could use SIMD and expand this to 128-bits and 256-bits of storage (18/36 states for keyboard, 32/64 for controller). 256-bit numbers will work on x86-64 computers released in the last decade, assuming they have the AVX2 instruction set available.</p>

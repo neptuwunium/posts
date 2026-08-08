@@ -12,12 +12,12 @@ SPDX-License-Identifier: EUPL-1.2
 
 **Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
 
-A little while ago we were talking to someone about cheat-codes in old games 
+A little while ago we were talking to someone about cheat-codes in old games
 and how they're very often stored as numbers, but how would you implement something like that?
 
 In theory you need to figure out how many key states you need to track, because the "up-up-down-down" code is extremely iconic I'll be using that for this post but really anything can work.
 
-So the code goes something like `up up down down left right left right b a`. 
+So the code goes something like `up up down down left right left right b a`.
 That's 6 states, let's add in a seventh for a reset state.
 
 ```py
@@ -115,10 +115,10 @@ def handle_egg_button_press(state):
   # if the last 30 bits do not match to our pre-calculated value, return early.
   if (egg_seq & 0x3fffffff) != 0x96e28ae:
     return
-  
+
   # the secret has been found!
 
-  # reset state so we can't accidentally trigger it again 
+  # reset state so we can't accidentally trigger it again
   egg_seq = 0
 
   # better trigger it :)
@@ -127,11 +127,11 @@ def handle_egg_button_press(state):
 
 And that's all there's to it. Just a little bit (heh) of bit manipulation and bit packing.
 
-This has a lot of advantages, such as: 
+This has a lot of advantages, such as:
 
 - Only really using 4 (or 8) bytes of memory
 - Doesn't use recursion or any loops.
-- We aren't pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function. 
+- We aren't pre-emptively checking if the input state is correct for this code, we simply only care for the correct sequence. This means we can check multiple cheat sequences in the same function.
 - A little harder to notice if somene is hunting through game source code for debug or cheat input sequences
 
 In practice, a conventional controller will have about 16 states and a keyboard will have on average 105 states. This means a code can reasonably be 4 keyboard inputs long in a 32-bit number, or 8 controller inputs. However, in the year 2024 we can safely use 64-bit, which expectedly double the storage space compared to 32-bit. We're also only using basic bit manipulation, so we could use SIMD and expand this to 128-bits and 256-bits of storage (18/36 states for keyboard, 32/64 for controller). 256-bit numbers will work on x86-64 computers released in the last decade, assuming they have the AVX2 instruction set available.

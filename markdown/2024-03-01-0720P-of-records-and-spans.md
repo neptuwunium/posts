@@ -126,7 +126,7 @@ public class MeowAction {
     public float Volume { get; set; }
     public Subject MeowedAt { get; set; }
     public DateTimeOffset MeowedAtTime { get; set; } = DateTimeOffset.UtcNow;
-   
+
     public MeowAction(float vol, Subject subject) {
         Volume = vol;
         MeowedAt = subject;
