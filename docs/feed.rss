@@ -5,7 +5,7 @@
     <link>https://neptuwunium.space/posts</link>
     <atom:link rel="self" href="https://neptuwunium.space/posts/feed.rss"/>
     <description>just a collection of thoughts~</description>
-    <lastBuildDate>Mon, 27 Jul 2026 07:15:23 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Aug 2026 08:20:06 +0000</lastBuildDate>
     <generator>pumpkin</generator>
     <language>en</language>
     <item>
@@ -15,7 +15,13 @@
       <description>it has become quite a bit, huh?</description>
       <author>Neptuwunium</author>
       <guid>tag:neptuwunium.space,posts:2025-06-24-0539P-wine-gaming-notes</guid>
-      <atom:content type="text/markdown"><![CDATA[I recently migrated to using Linux full time.
+      <atom:content type="text/markdown"><![CDATA[<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
 
 This post mainly serves as a logbook for fixes and workarounds for making games (and some applications) work on Linux (and sometimes macOS.)
@@ -451,23 +457,10 @@ This is due to the game having a broken FSR implementation that conflicts with t
 The game always assumes you have frame generation enabled, which results in every other frame being black (causing the flicker.)
 To resolve this, enable frame generation which is enabled by default on SteamDeck mode.
 
-On the plus side, you can enable FSR4.0 via [DLSSG to FSR3](https://www.nexusmods.com/site/mods/738)
-along with [OptiScaler](https://github.com/optiscaler/OptiScaler/releases/tag/v0.7.9) + [fakenvapi](https://github.com/optiscaler/fakenvapi/releases/tag/v1.4.0).
+On the plus side, you can enable FSR4 with OptiScaler via proton-cachyos with this command:
 
-NOTE: This only works on OptiScaler 0.7.9. OptiScaler 0.9.0 does not work.
-
-Below is the changes to to my optiscaler config, which is also available [here](files/FORSPOKEN-OptiScaler.ini.patch) as a patch file.
-
-```diff
-+Dx12Upscaler=fsr31
-+FGType=optifg
-
-[OptiFG]
-+Enabled=true
-+AllowAsync=true
-+HUDFix=true
-
-+Fsr4Update=true
+```
+env SteamDeck=0 PROTON_USE_OPTISCALER=1 PROTON_ENABLE_NVAPI=1 PROTON_FSR4_UPGRADE="4.1.1" FSR4_UPGRADE=1 FSR4_WATERMARK=0 PROTON_FSR4_INDICATOR=0 MLFG_UPGRADE=1 DXIL_SPIRV_CONFIG=wmma_rdna3_workaround %command%
 ```
 
 ### Wild Assault Shows "EasyAntiCheat_Setup_x64.exe" command prompt and then exits
@@ -601,6 +594,7 @@ to the launch arguments. `-dx11` or d3d11 or `-vulkan` for vulkan.
 
 ## Changelog
 
+- *Update: 2026-08-08 - Update FORSPOKEN FG*
 - *Update: 2026-07-27 - Disable FSR4 on FSR3*
 - *Update: 2026-07-27 - Unreal Tweaks*
 - *Update: 2026-04-22 - Update Wild Assault*
@@ -641,7 +635,13 @@ to the launch arguments. `-dx11` or d3d11 or `-vulkan` for vulkan.
       <description>up up down down left right left right b a start</description>
       <author>Neptuwunium</author>
       <guid>tag:neptuwunium.space,posts:2024-09-27-1239A-bitpacking-cheat-codes</guid>
-      <atom:content type="text/markdown"><![CDATA[**Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
+      <atom:content type="text/markdown"><![CDATA[<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+**Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
 
 A little while ago we were talking to someone about cheat-codes in old games 
 and how they're very often stored as numbers, but how would you implement something like that?
@@ -774,7 +774,13 @@ In practice, a conventional controller will have about 16 states and a keyboard 
       <description>a deep dive into compression algorithms and how to notice them in hex</description>
       <author>Neptuwunium</author>
       <guid>tag:neptuwunium.space,posts:2023-01-25-1234P-compression-deepdive</guid>
-      <atom:content type="text/markdown"><![CDATA[One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
+      <atom:content type="text/markdown"><![CDATA[<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
 This is an interesting question, and I hope that this post will help you understand how I notice compression algorithms in hex.
 
 I will not be going over the fundamentals of compression algorithms or go into detail about how they work.

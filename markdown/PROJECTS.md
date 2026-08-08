@@ -1,16 +1,32 @@
 ---
+# SPDX-FileCopyrightText: 2026 Neptuwunium
+#
+# SPDX-License-Identifier: EUPL-1.2
+
 title: PROJECTS
-short: <span class="emoji">🥴</span>
-date: 2025-09-16 11:54 AM
+short: <span class="emoji">🫪</span>
+date: 1846-09-23 11:54 AM
 private: true
 ---
 
-## Projects
+Projects in development, on ice and considered complete.
+
+## In Development
+
+## On Ice
+
+- Myna: !Languages: C#|C++ Encryption and Hashing Algorithms
+
+## Complete-ish
 
 - Convallaria: C# Lua 5.4 Bytecode Interpreter
-- Formet: C# Python Unpickler
 - Knit: C# Granny3D 2 Decoder
-- Myna: Swift/C#/Rust Encryption and Hashing Algorithms
+
+## Annex A: Gamedev
+
+## Projects
+
+- Formet: C# Python Unpickler
 - Pepper: C# Wwise WEM/BNK Decoder
 - Salt: C# FMOD FEV Decoder
 - Titania: C Dualsense/Access Library

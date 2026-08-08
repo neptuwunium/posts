@@ -1,3 +1,9 @@
+/* 
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+*/
+
 @media (prefers-color-scheme: light), print {
     pre { line-height: 125%; }
     td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }

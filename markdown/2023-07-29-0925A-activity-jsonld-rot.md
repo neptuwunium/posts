@@ -4,6 +4,11 @@ short: it's not just fancy json.
 date: 2023-07-28 9:25 AM
 unlist: 1
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
 
 ActivityStreams is a subset of JSON-LD, specifically the compacted form.
 

@@ -4,6 +4,11 @@ short: a deep dive into compression algorithms and how to notice them in hex
 date: 2023-01-25 2:42 PM
 updated: 2025-04-09 6:39 PM
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
 
 One of the things that my programmer friends often ask me about is how I can tell what kind of compression algorithm is used by a file.
 This is an interesting question, and I hope that this post will help you understand how I notice compression algorithms in hex.

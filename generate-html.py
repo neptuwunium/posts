@@ -1,16 +1,37 @@
-from markdown import Markdown
-from markdown.extensions.codehilite import CodeHiliteExtension
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "markdown",
+#   "python-markdown-math",
+#   "lxml",
+#   "beautifulsoup4",
+#   "libsass"
+# ]
+# ///
+#
+# SPDX-FileCopyrightText: 2026 Neptuwunium
+#
+# SPDX-License-Identifier: EUPL-1.2
+
 from glob import glob
-from datetime import datetime, timezone
-from os.path import basename, splitext, exists
+from io import StringIO
 from json import dumps as json_serialize
-from lxml.etree import CDATA, tostring as xml_serialize
+from os.path import basename, splitext, exists
+
 from lxml import etree
 from lxml.builder import ElementMaker, E as elem
-from email.utils import format_datetime
-from io import StringIO
+from lxml.etree import CDATA, tostring as xml_serialize
 from html.parser import HTMLParser
+import xml.etree.ElementTree as ET
 
+from markdown import Markdown
+from markdown.extensions.codehilite import CodeHiliteExtension
+
+from email.utils import format_datetime
+from datetime import datetime, timezone
+
+from langbubble import LanguageBubbleExtension
 
 class MLStripper(HTMLParser):
     def __init__(self):
@@ -84,7 +105,7 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
     index_lines = ''
     for md_file in reversed(sorted(glob('markdown/*.md'))):
         with open(md_file, 'r', encoding='utf8') as md:
-            markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition', 'mdx_math'])
+            markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition', 'mdx_math', 'langbubble'])
             md_data = md.read().strip()
             text = markdown.convert(md_data)
             meta = markdown.Meta

@@ -4,6 +4,11 @@ short: up up down down left right left right b a start
 date: 2024-09-27 12:39 AM
 headers: math
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
 
 **Note:** This document has a lot of code snippets and may be unsuitable for screen readers.
 

@@ -4,6 +4,11 @@ short: this is just me rambling about a csharp feature
 date: 2024-03-01 07:20 PM
 unlist: 1
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
 
 This post is mostly just me speaking fondly of Spans and Records
 with no real technical information besides how cool they are and their use cases.

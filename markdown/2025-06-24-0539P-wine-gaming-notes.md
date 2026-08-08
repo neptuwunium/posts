@@ -4,6 +4,11 @@ short: it has become quite a bit, huh?
 date: 2024-06-22 4:36 AM
 updated: 2025-09-16 11:35 PM
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Neptuwunium
+
+SPDX-License-Identifier: EUPL-1.2
+-->
 
 I recently migrated to using Linux full time.
 You need to not look far to find an ocean of reasons why Windows has been a bit miserable.
@@ -441,23 +446,10 @@ This is due to the game having a broken FSR implementation that conflicts with t
 The game always assumes you have frame generation enabled, which results in every other frame being black (causing the flicker.)
 To resolve this, enable frame generation which is enabled by default on SteamDeck mode.
 
-On the plus side, you can enable FSR4.0 via [DLSSG to FSR3](https://www.nexusmods.com/site/mods/738)
-along with [OptiScaler](https://github.com/optiscaler/OptiScaler/releases/tag/v0.7.9) + [fakenvapi](https://github.com/optiscaler/fakenvapi/releases/tag/v1.4.0).
+On the plus side, you can enable FSR4 with OptiScaler via proton-cachyos with this command:
 
-NOTE: This only works on OptiScaler 0.7.9. OptiScaler 0.9.0 does not work.
-
-Below is the changes to to my optiscaler config, which is also available [here](files/FORSPOKEN-OptiScaler.ini.patch) as a patch file.
-
-```diff
-+Dx12Upscaler=fsr31
-+FGType=optifg
-
-[OptiFG]
-+Enabled=true
-+AllowAsync=true
-+HUDFix=true
-
-+Fsr4Update=true
+```
+env SteamDeck=0 PROTON_USE_OPTISCALER=1 PROTON_ENABLE_NVAPI=1 PROTON_FSR4_UPGRADE="4.1.1" FSR4_UPGRADE=1 FSR4_WATERMARK=0 PROTON_FSR4_INDICATOR=0 MLFG_UPGRADE=1 DXIL_SPIRV_CONFIG=wmma_rdna3_workaround %command%
 ```
 
 ### Wild Assault Shows "EasyAntiCheat_Setup_x64.exe" command prompt and then exits
@@ -591,6 +583,7 @@ to the launch arguments. `-dx11` or d3d11 or `-vulkan` for vulkan.
 
 ## Changelog
 
+- *Update: 2026-08-08 - Update FORSPOKEN FG*
 - *Update: 2026-07-27 - Disable FSR4 on FSR3*
 - *Update: 2026-07-27 - Unreal Tweaks*
 - *Update: 2026-04-22 - Update Wild Assault*
