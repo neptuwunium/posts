@@ -21,7 +21,7 @@ Projects I intend to work on within the next year.
 - !Languages: Rust|C# **Akizuki**: World of Warships (BigWorld) Asset Uncooker
 - !Languages: C# **Alfiq**: Elder Scrolls Online (HeroEngine) Asset Uncooker
 - !Languages: C# **Jackdaw**: EVE Online (Carbon) Asset Uncooker
-- !Languages: C# **Rivet**: Ratchet & Clank: Rift Apart (Insomniac Luna Engine) Asset Uncooker
+- !Languages: C#|C++ **Rivet**: Ratchet & Clank: Rift Apart (Insomniac Luna Engine) Asset Uncooker
 - !Languages: C# **Varang**: Avatar: Frontiers of Pandora (Snowdrop) Asset Uncooker
 - !Languages: C# **Feldspar**: Generic KTGL2 (Katana Engine) Asset Uncooker
 - !Languages: C# **Cuddlebun**: Generic Unreal Engine Asset Uncooker
