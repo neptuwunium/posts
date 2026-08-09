@@ -385,21 +385,21 @@ article.index > ol > li:nth-child(6n+6) a::selection {
 	-webkit-text-fill-color: black;
 }
 
-.language-bubble:first-child {
+.language.bubble:first-child {
 	border-bottom-left-radius: 1em;
 	border-top-left-radius: 1em;
 	margin-left: 1pt;
 	border-left: 2px solid;
 }
 
-.language-bubble:last-child {
+.language.bubble:last-child {
 	border-bottom-right-radius: 1em;
 	border-top-right-radius: 1em;
 	margin-right: 1pt;
 	border-right: 2px solid;
 }
 
-.language-bubble {
+.bubble {
 	display: inline-block;
 	padding: 0 5pt;
 	margin: 1pt 0;
@@ -408,8 +408,16 @@ article.index > ol > li:nth-child(6n+6) a::selection {
 	color: white;
 }
 
+.tier.bubble {
+	border-radius: 1em;
+	margin: 0 1pt;
+	border: 2px solid;
+	width: 80px;
+	text-align: center;
+}
+
 @media print {
-	.language-bubble {
+	.bubble {
 		border: 0 !important;
 		background: transparent !important;
 		color: black !important;

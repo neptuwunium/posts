@@ -32,6 +32,7 @@ from email.utils import format_datetime
 from datetime import datetime, timezone
 
 from langbubble import LanguageBubbleExtension
+from tierbubble import TierBubbleExtension
 
 class MLStripper(HTMLParser):
     def __init__(self):
@@ -105,7 +106,7 @@ with open('docs/index.html', 'w', encoding='utf8') as index:
     index_lines = ''
     for md_file in reversed(sorted(glob('markdown/*.md'))):
         with open(md_file, 'r', encoding='utf8') as md:
-            markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition', 'mdx_math', 'langbubble'])
+            markdown = Markdown(extensions=['meta', 'tables', 'smarty', 'fenced_code', 'codehilite', 'footnotes', 'toc', 'admonition', 'mdx_math', 'langbubble', 'tierbubble'])
             md_data = md.read().strip()
             text = markdown.convert(md_data)
             meta = markdown.Meta
