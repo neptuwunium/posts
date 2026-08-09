@@ -16,7 +16,7 @@ SPDX-License-Identifier: EUPL-1.2
 Projects I intend to work on within the next year.
 
 - !Tier 5 !Languages: C++ **[Rocket](https://codeberg.org/neptuwunium/Rocket)**: Guardians of the Galaxy (Dawn) Asset Uncooker
-- !Tier 5 !Languages: C# **Dragapult**: Sword/Shield Asset Uncooker
+- !Tier 5 !Languages: C++ **Dragapult**: Sword/Shield Asset Uncooker
 - !Tier 4 !Languages: C# **[Neptune](https://codeberg.org/neptuwunium/neptune)**: 3D, Imaging and Utility Library
 - !Tier 4 !Languages: C++ **[Neptune++](https://codeberg.org/neptuwunium/neptunexx)**: Neptune but C++
 - !Tier 4 !Languages: C# **[Varang](https://codeberg.org/neptuwunium/Varang)**: Avatar: Frontiers of Pandora (Snowdrop) Asset Uncooker
