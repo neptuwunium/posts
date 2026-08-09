@@ -3,6 +3,7 @@ title: PROJECTS
 short: <span class="emoji">🫪</span>
 date: 1846-09-23 11:54 AM
 private: true
+headers: no-list
 ---
 <!--
 SPDX-FileCopyrightText: 2026 Neptuwunium
