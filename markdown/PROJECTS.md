@@ -11,7 +11,7 @@ SPDX-FileCopyrightText: 2026 Neptuwunium
 SPDX-License-Identifier: EUPL-1.2
 -->
 
-## Permenant
+## Permanent
 
 Projects I will always work on throughout time
 
