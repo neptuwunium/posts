@@ -2,7 +2,7 @@
 title: some notes about gaming via wine
 short: it has become quite a bit, huh?
 date: 2024-06-22 4:36 AM
-updated: 2025-09-16 11:35 PM
+updated: 2026-08-08 7:15 AM
 ---
 <!--
 SPDX-FileCopyrightText: 2026 Neptuwunium
