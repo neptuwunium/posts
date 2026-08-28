@@ -63,6 +63,7 @@ Projects I intend to one day come back to, but not sure when.
 - !Languages: C++ **Terminid**: Helldivers 2 (Stringray) Asset Uncooker
 - !Languages: C# **Nuzzlebun**: Generic Lumberyard Asset Uncooker
 - !Languages: C# **Hugglebun**: Generic Godot Asset Uncooker
+- !Languages: C++ **ImHex PatCove**: ImHex Pattern -> Language CodeGen
 
 ## Complete-ish
 
