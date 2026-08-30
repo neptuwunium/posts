@@ -28,7 +28,7 @@ Projects I intend to work on within the next year. Max 2 per interest tier.
 - !Tier 5 !Languages: C++ **[Rocket](https://codeberg.org/neptuwunium/Rocket)**: Guardians of the Galaxy (Dawn) Asset Uncooker
 - !Tier 5 !Languages: C++ **Dragapult**: Sword/Shield Asset Uncooker
 - !Tier 4 !Languages: C# **[Varang](https://codeberg.org/neptuwunium/Varang)**: Avatar: Frontiers of Pandora (Snowdrop) Asset Uncooker (C++ Rewrite Pending)
-- !Tier 4 !Languages: C# **[Dotoxin](https://codeberg.org/neptuwunium/Dotoxin)**: Unofficial GCloud Client
+- !Tier 4 !Languages: C# **[Lilith](https://codeberg.org/neptuwunium/Lilith)**: Diablo 4 Asset Uncooker (C++ Rewrite Pending)
 - !Tier 3 !Languages: C# **[Cuddlebun](https://codeberg.org/neptuwunium/Cuddlebun)**: Generic Unreal Engine Asset Uncooker
 - !Tier 3 !Languages: Python|Blender **[io_import_kbld](https://codeberg.org/neptuwunium/io_import_kbld)**: KoboldGL .kbld Mercury Importer
 - !Tier 2 !Languages: C# **[Snugglebun](https://codeberg.org/neptuwunium/Snugglebun)**: Generic Unity Engine Asset Uncooker
@@ -44,7 +44,6 @@ Projects that are going to be promoted into Development once there's more space.
 - !Tier 3 !Languages: C# **[Feldspar](https://codeberg.org/neptuwunium/Feldspar)**: Generic KTGL2 (Katana Engine) Asset Uncooker
 - !Tier 2 !Languages: C++ **[RivetHook](https://codeberg.org/neptuwunium/rivet_hook)**: Ratchet & Clank: Rift Apart Mod Loader / Overlay
 - !Tier 2 !Languages: C# **[Alfiq](https://codeberg.org/neptuwunium/Alfiq)**: Elder Scrolls Online (HeroEngine) Asset Uncooker (C++ Rewrite Pending)
-- !Tier 1 !Languages: C# **[Lilith](https://codeberg.org/neptuwunium/Lilith)**: Diablo 4 Asset Uncooker (C++ Rewrite Pending)
 - !Tier 1 !Languages: C#|C++ **Myna**: Encryption and Hashing Algorithms
 
 ## On Ice
@@ -83,6 +82,7 @@ Projects that are essentially complete and in maintenance mode.
 - !Languages: C# **[Ulysses](https://codeberg.org/neptuwunium/Ulysses)**: ACE COMBAT INFINITY Asset Uncooker
 - !Languages: C# **[wheat](https://codeberg.org/neptuwunium/wheat)**: World of Tanks: HEAT (BroEngine) Asset Unpacker
 - !Languages: C# **[Jackdaw](https://codeberg.org/neptuwunium/Jackdaw)**: EVE Online (Carbon) Asset Uncooker
+- !Languages: C# **[Dotoxin](https://codeberg.org/neptuwunium/Dotoxin)**: Unofficial GCloud Client
 - !Languages: Python|Blender **[io_import_mage](https://codeberg.org/neptuwunium/io_import_mage)**: Ulysses .mage Actor Importer
 - !Languages: Python|Blender **[io_scene_bro](https://codeberg.org/neptuwunium/io_import_bro)**: BroEngine Asset Importer
 
