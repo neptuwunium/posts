@@ -38,12 +38,12 @@ Projects I intend to work on within the next year. Max 2 per interest tier.
 
 Projects that are going to be promoted into Development once there's more space. Max 2 per interest tier.
 
-- !Tier 4 !Languages: C# **[Hiss](https://codeberg.org/neptuwunium/Hiss)**: Control (Northlight) Asset Uncooker
+- !Tier 4 !Languages: C++ **[Hiss](https://codeberg.org/neptuwunium/Hiss)**: Control (Northlight) Asset Uncooker
 - !Tier 4 !Languages: Rust **[Akizuki](https://codeberg.org/neptuwunium/Akizuki)**: World of Warships (BigWorld) Asset Uncooker
 - !Tier 3 !Languages: C# **[Rivet](https://codeberg.org/neptuwunium/rivet)**: Ratchet & Clank: Rift Apart (Insomniac Luna Engine) Asset Uncooker
 - !Tier 3 !Languages: C# **[Feldspar](https://codeberg.org/neptuwunium/Feldspar)**: Generic KTGL2 (Katana Engine) Asset Uncooker
 - !Tier 2 !Languages: C++ **[RivetHook](https://codeberg.org/neptuwunium/rivet_hook)**: Ratchet & Clank: Rift Apart Mod Loader / Overlay
-- !Tier 2 !Languages: C# **[Alfiq](https://codeberg.org/neptuwunium/Alfiq)**: Elder Scrolls Online (HeroEngine) Asset Uncooker
+- !Tier 2 !Languages: C++ **[Alfiq](https://codeberg.org/neptuwunium/Alfiq)**: Elder Scrolls Online (HeroEngine) Asset Uncooker
 - !Tier 1 !Languages: C#|C++ **Myna**: Encryption and Hashing Algorithms
 
 ## On Ice
@@ -109,6 +109,7 @@ This is a smaller version of the planning/TODO documents I have for each project
 - Restart Sedna Renderer into wgpu-native instead of SDL
 - Reimplement KBLDMDL as Mercury
 - io_scene_kbld for Mercury
+- Mercury Viewer (Sedna)
 
 #### Neptune++
 
@@ -119,13 +120,14 @@ This is a smaller version of the planning/TODO documents I have for each project
 
 #### Pepper
 
-- Rewrite to C++
+- C++ Version
 - HIRC
-- Explorer GUI (wwiser-like)
+- GUI (Qt)
 
 #### Knit
 
-- Rewrite to C++
+- C++ Version
+- GUI (Qt)
 - Bink Compression Codec
 - Oodle0 Compression Codec
 
@@ -135,6 +137,7 @@ This is a smaller version of the planning/TODO documents I have for each project
 - Path Parsing
 - Textures
 - Determine if a blender addon is suitable for models/animations
+- GUI (Qt)
 
 #### Varang
 
@@ -142,12 +145,13 @@ This is a smaller version of the planning/TODO documents I have for each project
 - MTextVariant
 - Textures
 - io_scene_snowdrop
+- GUI (Qt)
 
 #### Lilith
 
 Note: blender addon not suitable due to ID based references.
 
-- GUI (Qt)
+- GUI (Avalonia+Senda)
 - Animations
 - Cutscenes
 - World Viewer
@@ -157,7 +161,7 @@ Note: blender addon not suitable due to ID based references.
 Note: blender addon not suitable due to heavy indirect reference usage.
 
 - U*Mesh
-- GUI (Needs Sedna)
+- GUI (Avalonia+Sedna)
 - UAnimation
 - UWorld
 
@@ -169,7 +173,7 @@ Note: blender addon not suitable due ID based references.
 - Codegen types
 - Textures
 - Models
-- GUI
+- GUI (Avalonia+Sedna)
 - Scenes
 - Animations
 
@@ -177,18 +181,20 @@ Note: blender addon not suitable due ID based references.
 
 - Load assets
 - Determine the rest of the owl
+- GUI (Qt)
 
 #### Akizuki
 
 - Rewrite to C++
 - Map Exporting
+- GUI (Qt)
 - Model Viewer
 - Map Viewer
 
 #### Rivet
 
 - Models
-- GUI (Needs Sedna)
+- GUI (Avalonia+Sedna)
 - Animations
 - Zones
 
@@ -202,13 +208,14 @@ Note: blender addon not suitable due ID based references.
 
 - Load assets
 - Determine the rest of the owl
+- GUI (Qt)
 
 #### Dragapult
 
 - Unpacking
 - Textures
 - Models
-- GUI
+- GUI (Qt)
 - Animations
 - Maps
 
