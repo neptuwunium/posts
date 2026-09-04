@@ -357,27 +357,33 @@ article > *:nth-child(6n+6)::selection, article > *:nth-child(6n+6) *::selection
     background: rgba(250, 244, 123, 0.25);
 }
 
-article.index > ol > li:nth-child(6n+1) a::selection{
+article > ol > li:nth-child(6n+1) a::selection, article > ul > li:nth-child(6n+1) a::selection,
+article > ol > li:nth-child(6n+1)::selection, article > ul > li:nth-child(6n+1)::selection {
     background: rgba(204, 250, 158, 0.25) !important;
 }
 
-article.index > ol > li:nth-child(6n+2) a::selection {
+article > ol > li:nth-child(6n+2) a::selection, article > ul > li:nth-child(6n+2) a::selection,
+article > ol > li:nth-child(6n+2)::selection, article > ul > li:nth-child(6n+2)::selection {
     background: rgba(157, 236, 255, 0.25) !important;
 }
 
-article.index > ol > li:nth-child(6n+3) a::selection {
+article > ol > li:nth-child(6n+3) a::selection, article > ul > li:nth-child(6n+3) a::selection,
+article > ol > li:nth-child(6n+3)::selection, article > ul > li:nth-child(6n+3)::selection {
     background: rgba(212, 169, 255, 0.25) !important;
 }
 
-article.index > ol > li:nth-child(6n+4) a::selection {
+article > ol > li:nth-child(6n+4) a::selection, article > ul > li:nth-child(6n+4) a::selection,
+article > ol > li:nth-child(6n+4)::selection, article > ul > li:nth-child(6n+4)::selection {
     background: rgba(255, 150, 155, 0.25) !important;
 }
 
-article.index > ol > li:nth-child(6n+5) a::selection {
+article > ol > li:nth-child(6n+5) a::selection, article > ul > li:nth-child(6n+5) a::selection,
+article > ol > li:nth-child(6n+5)::selection, article > ul > li:nth-child(6n+5)::selection {
     background: rgba(255, 190, 129, 0.25) !important;
 }
 
-article.index > ol > li:nth-child(6n+6) a::selection {
+article > ol > li:nth-child(6n+6) a::selection, article > ul > li:nth-child(6n+6) a::selection,
+article > ol > li:nth-child(6n+6)::selection, article > ul > li:nth-child(6n+6)::selection {
     background: rgba(250, 244, 123, 0.25) !important;
 }
 
