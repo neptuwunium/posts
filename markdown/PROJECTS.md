@@ -2,7 +2,7 @@
 title: PROJECTS
 short: <span class="emoji">🫪</span>
 date: 1846-09-23 4:06 PM
-updated: 2026-09-04 5:34 AM
+updated: 2026-09-04 7:37 PM
 private: true
 headers: no-list
 ---
@@ -63,6 +63,7 @@ Projects I intend to one day come back to, but not sure when.
 - !Languages: C# **Nuzzlebun**: Generic Lumberyard Asset Uncooker
 - !Languages: C# **Hugglebun**: Generic Godot Asset Uncooker
 - !Languages: C++ **ImHex PatCove**: ImHex Pattern -> Language CodeGen
+- !Languages: C++ **terable**: TERA Private Server
 
 ## Complete-ish
 
