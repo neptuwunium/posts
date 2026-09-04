@@ -105,8 +105,7 @@ This is a smaller version of the planning/TODO documents I have for each project
 
 #### Neptune
 
-- Redesign Sedna SceneGraph
-- Restart Sedna Renderer into wgpu-native instead of SDL
+- Sedna
 - Reimplement KBLDMDL as Mercury
 - io_scene_kbld for Mercury
 - Mercury Viewer (Sedna)
