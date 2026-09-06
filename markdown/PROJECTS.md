@@ -2,7 +2,7 @@
 title: PROJECTS
 short: <span class="emoji">🫪</span>
 date: 1846-09-23 4:06 PM
-updated: 2026-09-04 7:37 PM
+updated: 2026-09-06 8:40 PM
 private: true
 headers: no-list
 ---
@@ -25,12 +25,12 @@ Projects I will always work on throughout time
 
 Projects I intend to work on within the next year. Max 2 per interest tier.
 
-- !Tier 5 !Languages: C++ **[Rocket](https://codeberg.org/neptuwunium/Rocket)**: Guardians of the Galaxy (Dawn) Asset Uncooker
-- !Tier 5 !Languages: C++ **Dragapult**: Sword/Shield Asset Uncooker
-- !Tier 4 !Languages: C++ **[Varang](https://codeberg.org/neptuwunium/Varang)**: Avatar: Frontiers of Pandora (Snowdrop) Asset Uncooker
-- !Tier 4 !Languages: C++ **Amanti**: Avatar (2009) (Dunia) Asset Uncooker
+- !Tier 5 !Languages: C++ **[Varang](https://codeberg.org/neptuwunium/Varang)**: Avatar: Frontiers of Pandora (Snowdrop) Asset Uncooker
+- !Tier 5 !Languages: C# **[Twilight](https://codeberg.org/neptuwunium/Twilight)**: Bang Bang Asset Downloader
+- !Tier 4 !Languages: C++ **[Rocket](https://codeberg.org/neptuwunium/Rocket)**: Guardians of the Galaxy (Dawn) Asset Uncooker
+- !Tier 4 !Languages: C++ **Dragapult**: Sword/Shield Asset Uncooker
 - !Tier 3 !Languages: C# **[Cuddlebun](https://codeberg.org/neptuwunium/Cuddlebun)**: Generic Unreal Engine Asset Uncooker
-- !Tier 3 !Languages: Python|Blender **io_import_kbld**: KoboldGL .kbld Mercury Importer
+- !Tier 3 !Languages: C++ **Amanti**: Avatar (2009) (Dunia) Asset Uncooker
 - !Tier 2 !Languages: C# **[Snugglebun](https://codeberg.org/neptuwunium/Snugglebun)**: Generic Unity Engine Asset Uncooker
 - !Tier 2 !Languages: C# **[Pepper](https://codeberg.org/neptuwunium/Pepper)**: Wwise WEM/BNK Decoder
 
@@ -38,6 +38,7 @@ Projects I intend to work on within the next year. Max 2 per interest tier.
 
 Projects that are going to be promoted into Development once there's more space. Max 2 per interest tier.
 
+- !Tier 5 !Languages: Python|Blender **io_import_kbld**: KoboldGL .kbld Mercury Importer
 - !Tier 4 !Languages: C++ **[Hiss](https://codeberg.org/neptuwunium/Hiss)**: Control (Northlight) Asset Uncooker
 - !Tier 4 !Languages: Rust **[Akizuki](https://codeberg.org/neptuwunium/Akizuki)**: World of Warships (BigWorld) Asset Uncooker
 - !Tier 3 !Languages: C# **[Rivet](https://codeberg.org/neptuwunium/rivet)**: Ratchet & Clank: Rift Apart (Insomniac Luna Engine) Asset Uncooker
@@ -51,6 +52,7 @@ Projects that are going to be promoted into Development once there's more space.
 Projects I intend to one day come back to, but not sure when.
 
 - !Languages: C++ **NP_Kobold**: Game Engine
+- !Languages: C# **Ardenweald**: World of Warcraft Asset Explorer
 - !Languages: C# **[Lilith](https://codeberg.org/neptuwunium/Lilith)**: Diablo 4 Asset Uncooker
 - !Languages: C#|TypeScript|Preact **[pal.vore.ink](https://codeberg.org/neptuwunium/pal.vore.ink)**: Data Driven Palworld database
 - !Languages: C# **[Fang](https://github.com/neptuwunium/Fang)**: Final Fantasy XIII (CrystalTools) Asset Uncooker
